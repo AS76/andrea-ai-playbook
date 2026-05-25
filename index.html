@@ -1,200 +1,698 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrea AI Playbook v4.2</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
+        /* Basic Reset & Setup */
+        :root {
+            --bg-color: #f8f7f4;
+            --text-color: #1a1a1a;
+            --primary-color: #2563eb;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --font-main: 'Inter', sans-serif;
+        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa; /* Sfondo crema chiaro */
-            color: #212529;
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
         }
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 24px;
-            transition: all 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 1rem;
         }
         h1, h2, h3 {
             font-weight: 700;
+            margin-top: 2em;
+            margin-bottom: 1em;
+            letter-spacing: -0.5px;
         }
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #343a40;
-            margin-bottom: 1rem;
+        h1 { font-size: 2.5rem; font-weight: 900; }
+        h2 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+        h3 { font-size: 1.5rem; }
+        p, li, td, th { font-size: 1rem; }
+        a { color: var(--primary-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Architecture Diagram */
+        #architettura {
+            text-align: center;
         }
-        .section-subtitle {
-            font-size: 1.25rem;
-            color: #6c757d;
+        .architecture-diagram {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            display: block;
+        }
+        .hub-circle { fill: #e0e7ff; stroke: #a5b4fc; stroke-width: 2px; }
+        .hub-text { font-size: 20px; font-weight: 700; fill: #312e81; }
+        .spoke-circle { stroke-width: 2px; transition: transform 0.2s ease; }
+        .spoke-group:hover .spoke-circle { transform: scale(1.1); }
+        .spoke-line { stroke: #d1d5db; stroke-width: 2px; }
+        .spoke-text { font-size: 14px; font-weight: 500; fill: #374151; }
+        .spoke-emoji { font-size: 24px; }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        /* Header */
+        .main-header {
+            text-align: left;
+            padding: 2rem;
             margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .agent-card-header {
-            border-bottom: 1px solid #e9ecef;
-            padding-bottom: 1rem;
+        .header-title h1 {
+            margin: 0;
+            line-height: 1.1;
+        }
+        .version-badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .header-details p {
+            margin: 0.2rem 0;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        .header-details strong {
+            color: var(--text-color);
+        }
+        .status-active {
+            color: #16a34a;
+            font-weight: 700;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+    /* Agent Roster */
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .agent-card {
+            display: flex;
+            flex-direction: column;
+            border-left: 5px solid; /* Color will be set inline */
+        }
+        .agent-header {
+            display: flex;
+            align-items: center;
             margin-bottom: 1rem;
+        }
+        .agent-header .emoji {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+        .agent-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .agent-domain {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin: -5px 0 10px 0;
+        }
+        .agent-description {
+            font-size: 0.95rem;
+            color: #4b5563;
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+        .agent-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #6b7280;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .meta-item strong {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .risk-low { color: #16a34a; }
+        .risk-medium { color: #f59e0b; }
+        .risk-high { color: #ef4444; }
+    /* Routing, Authority, and Truth Tables */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        .styled-table th, .styled-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .styled-table th {
+            background-color: #f9fafb;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .styled-table tr:last-child th,
+        .styled-table tr:last-child td {
+            border-bottom: 0;
+        }
+        .styled-table td .agent-ref {
+            font-weight: 700;
+        }
+        .styled-table td .emoji {
+            margin-right: 0.5rem;
+        }
+
+    /* Combined Grid for Authority/Autonomy */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .levels-grid h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        .levels-grid h3 svg {
+            margin-right: 0.5rem;
+            width: 24px;
+            height: 24px;
+        }
+        .level-item {
+            margin-bottom: 1rem;
+        }
+        .level-item strong {
+            display: block;
+            font-size: 1rem;
+        }
+        .level-item p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin: 0.2rem 0 0 0;
+        }
+
+    /* Truth Hierarchy */
+        .truth-hierarchy-list {
+            list-style: none;
+            padding-left: 0;
+            counter-reset: truth-counter;
+            margin-top: 2rem;
+        }
+        .truth-hierarchy-list li {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-right: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .truth-hierarchy-list li::before {
+            counter-increment: truth-counter;
+            content: counter(truth-counter);
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            border: 4px solid var(--bg-color);
+        }
+        .truth-hierarchy-list li strong {
+            display: block;
+            font-size: 1.1rem;
+        }
+        .truth-hierarchy-list li p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #6b7280;
         }
     </style>
 </head>
-<body class="antialiased">
-    <div class="container mx-auto p-8">
-
-        <!-- Header -->
-        <header class="text-center py-12">
-            <span class="text-indigo-600 font-semibold uppercase tracking-wider">OpenClaw Multi-Agent OS</span>
-            <h1 class="text-5xl font-extrabold text-gray-800 mt-2">Andrea AI Playbook</h1>
-            <p class="text-xl text-gray-500 mt-4">v4.2 — Sistema Operativo Multi-Agente</p>
+<body>
+    <div class="container">
+        <header class="main-header card">
+            <div class="header-title">
+                <span class="version-badge">v4.2</span>
+                <h1>Andrea AI Playbook</h1>
+            </div>
+            <div class="header-details">
+                <p><strong>Owner:</strong> Andrea Sassi</p>
+                <p><strong>Platform:</strong> OpenClaw</p>
+                <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                <p><strong>Date:</strong> 2026-05-21</p>
+            </div>
         </header>
+        <main>
+            <section id="architettura">
+                <h2>Architettura</h2>
+                <div class="card">
+                    <svg viewBox="0 0 800 600" class="architecture-diagram" xmlns="http://www.w3.org/2000/svg">
+                        <title>Architettura Hub-and-Spoke</title>
+                        <!-- Hub (Cleo) -->
+                        <g id="hub-cleo">
+                            <circle cx="400" cy="300" r="60" class="hub-circle"/>
+                            <text x="400" y="295" text-anchor="middle" class="hub-text">Cleo</text>
+                            <text x="400" y="325" text-anchor="middle" font-size="36" class="hub-emoji">👑</text>
+                        </g>
 
-        <!-- Architettura -->
-        <section id="architettura" class="my-16">
-            <h2 class="section-title">Architettura</h2>
-            <p class="section-subtitle">Topologia Hub-and-Spoke con Cleo come router centrale. Ogni agente è uno specialista con un dominio definito.</p>
-            <div class="card">
-                <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Stili SVG -->
-                    <defs>
-                        <style>
-                            .hub { fill: #4f46e5; }
-                            .spoke { fill: #10b981; }
-                            .hub-text { font-size: 14px; fill: white; font-weight: 600; text-anchor: middle; }
-                            .spoke-text { font-size: 12px; fill: #374151; text-anchor: middle;}
-                            .connector { stroke: #d1d5db; stroke-width: 2; stroke-dasharray: 5 5;}
-                        </style>
-                    </defs>
-                    <!-- Hub Centrale (Cleo) -->
-                    <circle class="hub" cx="400" cy="200" r="50"/>
-                    <text class="hub-text" x="400" y="205">Cleo</text>
-                     <!-- Agenti (Spokes) -->
-                    <circle class="spoke" cx="150" cy="100" r="30" />
-                    <text class="spoke-text" x="150" y="105">Atlas</text>
-                    <line class="connector" x1="180" y1="120" x2="350" y2="180" />
+                        <!-- Spokes -->
+                        <g id="spokes">
+                            <!-- Spoke Connections -->
+                            <line x1="400" y1="300" x2="150" y2="100" class="spoke-line"/>
+                            <line x1="400" y1="300" x2="300" y2="80" class="spoke-line"/>
+                            <line x1="400" y1="300" x2="500" y2="80" class="spoke-line"/>
+                            <line x1="400" y1="300" x2="650" y2="100" class="spoke-line"/>
+                            <line x1="400" y1="300" x2="120" y2="300" class="spoke-line"/>
+                            <line x1="400" y1="300" x2="680" y2="300" class="spoke-line"/>
+                            <line x1="400" y1="300" x2="150" y2="500" class="spoke-line"/>
+                            <line x1="400" y1="300" x2="300" y2="520" class="spoke-line"/>
+                            <line x1="400" y1="300" x2="500" y2="520" class="spoke-line"/>
+                            <line x1="400" y1="300" x2="650" y2="500" class="spoke-line"/>
 
-                    <circle class="spoke" cx="250" cy="300" r="30" />
-                    <text class="spoke-text" x="250" y="305">Codex</text>
-                    <line class="connector" x1="280" y1="280" x2="360" y2="220" />
-                    
-                    <circle class="spoke" cx="650" cy="300" r="30" />
-                    <text class="spoke-text" x="650" y="305">Pixel</text>
-                    <line class="connector" x1="620" y1="280" x2="440" y2="220" />
-
-                    <circle class="spoke" cx="550" cy="100" r="30" />
-                    <text class="spoke-text" x="550" y="105">Max</text>
-                    <line class="connector" x1="520" y1="120" x2="450" y2="180" />
-                </svg>
-            </div>
-        </section>
-
-        <!-- Team Roster -->
-        <section id="team" class="my-16">
-            <h2 class="section-title">Team Roster</h2>
-            <p class="section-subtitle">11 agenti attivi, ciascuno con un dominio di specializzazione e un profilo dedicato.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Cleo -->
-                <div class="card">
-                    <div class="agent-card-header"><h3>Cleo</h3></div>
-                    <p><strong>Dominio:</strong> Orchestrazione, routing e operazioni interne.</p>
+                            <!-- Spoke Agents -->
+                            <g class="spoke-group" transform="translate(150, 100)">
+                                <circle r="40" style="fill:#fff1f2; stroke:#ff8fab;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Atlas</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">🧠</text>
+                            </g>
+                             <g class="spoke-group" transform="translate(300, 80)">
+                                <circle r="40" style="fill:#f0f9ff; stroke:#7dd3fc;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Codex</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">💻</text>
+                            </g>
+                            <g class="spoke-group" transform="translate(500, 80)">
+                                <circle r="40" style="fill:#ecfdf5; stroke:#6ee7b7;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Max</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">⚡️</text>
+                            </g>
+                            <g class="spoke-group" transform="translate(650, 100)">
+                                <circle r="40" style="fill:#f5f3ff; stroke:#c4b5fd;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Scout</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">🔎</text>
+                            </g>
+                            <g class="spoke-group" transform="translate(120, 300)">
+                                <circle r="40" style="fill:#fefce8; stroke:#fde047;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Pixel</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">🎨</text>
+                            </g>
+                             <g class="spoke-group" transform="translate(680, 300)">
+                                <circle r="40" style="fill:#fdf2f8; stroke:#f9a8d4;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Lex</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">⚖️</text>
+                            </g>
+                            <g class="spoke-group" transform="translate(150, 500)">
+                                <circle r="40" style="fill:#fafaf9; stroke:#a8a29e;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Counsel</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">🛡️</text>
+                            </g>
+                            <g class="spoke-group" transform="translate(300, 520)">
+                                <circle r="40" style="fill:#f0fdf4; stroke:#86efac;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Visa</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">🛂</text>
+                            </g>
+                            <g class="spoke-group" transform="translate(500, 520)">
+                                <circle r="40" style="fill:#fff7ed; stroke:#fdba74;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Mark</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">📈</text>
+                            </g>
+                           <g class="spoke-group" transform="translate(650, 500)">
+                                <circle r="40" style="fill:#f3f4f6; stroke:#9ca3af;" class="spoke-circle"/>
+                                <text text-anchor="middle" y="-5" class="spoke-text">Scribe</text>
+                                <text text-anchor="middle" y="20" class="spoke-emoji">✍️</text>
+                            </g>
+                        </g>
+                    </svg>
                 </div>
-                <!-- Atlas -->
-                <div class="card">
-                    <div class="agent-card-header"><h3>Atlas</h3></div>
-                    <p><strong>Dominio:</strong> Ragionamento profondo, strategia e analisi di scenari.</p>
+            </section>
+            <section id="roster">
+                <h2>Agent Roster</h2>
+                <div class="roster-grid">
+                    <!-- Cleo -->
+                    <div class="agent-card card" style="border-color: #a5b4fc;">
+                        <div class="agent-header">
+                            <span class="emoji">👑</span>
+                            <div>
+                                <h3>Cleo</h3>
+                                <p class="agent-domain">Orchestrator</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">The central hub, routing tasks and coordinating other agents.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>MiniMax M2.7</strong></div>
+                            <div class="meta-item">Auth <strong>A1</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-low">LOW</strong></div>
+                        </div>
+                    </div>
+                    <!-- Atlas -->
+                    <div class="agent-card card" style="border-color: #ff8fab;">
+                         <div class="agent-header">
+                            <span class="emoji">🧠</span>
+                            <div>
+                                <h3>Atlas</h3>
+                                <p class="agent-domain">Deep Reasoning</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Handles complex strategic thinking and long-term planning.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>GPT-5.5</strong></div>
+                            <div class="meta-item">Auth <strong>A0</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-high">HIGH</strong></div>
+                        </div>
+                    </div>
+                    <!-- Codex -->
+                    <div class="agent-card card" style="border-color: #7dd3fc;">
+                         <div class="agent-header">
+                            <span class="emoji">💻</span>
+                            <div>
+                                <h3>Codex</h3>
+                                <p class="agent-domain">Engineering Powerhouse</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Writes, debugs, and manages complex codebases.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>GPT-5.5</strong></div>
+                            <div class="meta-item">Auth <strong>A1</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-high">HIGH</strong></div>
+                        </div>
+                    </div>
+                    <!-- Max -->
+                    <div class="agent-card card" style="border-color: #6ee7b7;">
+                         <div class="agent-header">
+                            <span class="emoji">⚡️</span>
+                            <div>
+                                <h3>Max</h3>
+                                <p class="agent-domain">Rapid Executor</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Executes tasks quickly and efficiently, especially backend operations.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>DeepSeek V4 Pro</strong></div>
+                            <div class="meta-item">Auth <strong>A1</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
+                        </div>
+                    </div>
+                    <!-- Scout -->
+                    <div class="agent-card card" style="border-color: #c4b5fd;">
+                         <div class="agent-header">
+                            <span class="emoji">🔎</span>
+                            <div>
+                                <h3>Scout</h3>
+                                <p class="agent-domain">Memory Kernel</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Manages and recalls information from long-term memory.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>DeepSeek V4 Pro</strong></div>
+                            <div class="meta-item">Auth <strong>A0</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-low">LOW</strong></div>
+                        </div>
+                    </div>
+                    <!-- Pixel -->
+                    <div class="agent-card card" style="border-color: #fde047;">
+                         <div class="agent-header">
+                            <span class="emoji">🎨</span>
+                            <div>
+                                <h3>Pixel</h3>
+                                <p class="agent-domain">Visual Layer</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Creates and interprets visual information, from UI to branding.</p>
+                        <div class="agent-meta">
+                           <div class="meta-item">Model <strong>Gemini 2.5 Pro</strong></div>
+                            <div class="meta-item">Auth <strong>A1</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
+                        </div>
+                    </div>
+                    <!-- Lex -->
+                    <div class="agent-card card" style="border-color: #f9a8d4;">
+                         <div class="agent-header">
+                            <span class="emoji">⚖️</span>
+                            <div>
+                                <h3>Lex</h3>
+                                <p class="agent-domain">Legal/Compliance</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Provides legal analysis and ensures compliance with regulations.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>Claude Opus 4.7</strong></div>
+                            <div class="meta-item">Auth <strong>A0</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-high">HIGH</strong></div>
+                        </div>
+                    </div>
+                    <!-- Counsel -->
+                    <div class="agent-card card" style="border-color: #a8a29e;">
+                        <div class="agent-header">
+                            <span class="emoji">🛡️</span>
+                            <div>
+                                <h3>Counsel</h3>
+                                <p class="agent-domain">Governance/Risk</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Advises on governance, risk management, and career decisions.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>Claude Opus 4.7</strong></div>
+                            <div class="meta-item">Auth <strong>A0</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-high">HIGH</strong></div>
+                        </div>
+                    </div>
+                    <!-- Visa -->
+                    <div class="agent-card card" style="border-color: #86efac;">
+                        <div class="agent-header">
+                            <span class="emoji">🛂</span>
+                            <div>
+                                <h3>Visa</h3>
+                                <p class="agent-domain">Immigration</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Specializes in immigration procedures and documentation.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>Claude Sonnet 4.6</strong></div>
+                            <div class="meta-item">Auth <strong>A0</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
+                        </div>
+                    </div>
+                    <!-- Mark -->
+                    <div class="agent-card card" style="border-color: #fdba74;">
+                        <div class="agent-header">
+                            <span class="emoji">📈</span>
+                            <div>
+                                <h3>Mark</h3>
+                                <p class="agent-domain">Marketing/GTM</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Develops marketing strategies and go-to-market plans.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>GPT-5.4-mini</strong></div>
+                            <div class="meta-item">Auth <strong>A0</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
+                        </div>
+                    </div>
+                    <!-- Scribe -->
+                    <div class="agent-card card" style="border-color: #9ca3af;">
+                        <div class="agent-header">
+                            <span class="emoji">✍️</span>
+                            <div>
+                                <h3>Scribe</h3>
+                                <p class="agent-domain">Writing</p>
+                            </div>
+                        </div>
+                        <p class="agent-description">Generates high-quality written content for various purposes.</p>
+                        <div class="agent-meta">
+                            <div class="meta-item">Model <strong>Mistral Large</strong></div>
+                            <div class="meta-item">Auth <strong>A0</strong></div>
+                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Codex -->
+            </section>
+            <section id="routing">
+                <h2>Fast Routing Map</h2>
                 <div class="card">
-                    <div class="agent-card-header"><h3>Codex</h3></div>
-                    <p><strong>Dominio:</strong> Ingegneria del software, automazione e architetture complesse.</p>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Intent / Task Type</th>
+                                <th>Primary Agent</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Simple Operation / Orchestration</td>
+                                <td><span class="emoji">👑</span><span class="agent-ref">Cleo</span></td>
+                                <td>Default for ambiguous or multi-domain tasks.</td>
+                            </tr>
+                            <tr>
+                                <td>Backend Code</td>
+                                <td><span class="emoji">⚡️</span><span class="agent-ref">Max</span></td>
+                                <td>For rapid development and execution.</td>
+                            </tr>
+                            <tr>
+                                <td>Frontend UI / Visual Design</td>
+                                <td><span class="emoji">🎨</span><span class="agent-ref">Pixel</span> (+ Max)</td>
+                                <td>Pixel for design, Max for backend integration if needed.</td>
+                            </tr>
+                            <tr>
+                                <td>Memory Recall / Research</td>
+                                <td><span class="emoji">🔎</span><span class="agent-ref">Scout</span></td>
+                                <td>Accessing long-term memory or performing web research.</td>
+                            </tr>
+                             <tr>
+                                <td>Writing / Content Creation</td>
+                                <td><span class="emoji">✍️</span><span class="agent-ref">Scribe</span></td>
+                                <td>For articles, summaries, and creative writing.</td>
+                            </tr>
+                             <tr>
+                                <td>Strategy / Deep Reasoning</td>
+                                <td><span class="emoji">🧠</span><span class="agent-ref">Atlas</span></td>
+                                <td>For complex problem-solving and strategic analysis.</td>
+                            </tr>
+                            <tr>
+                                <td>Legal & Compliance</td>
+                                <td><span class="emoji">⚖️</span><span class="agent-ref">Lex</span></td>
+                                <td>For legal questions and compliance checks.</td>
+                            </tr>
+                             <tr>
+                                <td>Marketing / Go-to-Market</td>
+                                <td><span class="emoji">📈</span><span class="agent-ref">Mark</span></td>
+                                <td>For marketing strategies and campaigns.</td>
+                            </tr>
+                             <tr>
+                                <td>Governance / Career Risk</td>
+                                <td><span class="emoji">🛡️</span><span class="agent-ref">Counsel</span></td>
+                                <td>For advice on risk, governance, and sensitive decisions.</td>
+                            </tr>
+                             <tr>
+                                <td>Immigration / Visa</td>
+                                <td><span class="emoji">🛂</span><span class="agent-ref">Visa</span></td>
+                                <td>For all immigration-related tasks and queries.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- Max -->
+            </section>
+            <section id="authority">
+                <h2>Authority & Autonomy Levels</h2>
                 <div class="card">
-                    <div class="agent-card-header"><h3>Max</h3></div>
-                    <p><strong>Dominio:</strong> Esecuzione rapida di task di backend, script e API.</p>
+                    <div class="levels-grid">
+                        <div class="authority-levels">
+                            <h3>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008H12v-.008z" /></svg>
+                                Authority Levels (A-Levels)
+                            </h3>
+                            <div class="level-item">
+                                <strong>A2: External / Irreversible</strong>
+                                <p>Can perform actions that are public or difficult/impossible to reverse. Requires strict oversight.</p>
+                            </div>
+                            <div class="level-item">
+                                <strong>A1: Internal Low-Risk</strong>
+                                <p>Can perform actions within the internal system (e.g., file operations, internal API calls). Reversible.</p>
+                            </div>
+                            <div class="level-item">
+                                <strong>A0: Advisory Only</strong>
+                                <p>Cannot perform actions. Can only provide information, analysis, and suggestions.</p>
+                            </div>
+                        </div>
+                        <div class="autonomy-levels">
+                             <h3>
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.44v9.02m-.32 4.14A14.975 14.975 0 006 18v-4.8m.32-4.14A14.975 14.975 0 0012 3.52a14.975 14.975 0 00-6.32 1.94m12.64 0A14.975 14.975 0 0018 15.52a14.975 14.975 0 00-6.32-1.94m-6.32 0A14.975 14.975 0 006 3.52m0 12A14.975 14.975 0 0012 18.06m-6.32-1.94v-2.58" /></svg>
+                                Autonomy Levels (L-Levels)
+                            </h3>
+                            <div class="level-item">
+                                <strong>L1: Autonomous</strong>
+                                <p>Can initiate and execute tasks independently based on broad goals.</p>
+                            </div>
+                            <div class="level-item">
+                                <strong>L2: Conditional</strong>
+                                <p>Can execute tasks autonomously once specific pre-conditions are met.</p>
+                            </div>
+                             <div class="level-item">
+                                <strong>L3: Supervised</strong>
+                                <p>Requires confirmation before executing the final action of a task.</p>
+                            </div>
+                             <div class="level-item">
+                                <strong>L4: Explicit Only</strong>
+                                <p>Can only perform actions when explicitly instructed. No proactive behavior.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Scout -->
+            </section>
+            <section id="truth">
+                <h2>Truth Hierarchy</h2>
                 <div class="card">
-                    <div class="agent-card-header"><h3>Scout</h3></div>
-                    <p><strong>Dominio:</strong> Memoria, ricerca e recupero di log.</p>
+                    <ol class="truth-hierarchy-list">
+                        <li>
+                            <strong>Istruzione diretta di Andrea</strong>
+                            <p>Direct, explicit instructions from the owner override all other sources.</p>
+                        </li>
+                        <li>
+                            <strong>MEMORY.md</strong>
+                            <p>Curated long-term memory and established facts about the user and projects.</p>
+                        </li>
+                        <li>
+                            <strong>SOUL.md / IDENTITY.md</strong>
+                            <p>Core identity, principles, and operational guidelines.</p>
+                        </li>
+                        <li>
+                            <strong>Contesto della sessione attiva</strong>
+                            <p>Information and context from the current, ongoing conversation.</p>
+                        </li>
+                         <li>
+                            <strong>Conoscenza pregressa del modello</strong>
+                            <p>The model's base knowledge, used when no other source provides an answer.</p>
+                        </li>
+                    </ol>
                 </div>
-                <!-- Pixel -->
-                <div class="card">
-                    <div class="agent-card-header"><h3>Pixel</h3></div>
-                    <p><strong>Dominio:</strong> UI/UX, design visuale e asset grafici.</p>
-                </div>
-                <!-- Lex -->
-                <div class="card">
-                    <div class="agent-card-header"><h3>Lex</h3></div>
-                    <p><strong>Dominio:</strong> Revisione legale, compliance e contrattualistica.</p>
-                </div>
-                <!-- Counsel -->
-                <div class="card">
-                    <div class="agent-card-header"><h3>Counsel</h3></div>
-                    <p><strong>Dominio:</strong> Governance, gestione del rischio e supporto decisionale.</p>
-                </div>
-                <!-- Visa -->
-                <div class="card">
-                    <div class="agent-card-header"><h3>Visa</h3></div>
-                    <p><strong>Dominio:</strong> Gestione di pratiche di immigrazione, visti e permessi.</p>
-                </div>
-                <!-- Mark -->
-                <div class="card">
-                    <div class="agent-card-header"><h3>Mark</h3></div>
-                    <p><strong>Dominio:</strong> Strategia di marketing, Go-To-Market e posizionamento.</p>
-                </div>
-                <!-- Scribe -->
-                <div class="card">
-                    <div class="agent-card-header"><h3>Scribe</h3></div>
-                    <p><strong>Dominio:</strong> Scrittura di report, bozze di email, proposte e documentazione.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Routing Map -->
-        <section id="routing" class="my-16">
-            <h2 class="section-title">Routing Map</h2>
-            <p class="section-subtitle">Regole di instradamento per garantire che ogni richiesta venga gestita dall'agente più appropriato.</p>
-            <div class="card">
-                <ul>
-                    <li><strong>Operazioni semplici:</strong> → Cleo</li>
-                    <li><strong>Codice Backend:</strong> → Max</li>
-                    <li><strong>UI/Frontend:</strong> → Pixel (+Max se serve backend)</li>
-                    <li><strong>Design Visuale:</strong> → Pixel</li>
-                    <li><strong>Memoria/Ricerca:</strong> → Scout</li>
-                    <li><strong>Scrittura:</strong> → Scribe</li>
-                    <li><strong>Strategia:</strong> → Atlas</li>
-                    <li><strong>Legale:</strong> → Lex</li>
-                    <li><strong>Marketing:</strong> → Mark</li>
-                </ul>
-            </div>
-        </section>
-
-         <!-- Hierarchy of Truth -->
-        <section id="truth-hierarchy" class="my-16">
-            <h2 class="section-title">Gerarchia della Verità</h2>
-            <p class="section-subtitle">L'ordine di priorità delle fonti di informazione per risolvere conflitti e garantire la coerenza.</p>
-            <div class="card">
-                <ol class="list-decimal list-inside space-y-4 text-gray-700">
-                    <li class="font-semibold text-indigo-600">Istruzione diretta di Andrea: <span class="font-normal text-gray-600">Ha sempre la priorità assoluta.</span></li>
-                    <li class="font-semibold text-indigo-600">Memoria scritta (MEMORY.md): <span class="font-normal text-gray-600">Fatti confermati, decisioni passate e preferenze.</span></li>
-                    <li class="font-semibold text-indigo-600">Direttive interne (SOUL.md/IDENTITY.md): <span class="font-normal text-gray-600">Le regole di comportamento e il tono di voce dell'agente.</span></li>
-                    <li class="font-semibold text-indigo-600">Contesto della sessione attiva: <span class="font-normal text-gray-600">Informazioni e file aperti nella sessione corrente.</span></li>
-                    <li class="font-semibold text-indigo-600">Conoscenza pregressa del modello: <span class="font-normal text-gray-600">L'informazione di base del modello, da verificare se critica.</span></li>
-                </ol>
-            </div>
-        </section>
-
-        <footer class="text-center py-8 mt-16 border-t border-gray-200">
-            <p class="text-gray-500">&copy; 2026 Andrea Sassi. Tutti i diritti riservati.</p>
+            </section>
+        </main>
+        <footer>
+            <p style="text-align: center; margin-top: 4rem; color: #9ca3af;">Playbook v4.2 - Andrea Sassi</p>
         </footer>
     </div>
 </body>
