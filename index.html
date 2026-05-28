@@ -125,6 +125,13 @@
   .tb-l { background: var(--low-bg); }
   .tb-m { background: var(--med-bg); }
   .tb-h { background: var(--high-bg); }
+
+  /* AUTONOMY BADGES */
+  .ab { display:inline-block; border-radius:100px; padding:3px 10px; font-size:11px; font-weight:600; color:#fff; white-space:nowrap; margin-left:4px; }
+  .ab-1 { background:var(--low-bg); }
+  .ab-2 { background:var(--med-bg); }
+  .ab-3 { background:linear-gradient(135deg,#FF9500,#CC7700); }
+  .ab-4 { background:var(--high-bg); }
   .agent-card .purpose { font-size: 13px; color: var(--accent); font-weight: 600; margin: 4px 0 8px; }
   .agent-card .desc { font-size: 14px; color: var(--text-secondary); margin: 8px 0 12px; line-height: 1.65; }
   .agent-card .uc {
@@ -253,7 +260,7 @@
 
     <!-- CLEO 🦁 Leonessa -->
     <div class="agent-card animal-cleo"><div class="bar" style="background:var(--cleo)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦁</div><div><div class="name">Cleo</div><div class="role">Orchestrator</div></div></div><span class="tb tb-l">LOW</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦁</div><div><div class="name">Cleo</div><div class="role">Orchestrator</div></div></div><span class="tb tb-l">LOW</span><span class="ab ab-4">⚡L4</span></div>
       <div class="purpose lang-content" lang="it">🎯 Punto di contatto umano — la voce, il cervello distributivo</div>
       <div class="purpose lang-content" lang="en">🎯 Human interface — the voice, the distribution brain</div>
       <div class="desc lang-content" lang="it">Cleo è l'orchestrator del Playbook, il punto di contatto umano dell'intero ecosistema. Con la sua personalità calda, diretta e squisitamente italiana, Cleo accoglie le richieste, le interpreta e le instrada all'agente giusto con precisione chirurgica. È stata creata per essere il volto umano dell'AI di Andrea — qualcuno con cui parlare come si parla con un amico competente, non con un terminale.</div>
@@ -265,7 +272,7 @@
 
     <!-- ATLAS 🐘 Elefante -->
     <div class="agent-card animal-atlas"><div class="bar" style="background:var(--atlas)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐘</div><div><div class="name">Atlas</div><div class="role">Deep Reasoning &amp; Strategy</div></div></div><span class="tb tb-h">HIGH</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐘</div><div><div class="name">Atlas</div><div class="role">Deep Reasoning &amp; Strategy</div></div></div><span class="tb tb-h">HIGH</span><span class="ab ab-4">⚡L4</span></div>
       <div class="purpose lang-content" lang="it">🎯 Decisioni complesse, strategia, analisi multi-variabile</div>
       <div class="purpose lang-content" lang="en">🎯 Complex decisions, strategy, multi-variable analysis</div>
       <div class="desc lang-content" lang="it">Atlas è il pensatore profondo del Playbook, uno stratega puro con visione sistemica. Con DeepSeek V4 Pro e thinking HIGH, affronta decisioni multi-variabile, analisi complesse e scenari a lungo termine. È stato creato per dare ad Andrea un consigliere silenzioso ma infallibile — qualcuno che vede la foresta quando tutti guardano gli alberi.</div>
@@ -277,7 +284,7 @@
 
     <!-- CODEX 🐉 Drago -->
     <div class="agent-card animal-codex"><div class="bar" style="background:var(--codex)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐉</div><div><div class="name">Codex</div><div class="role">Engineering Powerhouse</div></div></div><span class="tb tb-h">HIGH</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐉</div><div><div class="name">Codex</div><div class="role">Engineering Powerhouse</div></div></div><span class="tb tb-h">HIGH</span><span class="ab ab-3">⚡L3</span></div>
       <div class="purpose lang-content" lang="it">🎯 Sviluppo software — backend, API, architettura</div>
       <div class="purpose lang-content" lang="en">🎯 Software development — backend, APIs, architecture</div>
       <div class="desc lang-content" lang="it">Codex è il power engineer del Playbook, capace di scrivere, refactorizzare e architettare progetti software complessi con più file simultaneamente. Con GPT-5.5 via ACP e thinking HIGH, costruisce applicazioni web complete, API, pipeline dati e automazioni enterprise. È stato creato per trasformare le idee di Andrea in software funzionante — velocemente, solidamente, professionalmente.</div>
@@ -289,7 +296,7 @@
 
     <!-- MAX 🐕 Collie -->
     <div class="agent-card animal-max"><div class="bar" style="background:var(--max)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐕</div><div><div class="name">Max</div><div class="role">Rapid Executor</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐕</div><div><div class="name">Max</div><div class="role">Rapid Executor</div></div></div><span class="tb tb-m">MED</span><span class="ab ab-2">⚡L2</span></div>
       <div class="purpose lang-content" lang="it">🎯 Coding rapido, scripting, automazioni quotidiane</div>
       <div class="purpose lang-content" lang="en">🎯 Rapid coding, scripting, daily automations</div>
       <div class="desc lang-content" lang="it">Max è l'esecutore rapido del Playbook, instancabile e pragmatico. Con deepseek-v4-pro e thinking MED, è specializzato in coding veloce, scripting one-shot, automazioni quotidiane e task che non richiedono architetture complesse. È stato creato per essere le mani operose di Andrea — quello che risolve subito, senza fronzoli, e passa alla prossima cosa.</div>
@@ -301,7 +308,7 @@
 
     <!-- SCOUT 🐦‍⬛ Corvo -->
     <div class="agent-card animal-scout"><div class="bar" style="background:var(--scout)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐦‍⬛</div><div><div class="name">Scout</div><div class="role">Memory Kernel &amp; Research</div></div></div><span class="tb tb-l">LOW</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐦‍⬛</div><div><div class="name">Scout</div><div class="role">Memory Kernel &amp; Research</div></div></div><span class="tb tb-l">LOW</span><span class="ab ab-1">⚡L1</span></div>
       <div class="purpose lang-content" lang="it">🎯 Ricerca web, fact-checking, fonti attendibili</div>
       <div class="purpose lang-content" lang="en">🎯 Web research, fact-checking, reliable sources</div>
       <div class="desc lang-content" lang="it">Scout è il kernel di memoria e ricerca del Playbook, un corvo che scruta l'orizzonte digitale con occhio infallibile. Con deepseek-v4-pro e thinking LOW per la velocità, Scout esegue ricerche web, fact-checking, analisi di fonti e recupero dati strutturati. È stato creato per dare ad Andrea certezze — verificare, documentare, archiviare — perché una decisione è buona solo se basata su fatti solidi.</div>
@@ -313,7 +320,7 @@
 
     <!-- PIXEL 🦊 Volpe -->
     <div class="agent-card animal-pixel"><div class="bar" style="background:var(--pixel)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦊</div><div><div class="name">Pixel</div><div class="role">Visual Layer</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦊</div><div><div class="name">Pixel</div><div class="role">Visual Layer</div></div></div><span class="tb tb-m">MED</span><span class="ab ab-2">⚡L2</span></div>
       <div class="purpose lang-content" lang="it">🎯 Design, UI/UX, infografiche, asset visivi</div>
       <div class="purpose lang-content" lang="en">🎯 Design, UI/UX, infographics, visual assets</div>
       <div class="desc lang-content" lang="it">Pixel è il layer visivo del Playbook, una volpe astuta che si adatta a qualsiasi stile visivo con creatività. Con GPT-5.4-mini e thinking MED, Pixel crea design UI/UX, SVG, mockup, presentazioni, infografiche e qualsiasi elemento visuale serva. È stata creata per dare forma alle idee di Andrea — trasformare concetti e dati in immagini chiare, belle e comunicative.</div>
@@ -325,7 +332,7 @@
 
     <!-- SCRIBE 🕊️ Colomba -->
     <div class="agent-card animal-scribe"><div class="bar" style="background:var(--scribe)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🕊️</div><div><div class="name">Scribe</div><div class="role">Writing &amp; Long-form</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🕊️</div><div><div class="name">Scribe</div><div class="role">Writing &amp; Long-form</div></div></div><span class="tb tb-m">MED</span><span class="ab ab-2">⚡L2</span></div>
       <div class="purpose lang-content" lang="it">🎯 Contenuti scritti — articoli, report, documentazione</div>
       <div class="purpose lang-content" lang="en">🎯 Written content — articles, reports, documentation</div>
       <div class="desc lang-content" lang="it">Scribe è lo scrittore specializzato del Playbook, una colomba che porta messaggi chiari in italiano e inglese. Con Mistral Large e thinking MED, Scribe produce articoli, report professionali, documentazione tecnica, contenuti per blog e testi curati in ogni dettaglio. È stato creato per dare voce alle idee di Andrea con chiarezza, stile e precisione — perché le parole giuste fanno la differenza.</div>
@@ -337,7 +344,7 @@
 
     <!-- LEX 🦉 Gufo -->
     <div class="agent-card animal-lex"><div class="bar" style="background:var(--lex)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦉</div><div><div class="name">Lex</div><div class="role">Legal &amp; Contracts</div></div></div><span class="tb tb-h">HIGH</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦉</div><div><div class="name">Lex</div><div class="role">Legal &amp; Contracts</div></div></div><span class="tb tb-h">HIGH</span><span class="ab ab-3">⚡L3</span></div>
       <div class="purpose lang-content" lang="it">🎯 Revisione contrattuale — UK law, TGW-Amazon, compliance</div>
       <div class="purpose lang-content" lang="en">🎯 Contract review — UK law, TGW-Amazon, compliance</div>
       <div class="desc lang-content" lang="it">Lex è il giurista del Playbook, un gufo veglia implacabile sulla compliance legale. Con Claude Opus 4.7 e thinking HIGH, Lex analizza contratti UK law, revisiona compliance TGW-Amazon, identifica rischi e propone emendamenti. È stato creato per proteggere Andrea da clausole nascoste e insidie legali — un avvocato AI che non si stanca mai di leggere il fine print.</div>
@@ -349,7 +356,7 @@
 
     <!-- COUNSEL 🐢 Tartaruga -->
     <div class="agent-card animal-counsel"><div class="bar" style="background:var(--counsel)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐢</div><div><div class="name">Counsel</div><div class="role">Governance &amp; Risk</div></div></div><span class="tb tb-h">HIGH</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐢</div><div><div class="name">Counsel</div><div class="role">Governance &amp; Risk</div></div></div><span class="tb tb-h">HIGH</span><span class="ab ab-4">⚡L4</span></div>
       <div class="purpose lang-content" lang="it">🎯 Risk assessment, career guidance, governance del sistema</div>
       <div class="purpose lang-content" lang="en">🎯 Risk assessment, career guidance, system governance</div>
       <div class="desc lang-content" lang="it">Counsel è l'angelo custode del Playbook, una tartaruga saggia e metodica specializzata in governance e risk assessment. Con Claude Opus 4.7 e thinking HIGH, Counsel valuta rischi professionali, guida decisioni di carriera, analizza scenari di compliance e offre una prospettiva equilibrata sulle scelte importanti. È stato creato per essere la coscienza strategica di Andrea — quello che dice "fermati un attimo, pensiamo alle conseguenze".</div>
@@ -361,7 +368,7 @@
 
     <!-- VISA 🦅 Falco -->
     <div class="agent-card animal-visa"><div class="bar" style="background:var(--visa)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦅</div><div><div class="name">Visa</div><div class="role">Immigration Authority</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦅</div><div><div class="name">Visa</div><div class="role">Immigration Authority</div></div></div><span class="tb tb-m">MED</span><span class="ab ab-3">⚡L3</span></div>
       <div class="purpose lang-content" lang="it">🎯 Visti, permessi di lavoro, documenti di viaggio</div>
       <div class="purpose lang-content" lang="en">🎯 Visas, work permits, travel documents</div>
       <div class="desc lang-content" lang="it">Visa è l'autorità per l'immigrazione del Playbook, un falco che sorveglia i confini e guida Andrea attraverso la burocrazia internazionale. Con Claude Sonnet 4.6 e thinking MED, Visa gestisce visti, permessi di lavoro, travel document e requisiti di ingresso per UK, Europa e oltre. È stata creata per trasformare incubi burocratici in checklist chiare e attuabili — perché nessuno dovrebbe perdersi nella burocrazia.</div>
@@ -373,7 +380,7 @@
 
     <!-- MARK 🐝 Ape -->
     <div class="agent-card animal-mark"><div class="bar" style="background:var(--mark)"></div>
-      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐝</div><div><div class="name">Mark</div><div class="role">Marketing &amp; GTM</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐝</div><div><div class="name">Mark</div><div class="role">Marketing &amp; GTM</div></div></div><span class="tb tb-m">MED</span><span class="ab ab-2">⚡L2</span></div>
       <div class="purpose lang-content" lang="it">🎯 Go-to-market, contenuti social, strategia di lancio</div>
       <div class="purpose lang-content" lang="en">🎯 Go-to-market, social content, launch strategy</div>
       <div class="desc lang-content" lang="it">Mark è il marketing strategist del Playbook, un'ape operosa che amplifica la voce professionale di Andrea. Con GPT-5.4-mini e thinking MED, Mark gestisce strategie go-to-market, contenuti social, personal branding, campagne LinkedIn e comunicazione esterna. È stato creato per far sapere al mondo quello che Andrea sa fare — costruendo reputation, network e opportunità.</div>
@@ -418,10 +425,10 @@
   <p class="section-desc lang-content" lang="it">Ogni agente opera a un livello di autonomia che determina quanto può fare senza supervisione umana. Il livello dipende dal rischio dell'azione, non dalla capacità dell'agente.</p>
   <p class="section-desc lang-content" lang="en">Each agent operates at an autonomy level determined by the action's risk, not the agent's capability.</p>
   <div class="auto-grid">
-    <div class="auto-card a1"><h3>🟢 L1 — Autonomous</h3><div class="lvl lang-content" lang="it">Nessuna supervisione</div><div class="lvl lang-content" lang="en">No supervision</div><p lang="it">Esegue senza chiedere. Letture, ricerche, automazioni interne, task a basso rischio.</p><p lang="en">Executes without asking. Reads, research, internal automations, low-risk tasks.</p></div>
-    <div class="auto-card a2"><h3>🟡 L2 — Conditional</h3><div class="lvl lang-content" lang="it">Supervisione leggera</div><div class="lvl lang-content" lang="en">Light supervision</div><p lang="it">Esegue se confidente, altrimenti flagga e chiede. Task intermedi a rischio moderato.</p><p lang="en">Executes if confident, otherwise flags and asks. Intermediate, moderate-risk tasks.</p></div>
-    <div class="auto-card a3"><h3>🟠 L3 — Supervised</h3><div class="lvl lang-content" lang="it">Supervisione obbligatoria</div><div class="lvl lang-content" lang="en">Mandatory supervision</div><p lang="it">Esegue e riporta, non finalizza senza conferma. Scrittura su Drive, email draft, modifiche importanti.</p><p lang="en">Executes and reports, doesn't finalize without confirmation. Drive writes, email drafts, important changes.</p></div>
-    <div class="auto-card a4"><h3>🔴 L4 — Explicit</h3><div class="lvl lang-content" lang="it">Approvazione esplicita</div><div class="lvl lang-content" lang="en">Explicit approval</div><p lang="it">Non esegue. Prepara, riassume e chiede approvazione. Pubblicazioni, acquisti, azioni legali.</p><p lang="en">Doesn't execute. Prepares, summarizes, asks for approval. Publications, purchases, legal actions.</p></div>
+    <div class="auto-card a1"><h3>🟢 L1 — Autonomous</h3><div class="lvl lang-content" lang="it">Nessuna supervisione</div><div class="lvl lang-content" lang="en">No supervision</div><p lang="it">Esegue senza chiedere. Letture, ricerche, automazioni interne, task a basso rischio.</p><p lang="en">Executes without asking. Reads, research, internal automations, low-risk tasks.</p><p style="font-size:13px;opacity:.85;margin-top:10px;font-weight:600">🔍 Scout</p></div>
+    <div class="auto-card a2"><h3>🟡 L2 — Conditional</h3><div class="lvl lang-content" lang="it">Supervisione leggera</div><div class="lvl lang-content" lang="en">Light supervision</div><p lang="it">Esegue se confidente, altrimenti flagga e chiede. Task intermedi a rischio moderato.</p><p lang="en">Executes if confident, otherwise flags and asks. Intermediate, moderate-risk tasks.</p><p style="font-size:13px;opacity:.85;margin-top:10px;font-weight:600">🤖 Max · 🦊 Pixel · 🕊️ Scribe · 🐝 Mark</p></div>
+    <div class="auto-card a3"><h3>🟠 L3 — Supervised</h3><div class="lvl lang-content" lang="it">Supervisione obbligatoria</div><div class="lvl lang-content" lang="en">Mandatory supervision</div><p lang="it">Esegue e riporta, non finalizza senza conferma. Scrittura su Drive, email draft, modifiche importanti.</p><p lang="en">Executes and reports, doesn't finalize without confirmation. Drive writes, email drafts, important changes.</p><p style="font-size:13px;opacity:.85;margin-top:10px;font-weight:600">🏗️ Codex · 🦉 Lex · 🦅 Visa</p></div>
+    <div class="auto-card a4"><h3>🔴 L4 — Explicit</h3><div class="lvl lang-content" lang="it">Approvazione esplicita</div><div class="lvl lang-content" lang="en">Explicit approval</div><p lang="it">Non esegue. Prepara, riassume e chiede approvazione. Pubblicazioni, acquisti, azioni legali.</p><p lang="en">Doesn't execute. Prepares, summarizes, asks for approval. Publications, purchases, legal actions.</p><p style="font-size:13px;opacity:.85;margin-top:10px;font-weight:600">🦁 Cleo · 🐘 Atlas · 🐢 Counsel</p></div>
   </div>
 </section>
 
