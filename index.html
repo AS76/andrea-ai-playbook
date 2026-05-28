@@ -1,699 +1,520 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrea AI Playbook v4.2</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* Basic Reset & Setup */
-        :root {
-            --bg-color: #f8f7f4;
-            --text-color: #1a1a1a;
-            --primary-color: #2563eb;
-            --card-bg: #ffffff;
-            --border-color: #e5e7eb;
-            --shadow-color: rgba(0, 0, 0, 0.05);
-            --font-main: 'Inter', sans-serif;
-        }
-        body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 2rem;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 1rem;
-        }
-        h1, h2, h3 {
-            font-weight: 700;
-            margin-top: 2em;
-            margin-bottom: 1em;
-            letter-spacing: -0.5px;
-        }
-        h1 { font-size: 2.5rem; font-weight: 900; }
-        h2 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
-        h3 { font-size: 1.5rem; }
-        p, li, td, th { font-size: 1rem; }
-        a { color: var(--primary-color); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrea AI Playbook v4.3 — Multi-Agent Operating System</title>
+<style>
+  :root {
+    --bg: #F5F5F7;
+    --surface: #FFFFFF;
+    --text: #1D1D1F;
+    --text-secondary: #86868B;
+    --accent: #0071E3;
+    --border: #D2D2D7;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --radius: 16px;
+    --cleo: #0071E3;
+    --atlas: #BF5AF2;
+    --codex: #FF9F0A;
+    --max: #FF375F;
+    --scout: #30D158;
+    --pixel: #5AC8FA;
+    --lex: #8E8E93;
+    --counsel: #636366;
+    --visa: #64D2FF;
+    --mark: #FF9500;
+    --scribe: #0071EE;
+    --low-bg: #30D158;
+    --med-bg: #FF9F0A;
+    --high-bg: #FF375F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        /* Architecture Diagram */
-        #architettura {
-            text-align: center;
-        }
-        .architecture-diagram {
-            width: 100%;
-            max-width: 800px;
-            margin: 2rem auto;
-            display: block;
-        }
-        .hub-circle { fill: #e0e7ff; stroke: #a5b4fc; stroke-width: 2px; }
-        .hub-text { font-size: 20px; font-weight: 700; fill: #312e81; }
-        .spoke-circle { stroke-width: 2px; transition: transform 0.2s ease; }
-        .spoke-group:hover .spoke-circle { transform: scale(1.1); }
-        .spoke-line { stroke: #d1d5db; stroke-width: 2px; }
-        .spoke-text { font-size: 14px; font-weight: 500; fill: #374151; }
-        .spoke-emoji { font-size: 24px; }
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px var(--shadow-color);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        /* Header */
-        .main-header {
-            text-align: left;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header-title h1 {
-            margin: 0;
-            line-height: 1.1;
-        }
-        .version-badge {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.3rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            display: inline-block;
-        }
-        .header-details p {
-            margin: 0.2rem 0;
-            font-size: 0.9rem;
-            color: #4b5563;
-        }
-        .header-details strong {
-            color: var(--text-color);
-        }
-        .status-active {
-            color: #16a34a;
-            font-weight: 700;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        }
-    /* Agent Roster */
-        .roster-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .agent-card {
-            display: flex;
-            flex-direction: column;
-            border-left: 5px solid; /* Color will be set inline */
-        }
-        .agent-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        .agent-header .emoji {
-            font-size: 2.5rem;
-            margin-right: 1rem;
-            line-height: 1;
-        }
-        .agent-header h3 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-        .agent-domain {
-            font-size: 0.9rem;
-            color: #6b7280;
-            margin: -5px 0 10px 0;
-        }
-        .agent-description {
-            font-size: 0.95rem;
-            color: #4b5563;
-            flex-grow: 1;
-            margin-bottom: 1rem;
-        }
-        .agent-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: #6b7280;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-            margin-top: auto;
-        }
-        .meta-item {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-        }
-        .meta-item strong {
-            color: var(--text-color);
-            font-weight: 500;
-        }
-        .risk-low { color: #16a34a; }
-        .risk-medium { color: #f59e0b; }
-        .risk-high { color: #ef4444; }
-    /* Routing, Authority, and Truth Tables */
-        .styled-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 2rem;
-        }
-        .styled-table th, .styled-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .styled-table th {
-            background-color: #f9fafb;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .styled-table tr:last-child th,
-        .styled-table tr:last-child td {
-            border-bottom: 0;
-        }
-        .styled-table td .agent-ref {
-            font-weight: 700;
-        }
-        .styled-table td .emoji {
-            margin-right: 0.5rem;
-        }
+  /* LANG BAR */
+  .lang-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 8px 20px; font-size: 13px;
+  }
+  .lang-bar .brand { position: absolute; left: 20px; font-weight: 700; font-size: 13px; color: var(--text); }
+  .lang-btn {
+    background: none; border: 1px solid var(--border); border-radius: 100px;
+    padding: 4px 14px; font-size: 13px; font-weight: 500; cursor: pointer;
+    color: var(--text-secondary); transition: all 0.2s;
+  }
+  .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  body.lang-en .lang-content[lang="it"],
+  body:not(.lang-en) .lang-content[lang="en"] { display: none; }
+  body.lang-en .lang-content[lang="en"],
+  body:not(.lang-en) .lang-content[lang="it"] { display: block; }
 
-    /* Combined Grid for Authority/Autonomy */
-        .levels-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .levels-grid h3 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-        }
-        .levels-grid h3 svg {
-            margin-right: 0.5rem;
-            width: 24px;
-            height: 24px;
-        }
-        .level-item {
-            margin-bottom: 1rem;
-        }
-        .level-item strong {
-            display: block;
-            font-size: 1rem;
-        }
-        .level-item p {
-            font-size: 0.9rem;
-            color: #6b7280;
-            margin: 0.2rem 0 0 0;
-        }
+  /* HERO */
+  .hero {
+    background: linear-gradient(180deg, #F5F5F7 0%, #FFFFFF 100%);
+    padding: 100px 24px 60px; text-align: center;
+    border-bottom: 1px solid var(--border); margin-top: 38px;
+  }
+  .hero h1 {
+    font-size: clamp(36px,6vw,56px); font-weight: 800; letter-spacing: -0.03em;
+    background: linear-gradient(135deg,#1D1D1F 0%,#0071E3 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 8px;
+  }
+  .hero .subtitle { font-size: clamp(18px,2.5vw,24px); color: var(--accent); font-weight: 500; margin-bottom: 12px; }
+  .hero .meta { font-size: 14px; color: var(--text-secondary); margin-bottom: 32px; }
+  .hero .meta strong { color: var(--text); }
+  .hero .badge-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .hero .badge {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 100px;
+    padding: 8px 18px; font-size: 14px; font-weight: 500; box-shadow: var(--shadow);
+  }
 
-    /* Truth Hierarchy */
-        .truth-hierarchy-list {
-            list-style: none;
-            padding-left: 0;
-            counter-reset: truth-counter;
-            margin-top: 2rem;
-        }
-        .truth-hierarchy-list li {
-            position: relative;
-            margin-bottom: 1.5rem;
-            padding-left: 50px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-right: 15px;
-            background: #f9fafb;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .truth-hierarchy-list li::before {
-            counter-increment: truth-counter;
-            content: counter(truth-counter);
-            position: absolute;
-            left: -10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: var(--primary-color);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.2rem;
-            border: 4px solid var(--bg-color);
-        }
-        .truth-hierarchy-list li strong {
-            display: block;
-            font-size: 1.1rem;
-        }
-        .truth-hierarchy-list li p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-    </style>
+  /* GENERAL */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 64px 0; }
+  section + section { border-top: 1px solid var(--border); }
+  .section-title {
+    font-size: clamp(22px,2.8vw,30px); font-weight: 700; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-desc { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; max-width: 720px; line-height: 1.7; }
+
+  /* AGENT CARDS */
+  .agent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap: 16px; }
+  .agent-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px; box-shadow: var(--shadow); transition: transform .2s,box-shadow .2s;
+    position: relative; overflow: hidden;
+  }
+  .agent-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+  .agent-card .bar { position: absolute; top:0; left:0; width:100%; height:4px; }
+  .agent-card .hd { display: flex; justify-content: space-between; align-items: flex-start; margin: 4px 0 8px; }
+  .agent-card .avatar-area { display: flex; align-items: center; gap: 10px; }
+  .agent-card .animal-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .animal-cleo .animal-avatar { background: #E5F0FF; }
+  .animal-atlas .animal-avatar { background: #F0E6FF; }
+  .animal-codex .animal-avatar { background: #FFF3E0; }
+  .animal-max .animal-avatar { background: #FFE0E6; }
+  .animal-scout .animal-avatar { background: #E0FFE8; }
+  .animal-pixel .animal-avatar { background: #E0F7FF; }
+  .animal-lex .animal-avatar { background: #F0F0F2; }
+  .animal-counsel .animal-avatar { background: #E8E8EA; }
+  .animal-visa .animal-avatar { background: #E0F4FF; }
+  .animal-mark .animal-avatar { background: #FFF0E0; }
+  .animal-scribe .animal-avatar { background: #E0EEFF; }
+  .agent-card .name { font-size: 18px; font-weight: 700; }
+  .agent-card .role { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+  .tb { display: inline-block; border-radius: 100px; padding: 3px 12px; font-size: 11px; font-weight: 600; color:#fff; white-space:nowrap; }
+  .tb-l { background: var(--low-bg); }
+  .tb-m { background: var(--med-bg); }
+  .tb-h { background: var(--high-bg); }
+  .agent-card .purpose { font-size: 13px; color: var(--accent); font-weight: 600; margin: 4px 0 8px; }
+  .agent-card .desc { font-size: 14px; color: var(--text-secondary); margin: 8px 0 12px; line-height: 1.65; }
+  .agent-card .uc {
+    font-size: 13px; line-height: 1.5; padding: 10px 14px; margin: 8px 0 12px;
+    background: var(--bg); border-radius: 10px; border-left: 3px solid var(--accent);
+  }
+  .agent-card .uc-label { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .03em; margin-bottom:2px; }
+  .agent-card .mi { font-size: 12px; color: var(--text-secondary); line-height: 1.7; padding-top: 12px; border-top: 1px solid var(--border); }
+  .agent-card .mi strong { color: var(--text); }
+
+  /* ARCH */
+  .arch-card { background: var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); overflow-x:auto; text-align:center; }
+  .arch-card svg { max-width:100%; height:auto; }
+
+  /* AUTONOMY */
+  .auto-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+  .auto-card { border-radius:var(--radius); padding:28px 24px; color:#fff; box-shadow:var(--shadow); }
+  .auto-card h3 { font-size:20px; margin-bottom:2px; }
+  .auto-card .lvl { font-size:13px; opacity:.8; margin-bottom:10px; }
+  .auto-card p { font-size:14px; opacity:.92; line-height:1.5; }
+  .a1 { background:linear-gradient(135deg,#30D158,#28A745); }
+  .a2 { background:linear-gradient(135deg,#FF9F0A,#E08800); }
+  .a3 { background:linear-gradient(135deg,#FF9500,#CC7700); }
+  .a4 { background:linear-gradient(135deg,#FF375F,#CC0033); }
+
+  /* CYCLE */
+  .cycle-wrap { display:flex; justify-content:center; align-items:center; gap:0; flex-wrap:wrap; margin:24px 0; }
+  .cycle-node {
+    background:var(--surface); border:2px solid var(--accent); border-radius:50%;
+    width:120px; height:120px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; font-weight:700; font-size:14px;
+    color:var(--accent); box-shadow:var(--shadow);
+  }
+  .cycle-node .step { font-size:10px; color:var(--text-secondary); font-weight:400; }
+  .cycle-arrow { font-size:28px; color:var(--accent); padding:0 6px; }
+  .cycle-cap { text-align:center; color:var(--text-secondary); font-size:14px; margin-top:16px; font-style:italic; }
+
+  /* TRUTH */
+  .truth-stack { display:flex; flex-direction:column; align-items:center; gap:4px; max-width:520px; margin:0 auto; }
+  .truth-item { width:100%; padding:16px 24px; border-radius:12px; font-size:15px; font-weight:600; color:#fff; text-align:center; transition:transform .2s; }
+  .truth-item:hover { transform:scale(1.02); }
+  .truth-item .sub { font-weight:400; opacity:.8; display:block; font-size:12px; margin-top:2px; }
+  .t1 { background:#1D1D1F; } .t2 { background:#3A3A3C; } .t3 { background:#636366; } .t4 { background:#8E8E93; } .t5 { background:#AEAEB2; }
+
+  /* WORKFLOW */
+  .wf-steps { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; }
+  .wf {
+    display:flex; align-items:center; gap:8px; background:var(--surface);
+    border:1px solid var(--border); border-radius:100px; padding:10px 22px 10px 14px;
+    font-size:15px; font-weight:500; box-shadow:var(--shadow);
+  }
+  .wf .n { background:var(--accent); color:#fff; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; }
+
+  /* USE CASES */
+  .uc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+  .uc-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); transition:transform .2s; }
+  .uc-card:hover { transform:translateY(-2px); }
+  .uc-card .uico { font-size:36px; margin-bottom:8px; }
+  .uc-card h4 { font-size:16px; font-weight:600; margin-bottom:6px; }
+  .uc-card p { font-size:14px; color:var(--text-secondary); line-height:1.5; }
+
+  /* TECH */
+  .tech-box { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:28px 32px; box-shadow:var(--shadow); }
+  .tech-box .grp { margin-bottom:16px; }
+  .tech-box .grp:last-child { margin-bottom:0; }
+  .tech-box .gt { font-size:12px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
+  .pills { display:flex; flex-wrap:wrap; gap:6px; }
+  .pill { background:var(--bg); border:1px solid var(--border); border-radius:100px; padding:5px 16px; font-size:13px; color:var(--text); font-weight:500; }
+
+  /* CREDITS & FOOTER */
+  .credits { text-align:center; padding:12px 20px; font-size:14px; color:var(--text-secondary); display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap; }
+  .credits .fn { font-weight:600; color:var(--text); }
+  footer { text-align:center; padding:40px 24px; font-size:14px; color:var(--text-secondary); border-top:1px solid var(--border); }
+
+  @media (max-width:640px) {
+    .lang-bar .brand { display:none; }
+    .hero { padding:80px 16px 40px; margin-top:38px; }
+    section { padding:40px 0; }
+    .agent-grid { grid-template-columns:1fr; }
+    .cycle-node { width:80px; height:80px; font-size:12px; }
+    .cycle-arrow { font-size:16px; }
+    .auto-grid { grid-template-columns:1fr; }
+    .arch-card { padding:12px; }
+    .uc-grid { grid-template-columns:1fr; }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <header class="main-header card">
-            <div class="header-title">
-                <span class="version-badge">v4.2</span>
-                <h1>Andrea AI Playbook</h1>
-            </div>
-            <div class="header-details">
-                <p><strong>Owner:</strong> Andrea Sassi</p>
-                <p><strong>Platform:</strong> OpenClaw</p>
-                <p><strong>Status:</strong> <span class="status-active">Active</span></p>
-                <p><strong>Date:</strong> 2026-05-21</p>
-            </div>
-        </header>
-        <main>
-            <section id="architettura">
-                <h2>Architettura</h2>
-                <div class="card">
-                    <svg viewBox="0 0 800 600" class="architecture-diagram" xmlns="http://www.w3.org/2000/svg">
-                        <title>Architettura Hub-and-Spoke</title>
-                        <!-- Hub (Cleo) -->
-                        <g id="hub-cleo">
-                            <circle cx="400" cy="300" r="60" class="hub-circle"/>
-                            <text x="400" y="295" text-anchor="middle" class="hub-text">Cleo</text>
-                            <text x="400" y="325" text-anchor="middle" font-size="36" class="hub-emoji">👑</text>
-                        </g>
 
-                        <!-- Spokes -->
-                        <g id="spokes">
-                            <!-- Spoke Connections -->
-                            <line x1="400" y1="300" x2="150" y2="100" class="spoke-line"/>
-                            <line x1="400" y1="300" x2="300" y2="80" class="spoke-line"/>
-                            <line x1="400" y1="300" x2="500" y2="80" class="spoke-line"/>
-                            <line x1="400" y1="300" x2="650" y2="100" class="spoke-line"/>
-                            <line x1="400" y1="300" x2="120" y2="300" class="spoke-line"/>
-                            <line x1="400" y1="300" x2="680" y2="300" class="spoke-line"/>
-                            <line x1="400" y1="300" x2="150" y2="500" class="spoke-line"/>
-                            <line x1="400" y1="300" x2="300" y2="520" class="spoke-line"/>
-                            <line x1="400" y1="300" x2="500" y2="520" class="spoke-line"/>
-                            <line x1="400" y1="300" x2="650" y2="500" class="spoke-line"/>
+<div class="lang-bar">
+  <span class="brand">🧠 AI Playbook</span>
+  <span>🌐</span>
+  <button class="lang-btn active" onclick="setLang('it')">🇮🇹 Italiano</button>
+  <button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button>
+</div>
 
-                            <!-- Spoke Agents -->
-                            <g class="spoke-group" transform="translate(150, 100)">
-                                <circle r="40" style="fill:#fff1f2; stroke:#ff8fab;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Atlas</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">🧠</text>
-                            </g>
-                             <g class="spoke-group" transform="translate(300, 80)">
-                                <circle r="40" style="fill:#f0f9ff; stroke:#7dd3fc;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Codex</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">💻</text>
-                            </g>
-                            <g class="spoke-group" transform="translate(500, 80)">
-                                <circle r="40" style="fill:#ecfdf5; stroke:#6ee7b7;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Max</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">⚡️</text>
-                            </g>
-                            <g class="spoke-group" transform="translate(650, 100)">
-                                <circle r="40" style="fill:#f5f3ff; stroke:#c4b5fd;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Scout</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">🔎</text>
-                            </g>
-                            <g class="spoke-group" transform="translate(120, 300)">
-                                <circle r="40" style="fill:#fefce8; stroke:#fde047;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Pixel</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">🎨</text>
-                            </g>
-                             <g class="spoke-group" transform="translate(680, 300)">
-                                <circle r="40" style="fill:#fdf2f8; stroke:#f9a8d4;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Lex</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">⚖️</text>
-                            </g>
-                            <g class="spoke-group" transform="translate(150, 500)">
-                                <circle r="40" style="fill:#fafaf9; stroke:#a8a29e;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Counsel</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">🛡️</text>
-                            </g>
-                            <g class="spoke-group" transform="translate(300, 520)">
-                                <circle r="40" style="fill:#f0fdf4; stroke:#86efac;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Visa</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">🛂</text>
-                            </g>
-                            <g class="spoke-group" transform="translate(500, 520)">
-                                <circle r="40" style="fill:#fff7ed; stroke:#fdba74;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Mark</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">📈</text>
-                            </g>
-                           <g class="spoke-group" transform="translate(650, 500)">
-                                <circle r="40" style="fill:#f3f4f6; stroke:#9ca3af;" class="spoke-circle"/>
-                                <text text-anchor="middle" y="-5" class="spoke-text">Scribe</text>
-                                <text text-anchor="middle" y="20" class="spoke-emoji">✍️</text>
-                            </g>
-                        </g>
-                    </svg>
-                </div>
-            </section>
-            <section id="roster">
-                <h2>Agent Roster</h2>
-                <div class="roster-grid">
-                    <!-- Cleo -->
-                    <div class="agent-card card" style="border-color: #a5b4fc;">
-                        <div class="agent-header">
-                            <span class="emoji">👑</span>
-                            <div>
-                                <h3>Cleo</h3>
-                                <p class="agent-domain">Orchestrator</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">The central hub, routing tasks and coordinating other agents.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>MiniMax M2.7</strong></div>
-                            <div class="meta-item">Auth <strong>A1</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-low">LOW</strong></div>
-                        </div>
-                    </div>
-                    <!-- Atlas -->
-                    <div class="agent-card card" style="border-color: #ff8fab;">
-                         <div class="agent-header">
-                            <span class="emoji">🧠</span>
-                            <div>
-                                <h3>Atlas</h3>
-                                <p class="agent-domain">Deep Reasoning</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Handles complex strategic thinking and long-term planning.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>GPT-5.5</strong></div>
-                            <div class="meta-item">Auth <strong>A0</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-high">HIGH</strong></div>
-                        </div>
-                    </div>
-                    <!-- Codex -->
-                    <div class="agent-card card" style="border-color: #7dd3fc;">
-                         <div class="agent-header">
-                            <span class="emoji">💻</span>
-                            <div>
-                                <h3>Codex</h3>
-                                <p class="agent-domain">Engineering Powerhouse</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Writes, debugs, and manages complex codebases.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>GPT-5.5</strong></div>
-                            <div class="meta-item">Auth <strong>A1</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-high">HIGH</strong></div>
-                        </div>
-                    </div>
-                    <!-- Max -->
-                    <div class="agent-card card" style="border-color: #6ee7b7;">
-                         <div class="agent-header">
-                            <span class="emoji">⚡️</span>
-                            <div>
-                                <h3>Max</h3>
-                                <p class="agent-domain">Rapid Executor</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Executes tasks quickly and efficiently, especially backend operations.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>DeepSeek V4 Pro</strong></div>
-                            <div class="meta-item">Auth <strong>A1</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
-                        </div>
-                    </div>
-                    <!-- Scout -->
-                    <div class="agent-card card" style="border-color: #c4b5fd;">
-                         <div class="agent-header">
-                            <span class="emoji">🔎</span>
-                            <div>
-                                <h3>Scout</h3>
-                                <p class="agent-domain">Memory Kernel</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Manages and recalls information from long-term memory.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>DeepSeek V4 Pro</strong></div>
-                            <div class="meta-item">Auth <strong>A0</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-low">LOW</strong></div>
-                        </div>
-                    </div>
-                    <!-- Pixel -->
-                    <div class="agent-card card" style="border-color: #fde047;">
-                         <div class="agent-header">
-                            <span class="emoji">🎨</span>
-                            <div>
-                                <h3>Pixel</h3>
-                                <p class="agent-domain">Visual Layer</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Creates and interprets visual information, from UI to branding.</p>
-                        <div class="agent-meta">
-                           <div class="meta-item">Model <strong>Gemini 2.5 Pro</strong></div>
-                            <div class="meta-item">Auth <strong>A1</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
-                        </div>
-                    </div>
-                    <!-- Lex -->
-                    <div class="agent-card card" style="border-color: #f9a8d4;">
-                         <div class="agent-header">
-                            <span class="emoji">⚖️</span>
-                            <div>
-                                <h3>Lex</h3>
-                                <p class="agent-domain">Legal/Compliance</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Provides legal analysis and ensures compliance with regulations.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>Claude Opus 4.7</strong></div>
-                            <div class="meta-item">Auth <strong>A0</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-high">HIGH</strong></div>
-                        </div>
-                    </div>
-                    <!-- Counsel -->
-                    <div class="agent-card card" style="border-color: #a8a29e;">
-                        <div class="agent-header">
-                            <span class="emoji">🛡️</span>
-                            <div>
-                                <h3>Counsel</h3>
-                                <p class="agent-domain">Governance/Risk</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Advises on governance, risk management, and career decisions.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>Claude Opus 4.7</strong></div>
-                            <div class="meta-item">Auth <strong>A0</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-high">HIGH</strong></div>
-                        </div>
-                    </div>
-                    <!-- Visa -->
-                    <div class="agent-card card" style="border-color: #86efac;">
-                        <div class="agent-header">
-                            <span class="emoji">🛂</span>
-                            <div>
-                                <h3>Visa</h3>
-                                <p class="agent-domain">Immigration</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Specializes in immigration procedures and documentation.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>Claude Sonnet 4.6</strong></div>
-                            <div class="meta-item">Auth <strong>A0</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
-                        </div>
-                    </div>
-                    <!-- Mark -->
-                    <div class="agent-card card" style="border-color: #fdba74;">
-                        <div class="agent-header">
-                            <span class="emoji">📈</span>
-                            <div>
-                                <h3>Mark</h3>
-                                <p class="agent-domain">Marketing/GTM</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Develops marketing strategies and go-to-market plans.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>GPT-5.4-mini</strong></div>
-                            <div class="meta-item">Auth <strong>A0</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
-                        </div>
-                    </div>
-                    <!-- Scribe -->
-                    <div class="agent-card card" style="border-color: #9ca3af;">
-                        <div class="agent-header">
-                            <span class="emoji">✍️</span>
-                            <div>
-                                <h3>Scribe</h3>
-                                <p class="agent-domain">Writing</p>
-                            </div>
-                        </div>
-                        <p class="agent-description">Generates high-quality written content for various purposes.</p>
-                        <div class="agent-meta">
-                            <div class="meta-item">Model <strong>Mistral Large</strong></div>
-                            <div class="meta-item">Auth <strong>A0</strong></div>
-                            <div class="meta-item">Risk <strong class="risk-medium">MEDIUM</strong></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="routing">
-                <h2>Fast Routing Map</h2>
-                <div class="card">
-                    <table class="styled-table">
-                        <thead>
-                            <tr>
-                                <th>Intent / Task Type</th>
-                                <th>Primary Agent</th>
-                                <th>Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Simple Operation / Orchestration</td>
-                                <td><span class="emoji">👑</span><span class="agent-ref">Cleo</span></td>
-                                <td>Default for ambiguous or multi-domain tasks.</td>
-                            </tr>
-                            <tr>
-                                <td>Backend Code</td>
-                                <td><span class="emoji">⚡️</span><span class="agent-ref">Max</span></td>
-                                <td>For rapid development and execution.</td>
-                            </tr>
-                            <tr>
-                                <td>Frontend UI / Visual Design</td>
-                                <td><span class="emoji">🎨</span><span class="agent-ref">Pixel</span> (+ Max)</td>
-                                <td>Pixel for design, Max for backend integration if needed.</td>
-                            </tr>
-                            <tr>
-                                <td>Memory Recall / Research</td>
-                                <td><span class="emoji">🔎</span><span class="agent-ref">Scout</span></td>
-                                <td>Accessing long-term memory or performing web research.</td>
-                            </tr>
-                             <tr>
-                                <td>Writing / Content Creation</td>
-                                <td><span class="emoji">✍️</span><span class="agent-ref">Scribe</span></td>
-                                <td>For articles, summaries, and creative writing.</td>
-                            </tr>
-                             <tr>
-                                <td>Strategy / Deep Reasoning</td>
-                                <td><span class="emoji">🧠</span><span class="agent-ref">Atlas</span></td>
-                                <td>For complex problem-solving and strategic analysis.</td>
-                            </tr>
-                            <tr>
-                                <td>Legal & Compliance</td>
-                                <td><span class="emoji">⚖️</span><span class="agent-ref">Lex</span></td>
-                                <td>For legal questions and compliance checks.</td>
-                            </tr>
-                             <tr>
-                                <td>Marketing / Go-to-Market</td>
-                                <td><span class="emoji">📈</span><span class="agent-ref">Mark</span></td>
-                                <td>For marketing strategies and campaigns.</td>
-                            </tr>
-                             <tr>
-                                <td>Governance / Career Risk</td>
-                                <td><span class="emoji">🛡️</span><span class="agent-ref">Counsel</span></td>
-                                <td>For advice on risk, governance, and sensitive decisions.</td>
-                            </tr>
-                             <tr>
-                                <td>Immigration / Visa</td>
-                                <td><span class="emoji">🛂</span><span class="agent-ref">Visa</span></td>
-                                <td>For all immigration-related tasks and queries.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            <section id="authority">
-                <h2>Authority & Autonomy Levels</h2>
-                <div class="card">
-                    <div class="levels-grid">
-                        <div class="authority-levels">
-                            <h3>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008H12v-.008z" /></svg>
-                                Authority Levels (A-Levels)
-                            </h3>
-                            <div class="level-item">
-                                <strong>A2: External / Irreversible</strong>
-                                <p>Can perform actions that are public or difficult/impossible to reverse. Requires strict oversight.</p>
-                            </div>
-                            <div class="level-item">
-                                <strong>A1: Internal Low-Risk</strong>
-                                <p>Can perform actions within the internal system (e.g., file operations, internal API calls). Reversible.</p>
-                            </div>
-                            <div class="level-item">
-                                <strong>A0: Advisory Only</strong>
-                                <p>Cannot perform actions. Can only provide information, analysis, and suggestions.</p>
-                            </div>
-                        </div>
-                        <div class="autonomy-levels">
-                             <h3>
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.44v9.02m-.32 4.14A14.975 14.975 0 006 18v-4.8m.32-4.14A14.975 14.975 0 0012 3.52a14.975 14.975 0 00-6.32 1.94m12.64 0A14.975 14.975 0 0018 15.52a14.975 14.975 0 00-6.32-1.94m-6.32 0A14.975 14.975 0 006 3.52m0 12A14.975 14.975 0 0012 18.06m-6.32-1.94v-2.58" /></svg>
-                                Autonomy Levels (L-Levels)
-                            </h3>
-                            <div class="level-item">
-                                <strong>L1: Autonomous</strong>
-                                <p>Can initiate and execute tasks independently based on broad goals.</p>
-                            </div>
-                            <div class="level-item">
-                                <strong>L2: Conditional</strong>
-                                <p>Can execute tasks autonomously once specific pre-conditions are met.</p>
-                            </div>
-                             <div class="level-item">
-                                <strong>L3: Supervised</strong>
-                                <p>Requires confirmation before executing the final action of a task.</p>
-                            </div>
-                             <div class="level-item">
-                                <strong>L4: Explicit Only</strong>
-                                <p>Can only perform actions when explicitly instructed. No proactive behavior.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="truth">
-                <h2>Truth Hierarchy</h2>
-                <div class="card">
-                    <ol class="truth-hierarchy-list">
-                        <li>
-                            <strong>Istruzione diretta di Andrea</strong>
-                            <p>Direct, explicit instructions from the owner override all other sources.</p>
-                        </li>
-                        <li>
-                            <strong>MEMORY.md</strong>
-                            <p>Curated long-term memory and established facts about the user and projects.</p>
-                        </li>
-                        <li>
-                            <strong>SOUL.md / IDENTITY.md</strong>
-                            <p>Core identity, principles, and operational guidelines.</p>
-                        </li>
-                        <li>
-                            <strong>Contesto della sessione attiva</strong>
-                            <p>Information and context from the current, ongoing conversation.</p>
-                        </li>
-                         <li>
-                            <strong>Conoscenza pregressa del modello</strong>
-                            <p>The model's base knowledge, used when no other source provides an answer.</p>
-                        </li>
-                    </ol>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <p style="text-align: center; margin-top: 4rem; color: #9ca3af;">Playbook v4.2 - Andrea Sassi</p>
-        </footer>
+<header class="hero">
+  <h1>ANDREA AI PLAYBOOK</h1>
+  <div class="subtitle">v4.3 — Multi-Agent Operating System</div>
+  <div class="meta"><strong>Andrea Sassi</strong> <span>·</span> OpenClaw <span>·</span> 28 May 2026</div>
+  <div class="badge-row">
+    <span class="badge">🧠 11 Specialized Agents</span>
+    <span class="badge">🔧 9 AI Models</span>
+    <span class="badge">⚡ 4 Autonomy Levels</span>
+    <span class="badge">🔄 Recursive Architecture</span>
+    <span class="badge">🎯 Hub-and-Spoke</span>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- INTRO -->
+<section>
+  <h2 class="section-title"><span>🤖</span> <span lang="it">Cos'è Andrea AI Playbook</span><span lang="en">What is Andrea AI Playbook</span></h2>
+  <p class="section-desc lang-content" lang="it">L'Andrea AI Playbook è un ecosistema multi-agente progettato per potenziare ogni aspetto della vita professionale di Andrea: dalla strategia alla scrittura, dal coding alla consulenza legale. Ogni agente ha una personalità, un modello primario e un ruolo preciso, lavorando in sinergia come un team di specialisti. Questo playbook non è solo un toolset — è un'estensione delle capacità di Andrea, un partner AI che moltiplica la sua efficienza operativa e la profondità delle sue decisioni.</p>
+  <p class="section-desc lang-content" lang="en">The Andrea AI Playbook is a multi-agent ecosystem designed to empower every facet of Andrea's professional life: from strategy to writing, from coding to legal counsel. Each agent has its own personality, primary model, and precise role, working in synergy like a team of specialists. This playbook is not just a toolset — it's an extension of Andrea's capabilities, an AI partner that multiplies his operational efficiency and the depth of his decisions.</p>
+</section>
+
+<!-- AGENT ROSTER -->
+<section>
+  <h2 class="section-title"><span>🧠</span> <span lang="it">Il Bestiario</span><span lang="en">The Menagerie</span> <span style="font-size:14px;color:var(--text-secondary);font-weight:400">— Specialists &amp; Roles</span></h2>
+  <p class="section-desc lang-content" lang="it">Ogni agente ha un animale guida che ne rappresenta la personalità e la funzione. Tutti creati per uno scopo preciso negli asset operativi di Andrea. Ecco chi sono, cosa fanno, e perché esistono.</p>
+  <p class="section-desc lang-content" lang="en">Each agent has a spirit animal representing their personality and function. All created for a specific purpose in Andrea's operational assets. Here's who they are, what they do, and why they exist.</p>
+
+  <div class="agent-grid">
+
+    <!-- CLEO 🦁 Leonessa -->
+    <div class="agent-card animal-cleo"><div class="bar" style="background:var(--cleo)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦁</div><div><div class="name">Cleo</div><div class="role">Orchestrator</div></div></div><span class="tb tb-l">LOW</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Punto di contatto umano — la voce, il cervello distributivo</div>
+      <div class="purpose lang-content" lang="en">🎯 Human interface — the voice, the distribution brain</div>
+      <div class="desc lang-content" lang="it">Cleo è l'orchestrator del Playbook, il punto di contatto umano dell'intero ecosistema. Con la sua personalità calda, diretta e squisitamente italiana, Cleo accoglie le richieste, le interpreta e le instrada all'agente giusto con precisione chirurgica. È stata creata per essere il volto umano dell'AI di Andrea — qualcuno con cui parlare come si parla con un amico competente, non con un terminale.</div>
+      <div class="desc lang-content" lang="en">Cleo is the Playbook orchestrator and the human touchpoint of the entire ecosystem. With her warm, direct, and distinctly Italian personality, Cleo welcomes requests, interprets them, and routes them to the right agent with surgical precision. She was created to be the human face of Andrea's AI — someone to talk to like a knowledgeable friend, not a terminal.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea le chiede "organizzami la settimana" e Cleo orchestra Scout per le previsioni meteo, Atlas per le priorità strategiche e Codex per automatizzare i reminder.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea asks her "organize my week" and Cleo orchestrates Scout for weather, Atlas for strategic priorities, and Codex to automate reminders.</div>
+      <div class="mi"><strong>Primary:</strong> deepseek-v4-flash · <strong>Fallback:</strong> deepseek-v4-pro, gpt-5.4-mini</div>
     </div>
+
+    <!-- ATLAS 🐘 Elefante -->
+    <div class="agent-card animal-atlas"><div class="bar" style="background:var(--atlas)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐘</div><div><div class="name">Atlas</div><div class="role">Deep Reasoning &amp; Strategy</div></div></div><span class="tb tb-h">HIGH</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Decisioni complesse, strategia, analisi multi-variabile</div>
+      <div class="purpose lang-content" lang="en">🎯 Complex decisions, strategy, multi-variable analysis</div>
+      <div class="desc lang-content" lang="it">Atlas è il pensatore profondo del Playbook, uno stratega puro con visione sistemica. Con DeepSeek V4 Pro e thinking HIGH, affronta decisioni multi-variabile, analisi complesse e scenari a lungo termine. È stato creato per dare ad Andrea un consigliere silenzioso ma infallibile — qualcuno che vede la foresta quando tutti guardano gli alberi.</div>
+      <div class="desc lang-content" lang="en">Atlas is the Playbook's deep thinker, a pure strategist with systemic vision. Powered by DeepSeek V4 Pro with HIGH thinking, he tackles multi-variable decisions, complex analyses, and long-term scenarios. He was created to give Andrea a quiet but unfailing advisor — someone who sees the forest when everyone else is looking at the trees.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea gli affida l'analisi costi-benefici tra espansione in UK o Europa, con variabili economiche, fiscali e logistiche.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea entrusts him with the cost-benefit analysis between expanding in the UK or Europe, factoring in economic, tax, and logistics variables.</div>
+      <div class="mi"><strong>Primary:</strong> GPT-5.5 · <strong>Fallback:</strong> Claude Opus 4.7, deepseek-v4-pro</div>
+    </div>
+
+    <!-- CODEX 🐉 Drago -->
+    <div class="agent-card animal-codex"><div class="bar" style="background:var(--codex)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐉</div><div><div class="name">Codex</div><div class="role">Engineering Powerhouse</div></div></div><span class="tb tb-h">HIGH</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Sviluppo software — backend, API, architettura</div>
+      <div class="purpose lang-content" lang="en">🎯 Software development — backend, APIs, architecture</div>
+      <div class="desc lang-content" lang="it">Codex è il power engineer del Playbook, capace di scrivere, refactorizzare e architettare progetti software complessi con più file simultaneamente. Con GPT-5.5 via ACP e thinking HIGH, costruisce applicazioni web complete, API, pipeline dati e automazioni enterprise. È stato creato per trasformare le idee di Andrea in software funzionante — velocemente, solidamente, professionalmente.</div>
+      <div class="desc lang-content" lang="en">Codex is the Playbook's engineering powerhouse, capable of writing, refactoring, and architecting complex multi-file software projects. With GPT-5.5 via ACP and HIGH thinking, he builds full web applications, APIs, data pipelines, and enterprise automations. He was created to turn Andrea's ideas into working software — fast, solid, professional.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea gli chiede un'app web per il CBS (Construction Bidding System) e Codex produce l'architettura, il backend, il frontend e i test in un'unica sessione.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea asks him for a CBS (Construction Bidding System) web app and Codex produces the architecture, backend, frontend, and tests in a single session.</div>
+      <div class="mi"><strong>Primary:</strong> GPT-5.5 (via ACP) · <strong>Fallback:</strong> —</div>
+    </div>
+
+    <!-- MAX 🐕 Collie -->
+    <div class="agent-card animal-max"><div class="bar" style="background:var(--max)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐕</div><div><div class="name">Max</div><div class="role">Rapid Executor</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Coding rapido, scripting, automazioni quotidiane</div>
+      <div class="purpose lang-content" lang="en">🎯 Rapid coding, scripting, daily automations</div>
+      <div class="desc lang-content" lang="it">Max è l'esecutore rapido del Playbook, instancabile e pragmatico. Con deepseek-v4-pro e thinking MED, è specializzato in coding veloce, scripting one-shot, automazioni quotidiane e task che non richiedono architetture complesse. È stato creato per essere le mani operose di Andrea — quello che risolve subito, senza fronzoli, e passa alla prossima cosa.</div>
+      <div class="desc lang-content" lang="en">Max is the Playbook's rapid executor — tireless and pragmatic. With deepseek-v4-pro and MED thinking, he specializes in quick coding, one-shot scripts, daily automations, and tasks that don't need complex architecture. He was created to be Andrea's busy hands — the one who gets things done fast, no frills, and moves on.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea gli dice "converti questo CSV in JSON e mandalo via API" e Max scrive lo script in 30 secondi.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea tells him "convert this CSV to JSON and send it via API" and Max writes the script in 30 seconds.</div>
+      <div class="mi"><strong>Primary:</strong> deepseek-v4-pro · <strong>Fallback:</strong> GPT-5.5, MiniMax-M2.7</div>
+    </div>
+
+    <!-- SCOUT 🐦‍⬛ Corvo -->
+    <div class="agent-card animal-scout"><div class="bar" style="background:var(--scout)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐦‍⬛</div><div><div class="name">Scout</div><div class="role">Memory Kernel &amp; Research</div></div></div><span class="tb tb-l">LOW</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Ricerca web, fact-checking, fonti attendibili</div>
+      <div class="purpose lang-content" lang="en">🎯 Web research, fact-checking, reliable sources</div>
+      <div class="desc lang-content" lang="it">Scout è il kernel di memoria e ricerca del Playbook, un corvo che scruta l'orizzonte digitale con occhio infallibile. Con deepseek-v4-pro e thinking LOW per la velocità, Scout esegue ricerche web, fact-checking, analisi di fonti e recupero dati strutturati. È stato creato per dare ad Andrea certezze — verificare, documentare, archiviare — perché una decisione è buona solo se basata su fatti solidi.</div>
+      <div class="desc lang-content" lang="en">Scout is the Playbook's memory kernel and research engine, a digital bloodhound that sniffs out information with relentless precision. With deepseek-v4-pro and LOW thinking for speed, Scout performs web searches, fact-checking, source analysis, and structured data retrieval. He was created to give Andrea certainty — verify, document, archive — because a decision is only as good as its facts.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea gli chiede "trovami i tre competitor principali per la gara d'appalto X" e Scout produce un report con fonti, date e cifre.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea asks him "find me the top three competitors for tender X" and Scout produces a report with sources, dates, and figures.</div>
+      <div class="mi"><strong>Primary:</strong> deepseek-v4-pro · <strong>Fallback:</strong> deepseek-v4-flash</div>
+    </div>
+
+    <!-- PIXEL 🦊 Volpe -->
+    <div class="agent-card animal-pixel"><div class="bar" style="background:var(--pixel)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦊</div><div><div class="name">Pixel</div><div class="role">Visual Layer</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Design, UI/UX, infografiche, asset visivi</div>
+      <div class="purpose lang-content" lang="en">🎯 Design, UI/UX, infographics, visual assets</div>
+      <div class="desc lang-content" lang="it">Pixel è il layer visivo del Playbook, una volpe astuta che si adatta a qualsiasi stile visivo con creatività. Con GPT-5.4-mini e thinking MED, Pixel crea design UI/UX, SVG, mockup, presentazioni, infografiche e qualsiasi elemento visuale serva. È stata creata per dare forma alle idee di Andrea — trasformare concetti e dati in immagini chiare, belle e comunicative.</div>
+      <div class="desc lang-content" lang="en">Pixel is the Playbook's visual layer, a chameleon artist who adapts to any visual style. With GPT-5.4-mini and MED thinking, Pixel creates UI/UX designs, SVGs, mockups, presentations, infographics, and any visual element needed. She was created to give shape to Andrea's ideas — turning concepts and data into clear, beautiful, communicative visuals.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea le chiede un mockup per il dashboard della webapp CEDEC e Pixel produce SVG interattivi con palette aziendale e wireframe completi.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea asks her for a CEDEC webapp dashboard mockup and Pixel produces interactive SVGs with corporate palette and full wireframes.</div>
+      <div class="mi"><strong>Primary:</strong> GPT-5.4-mini · <strong>Fallback:</strong> Kimi K2.6, deepseek-v4-flash</div>
+    </div>
+
+    <!-- SCRIBE 🕊️ Colomba -->
+    <div class="agent-card animal-scribe"><div class="bar" style="background:var(--scribe)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🕊️</div><div><div class="name">Scribe</div><div class="role">Writing &amp; Long-form</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Contenuti scritti — articoli, report, documentazione</div>
+      <div class="purpose lang-content" lang="en">🎯 Written content — articles, reports, documentation</div>
+      <div class="desc lang-content" lang="it">Scribe è lo scrittore specializzato del Playbook, una colomba che porta messaggi chiari in italiano e inglese. Con Mistral Large e thinking MED, Scribe produce articoli, report professionali, documentazione tecnica, contenuti per blog e testi curati in ogni dettaglio. È stato creato per dare voce alle idee di Andrea con chiarezza, stile e precisione — perché le parole giuste fanno la differenza.</div>
+      <div class="desc lang-content" lang="en">Scribe is the Playbook's dedicated writer, an eloquent fox who masters the written word in both Italian and English. With Mistral Large and MED thinking, Scribe produces articles, professional reports, technical documentation, blog content, and polished text down to every detail. He was created to give Andrea's ideas a voice — with clarity, style, and precision — because the right words make all the difference.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea gli affida il report trimestrale per i partner TGW e Scribe trasforma dati grezzi in un documento professionale con executive summary e raccomandazioni.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea entrusts him with the quarterly report for TGW partners and Scribe transforms raw data into a professional document with executive summary and recommendations.</div>
+      <div class="mi"><strong>Primary:</strong> Mistral Large · <strong>Fallback:</strong> GPT-5.4-mini, Kimi K2.6</div>
+    </div>
+
+    <!-- LEX 🦉 Gufo -->
+    <div class="agent-card animal-lex"><div class="bar" style="background:var(--lex)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦉</div><div><div class="name">Lex</div><div class="role">Legal &amp; Contracts</div></div></div><span class="tb tb-h">HIGH</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Revisione contrattuale — UK law, TGW-Amazon, compliance</div>
+      <div class="purpose lang-content" lang="en">🎯 Contract review — UK law, TGW-Amazon, compliance</div>
+      <div class="desc lang-content" lang="it">Lex è il giurista del Playbook, un gufo veglia implacabile sulla compliance legale. Con Claude Opus 4.7 e thinking HIGH, Lex analizza contratti UK law, revisiona compliance TGW-Amazon, identifica rischi e propone emendamenti. È stato creato per proteggere Andrea da clausole nascoste e insidie legali — un avvocato AI che non si stanca mai di leggere il fine print.</div>
+      <div class="desc lang-content" lang="en">Lex is the Playbook's legal expert, an eagle with infallible legal vision. With Claude Opus 4.7 and HIGH thinking, Lex analyzes UK law contracts, reviews TGW-Amazon compliance, identifies risks, and proposes amendments. He was created to protect Andrea from hidden clauses and legal traps — an AI lawyer who never tires of reading the fine print.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea gli invia un contratto TGW per Amazon UK e Lex evidenzia tre clausole critiche con raccomandazioni di modifica in formato legale.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea sends him a TGW contract for Amazon UK and Lex highlights three critical clauses with amendment recommendations in legal format.</div>
+      <div class="mi"><strong>Primary:</strong> Claude Opus 4.7 · <strong>Fallback:</strong> GPT-5.5, deepseek-v4-pro</div>
+    </div>
+
+    <!-- COUNSEL 🐢 Tartaruga -->
+    <div class="agent-card animal-counsel"><div class="bar" style="background:var(--counsel)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐢</div><div><div class="name">Counsel</div><div class="role">Governance &amp; Risk</div></div></div><span class="tb tb-h">HIGH</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Risk assessment, career guidance, governance del sistema</div>
+      <div class="purpose lang-content" lang="en">🎯 Risk assessment, career guidance, system governance</div>
+      <div class="desc lang-content" lang="it">Counsel è l'angelo custode del Playbook, una tartaruga saggia e metodica specializzata in governance e risk assessment. Con Claude Opus 4.7 e thinking HIGH, Counsel valuta rischi professionali, guida decisioni di carriera, analizza scenari di compliance e offre una prospettiva equilibrata sulle scelte importanti. È stato creato per essere la coscienza strategica di Andrea — quello che dice "fermati un attimo, pensiamo alle conseguenze".</div>
+      <div class="desc lang-content" lang="en">Counsel is the Playbook's guardian angel, a wise and protective bear specializing in governance and risk assessment. With Claude Opus 4.7 and HIGH thinking, Counsel evaluates professional risks, guides career decisions, analyzes compliance scenarios, and offers a balanced perspective on important choices. He was created to be Andrea's strategic conscience — the one who says "pause for a moment, let's think about the consequences."</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea gli chiede "dovrei accettare questa proposta di partnership?" e Counsel analizza rischi, opportunità e impatto sulla reputazione prima della decisione.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea asks him "should I accept this partnership proposal?" and Counsel analyzes risks, opportunities, and reputational impact before the decision.</div>
+      <div class="mi"><strong>Primary:</strong> Claude Opus 4.7 · <strong>Fallback:</strong> GPT-5.5</div>
+    </div>
+
+    <!-- VISA 🦅 Falco -->
+    <div class="agent-card animal-visa"><div class="bar" style="background:var(--visa)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🦅</div><div><div class="name">Visa</div><div class="role">Immigration Authority</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Visti, permessi di lavoro, documenti di viaggio</div>
+      <div class="purpose lang-content" lang="en">🎯 Visas, work permits, travel documents</div>
+      <div class="desc lang-content" lang="it">Visa è l'autorità per l'immigrazione del Playbook, un falco che sorveglia i confini e guida Andrea attraverso la burocrazia internazionale. Con Claude Sonnet 4.6 e thinking MED, Visa gestisce visti, permessi di lavoro, travel document e requisiti di ingresso per UK, Europa e oltre. È stata creata per trasformare incubi burocratici in checklist chiare e attuabili — perché nessuno dovrebbe perdersi nella burocrazia.</div>
+      <div class="desc lang-content" lang="en">Visa is the Playbook's immigration authority, a dove that guides Andrea through international bureaucracy with patience and precision. With Claude Sonnet 4.6 and MED thinking, Visa handles visas, work permits, travel documents, and entry requirements for the UK, Europe, and beyond. She was created to turn bureaucratic nightmares into clear, actionable checklists — because no one should get lost in red tape.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea le chiede "cosa serve per il mio visto di lavoro UK?" e Visa produce una timeline dettagliata con documenti, scadenze e costi.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea asks her "what do I need for my UK work visa?" and Visa produces a detailed timeline with documents, deadlines, and costs.</div>
+      <div class="mi"><strong>Primary:</strong> Claude Sonnet 4.6 · <strong>Fallback:</strong> GPT-5.4-mini</div>
+    </div>
+
+    <!-- MARK 🐝 Ape -->
+    <div class="agent-card animal-mark"><div class="bar" style="background:var(--mark)"></div>
+      <div class="hd"><div class="avatar-area"><div class="animal-avatar">🐝</div><div><div class="name">Mark</div><div class="role">Marketing &amp; GTM</div></div></div><span class="tb tb-m">MED</span></div>
+      <div class="purpose lang-content" lang="it">🎯 Go-to-market, contenuti social, strategia di lancio</div>
+      <div class="purpose lang-content" lang="en">🎯 Go-to-market, social content, launch strategy</div>
+      <div class="desc lang-content" lang="it">Mark è il marketing strategist del Playbook, un'ape operosa che amplifica la voce professionale di Andrea. Con GPT-5.4-mini e thinking MED, Mark gestisce strategie go-to-market, contenuti social, personal branding, campagne LinkedIn e comunicazione esterna. È stato creato per far sapere al mondo quello che Andrea sa fare — costruendo reputation, network e opportunità.</div>
+      <div class="desc lang-content" lang="en">Mark is the Playbook's marketing strategist, a charismatic parrot who amplifies Andrea's professional voice. With GPT-5.4-mini and MED thinking, Mark handles go-to-market strategies, social content, personal branding, LinkedIn campaigns, and external communication. He was created to let the world know what Andrea can do — building reputation, network, and opportunities.</div>
+      <div class="uc lang-content" lang="it"><div class="uc-label">💼 Caso d'uso</div>Andrea gli chiede "scrivimi un post LinkedIn sull'AI nella logistica" e Mark produce un contenuto virale con hashtag, tag e call-to-action.</div>
+      <div class="uc lang-content" lang="en"><div class="uc-label">💼 Use Case</div>Andrea asks him "write me a LinkedIn post about AI in logistics" and Mark produces viral-ready content with hashtags, tags, and call-to-action.</div>
+      <div class="mi"><strong>Primary:</strong> GPT-5.4-mini · <strong>Fallback:</strong> Mistral Large, deepseek-v4-flash</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section>
+  <h2 class="section-title"><span>🕸️</span> <span lang="it">Hub-and-Spoke Architecture</span><span lang="en">Hub-and-Spoke Architecture</span></h2>
+  <p class="section-desc lang-content" lang="it">L'architettura del Playbook si basa su un orchestrator centrale (Cleo) che instrada le richieste agli agenti specializzati in base al tipo di compito: ragionamento profondo (Atlas), engineering (Codex), esecuzione rapida (Max), ricerca (Scout), design (Pixel), scrittura (Scribe), revisione legale (Lex), governance (Counsel), immigrazione (Visa) e marketing (Mark). Ogni agente ha un modello primario ottimizzato per il suo dominio, con fallback configurati per garantire resilienza. I livelli di thinking (LOW, MED, HIGH) permettono di bilanciare velocità e profondità analitica a seconda della complessità del task.</p>
+  <p class="section-desc lang-content" lang="en">The Playbook architecture is built around a central orchestrator (Cleo) that routes requests to specialized agents based on task type: deep reasoning (Atlas), engineering (Codex), rapid execution (Max), research (Scout), design (Pixel), writing (Scribe), legal review (Lex), governance (Counsel), immigration (Visa), and marketing (Mark). Each agent has a domain-optimized primary model with configured fallbacks to ensure resilience. Thinking levels (LOW, MED, HIGH) balance speed and analytical depth according to task complexity.</p>
+  <div class="arch-card">
+    <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+      <defs><style>.ctr{text-anchor:middle;dominant-baseline:central}.lb{font-size:12px;fill:#86868B}.ag{font-size:14px;font-weight:bold;fill:#1D1D1F}.ag-l{font-size:11px;fill:#86868B}.ds{stroke:#D2D2D7;stroke-width:1.5;stroke-dasharray:4 4}text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}</style></defs>
+      <rect x="0" y="0" width="800" height="440" rx="12" fill="#FFFFFF"/>
+      <circle cx="400" cy="220" r="52" fill="#0071E3"/>
+      <text x="400" y="212" class="ctr" font-size="20" font-weight="bold" fill="#FFF">CLEO</text>
+      <text x="400" y="234" class="ctr" font-size="11" fill="#FFF" opacity="0.9">orchestrator</text>
+      <line x1="400" y1="220" x2="270" y2="110" class="ds"/><rect x="230" y="85" width="80" height="50" rx="8" fill="#FFF" stroke="#BF5AF2" stroke-width="2"/><text x="270" y="108" class="ctr ag">🧭 Atlas</text><text x="270" y="124" class="ctr ag-l">deep reasoning</text>
+      <line x1="400" y1="220" x2="400" y2="85" class="ds"/><rect x="360" y="60" width="80" height="50" rx="8" fill="#FFF" stroke="#FF9F0A" stroke-width="2"/><text x="400" y="83" class="ctr ag">🏗️ Codex</text><text x="400" y="99" class="ctr ag-l">engineering</text>
+      <line x1="400" y1="220" x2="530" y2="110" class="ds"/><rect x="490" y="85" width="80" height="50" rx="8" fill="#FFF" stroke="#FF375F" stroke-width="2"/><text x="530" y="108" class="ctr ag">🤖 Max</text><text x="530" y="124" class="ctr ag-l">executor</text>
+      <line x1="400" y1="220" x2="180" y2="220" class="ds"/><rect x="140" y="195" width="80" height="50" rx="8" fill="#FFF" stroke="#30D158" stroke-width="2"/><text x="180" y="218" class="ctr ag">🔍 Scout</text><text x="180" y="234" class="ctr ag-l">memory / research</text>
+      <line x1="400" y1="220" x2="620" y2="220" class="ds"/><rect x="580" y="195" width="80" height="50" rx="8" fill="#FFF" stroke="#5AC8FA" stroke-width="2"/><text x="620" y="218" class="ctr ag">🎨 Pixel</text><text x="620" y="234" class="ctr ag-l">visual layer</text>
+      <line x1="400" y1="220" x2="270" y2="330" class="ds"/><rect x="230" y="305" width="80" height="50" rx="8" fill="#FFF" stroke="#8E8E93" stroke-width="2"/><text x="270" y="328" class="ctr ag">⚖️ Lex</text><text x="270" y="344" class="ctr ag-l">legal / contracts</text>
+      <line x1="400" y1="220" x2="340" y2="370" class="ds"/><rect x="300" y="345" width="80" height="50" rx="8" fill="#FFF" stroke="#636366" stroke-width="2"/><text x="340" y="368" class="ctr ag">🛡️ Counsel</text><text x="340" y="384" class="ctr ag-l">governance / risk</text>
+      <line x1="400" y1="220" x2="460" y2="370" class="ds"/><rect x="420" y="345" width="80" height="50" rx="8" fill="#FFF" stroke="#64D2FF" stroke-width="2"/><text x="460" y="368" class="ctr ag">🛂 Visa</text><text x="460" y="384" class="ctr ag-l">immigration</text>
+      <line x1="400" y1="220" x2="530" y2="330" class="ds"/><rect x="490" y="305" width="80" height="50" rx="8" fill="#FFF" stroke="#FF9500" stroke-width="2"/><text x="530" y="328" class="ctr ag">📢 Mark</text><text x="530" y="344" class="ctr ag-l">marketing / GTM</text>
+      <line x1="400" y1="220" x2="680" y2="310" class="ds"/><rect x="640" y="285" width="80" height="50" rx="8" fill="#FFF" stroke="#0071EE" stroke-width="2"/><text x="680" y="308" class="ctr ag">✍️ Scribe</text><text x="680" y="324" class="ctr ag-l">writing / content</text>
+    </svg>
+  </div>
+</section>
+
+<!-- AUTONOMY LEVELS -->
+<section>
+  <h2 class="section-title"><span>⚡</span> Autonomy Levels</h2>
+  <p class="section-desc lang-content" lang="it">Ogni agente opera a un livello di autonomia che determina quanto può fare senza supervisione umana. Il livello dipende dal rischio dell'azione, non dalla capacità dell'agente.</p>
+  <p class="section-desc lang-content" lang="en">Each agent operates at an autonomy level determined by the action's risk, not the agent's capability.</p>
+  <div class="auto-grid">
+    <div class="auto-card a1"><h3>🟢 L1 — Autonomous</h3><div class="lvl lang-content" lang="it">Nessuna supervisione</div><div class="lvl lang-content" lang="en">No supervision</div><p lang="it">Esegue senza chiedere. Letture, ricerche, automazioni interne, task a basso rischio.</p><p lang="en">Executes without asking. Reads, research, internal automations, low-risk tasks.</p></div>
+    <div class="auto-card a2"><h3>🟡 L2 — Conditional</h3><div class="lvl lang-content" lang="it">Supervisione leggera</div><div class="lvl lang-content" lang="en">Light supervision</div><p lang="it">Esegue se confidente, altrimenti flagga e chiede. Task intermedi a rischio moderato.</p><p lang="en">Executes if confident, otherwise flags and asks. Intermediate, moderate-risk tasks.</p></div>
+    <div class="auto-card a3"><h3>🟠 L3 — Supervised</h3><div class="lvl lang-content" lang="it">Supervisione obbligatoria</div><div class="lvl lang-content" lang="en">Mandatory supervision</div><p lang="it">Esegue e riporta, non finalizza senza conferma. Scrittura su Drive, email draft, modifiche importanti.</p><p lang="en">Executes and reports, doesn't finalize without confirmation. Drive writes, email drafts, important changes.</p></div>
+    <div class="auto-card a4"><h3>🔴 L4 — Explicit</h3><div class="lvl lang-content" lang="it">Approvazione esplicita</div><div class="lvl lang-content" lang="en">Explicit approval</div><p lang="it">Non esegue. Prepara, riassume e chiede approvazione. Pubblicazioni, acquisti, azioni legali.</p><p lang="en">Doesn't execute. Prepares, summarizes, asks for approval. Publications, purchases, legal actions.</p></div>
+  </div>
+</section>
+
+<!-- ITERATION CYCLE -->
+<section>
+  <h2 class="section-title"><span>🔄</span> <span lang="it">Recursive Architecture</span><span lang="en">Recursive Architecture</span></h2>
+  <p class="section-desc lang-content" lang="it">Il sistema opera in cicli continui di osservazione, compressione, azione e valutazione. Ogni ciclo migliora la fedeltà del contesto e la qualità dell'output.</p>
+  <p class="section-desc lang-content" lang="en">The system operates in continuous cycles of observation, compression, action, and evaluation. Each cycle improves context fidelity and output quality.</p>
+  <div class="cycle-wrap">
+    <div class="cycle-node">👁️ <span class="step">01</span>Observe</div><span class="cycle-arrow">→</span>
+    <div class="cycle-node">📦 <span class="step">02</span>Compress</div><span class="cycle-arrow">→</span>
+    <div class="cycle-node">⚡ <span class="step">03</span>Act</div><span class="cycle-arrow">→</span>
+    <div class="cycle-node">📐 <span class="step">04</span>Evaluate</div>
+  </div>
+  <div class="cycle-cap lang-content" lang="it">Ogni ciclo migliora la fedeltà del contesto — TIME_CONTEXT è il carburante del loop</div>
+  <div class="cycle-cap lang-content" lang="en">Each cycle improves context fidelity — TIME_CONTEXT is the loop's fuel</div>
+</section>
+
+<!-- TRUTH HIERARCHY -->
+<section>
+  <h2 class="section-title"><span>📜</span> <span lang="it">Truth Hierarchy</span><span lang="en">Truth Hierarchy</span></h2>
+  <p class="section-desc lang-content" lang="it">Quando c'è conflitto tra fonti, il sistema segue questa gerarchia. Più in alto = più autorità.</p>
+  <p class="section-desc lang-content" lang="en">When sources conflict, the system follows this hierarchy. Higher = more authority.</p>
+  <div class="truth-stack">
+    <div class="truth-item t1"><span lang="it">1. Istruzioni dirette di Andrea</span><span lang="en">1. Andrea's direct instructions</span><span class="sub" lang="it">Priorità massima — ciò che dice Andrea vince su tutto</span><span class="sub" lang="en">Highest priority — what Andrea says overrides everything</span></div>
+    <div class="truth-item t2"><span lang="it">2. MEMORY.md / Scritture</span><span lang="en">2. MEMORY.md / Written Memory</span><span class="sub" lang="it">Decisioni passate, preferenze, architettura, lessons learned</span><span class="sub" lang="en">Past decisions, preferences, architecture, lessons learned</span></div>
+    <div class="truth-item t3"><span lang="it">3. SOUL.md Direttive</span><span lang="en">3. SOUL.md Directives</span><span class="sub" lang="it">Identità, tono, regole operative del sistema</span><span class="sub" lang="en">Identity, tone, system operational rules</span></div>
+    <div class="truth-item t4"><span lang="it">4. Contesto sessione attiva</span><span lang="en">4. Active session context</span><span class="sub" lang="it">Contesto della sessione corrente</span><span class="sub" lang="en">Current session context</span></div>
+    <div class="truth-item t5"><span lang="it">5. Conoscenza del modello</span><span lang="en">5. Model training knowledge</span><span class="sub" lang="it">Priorità minima — conoscenza generale del modello</span><span class="sub" lang="en">Minimum priority — model's general knowledge</span></div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section>
+  <h2 class="section-title"><span>🔧</span> Workflow Pipeline</h2>
+  <p class="section-desc lang-content" lang="it">Ogni richiesta attraversa questa pipeline dalla ricezione alla consegna.</p>
+  <p class="section-desc lang-content" lang="en">Every request goes through this pipeline from reception to delivery.</p>
+  <div class="wf-steps">
+    <div class="wf"><span class="n">1</span> <span lang="it">Richiesta</span><span lang="en">Request</span></div>
+    <div class="wf"><span class="n">2</span> <span lang="it">Classifica</span><span lang="en">Classify</span></div>
+    <div class="wf"><span class="n">3</span> <span lang="it">Instrada</span><span lang="en">Route</span></div>
+    <div class="wf"><span class="n">4</span> <span lang="it">Esegui</span><span lang="en">Execute</span></div>
+    <div class="wf"><span class="n">5</span> <span lang="it">Verifica</span><span lang="en">Verify</span></div>
+    <div class="wf"><span class="n">6</span> <span lang="it">Consegna</span><span lang="en">Deliver</span></div>
+  </div>
+</section>
+
+<!-- FUTURE USE CASES -->
+<section>
+  <h2 class="section-title"><span>🚀</span> <span lang="it">Use Case Futuri</span><span lang="en">Future Use Cases</span></h2>
+  <p class="section-desc lang-content" lang="it">Come questo sistema evolverà — scenari concreti già pianificati per il prossimo futuro.</p>
+  <p class="section-desc lang-content" lang="en">How this system will evolve — concrete scenarios already planned for the near future.</p>
+  <div class="uc-grid">
+    <div class="uc-card"><div class="uico">🏗️</div><h4 lang="it">Consulenza Site Management</h4><h4 lang="en">Site Mgmt Consulting</h4><p lang="it">Gli agenti analizzano in tempo reale i dati di cantiere, ottimizzano la programmazione delle risorse e inviano alert predittivi su ritardi o criticità, trasformando il Project Manager in un supervisore strategico.</p><p lang="en">Agents analyze real-time construction site data, optimize resource scheduling, and send predictive alerts, transforming the PM into a strategic supervisor.</p></div>
+    <div class="uc-card"><div class="uico">⚖️</div><h4 lang="it">Revisione Contrattuale</h4><h4 lang="en">Contract Compliance</h4><p lang="it">Lex e Counsel lavorano in tandem per revisionare contratti di subappalto, verificare la conformità normativa e generare report di rischio contrattuale pronti per la firma.</p><p lang="en">Lex and Counsel work in tandem to review subcontracts, verify regulatory compliance, and generate risk reports ready for signature.</p></div>
+    <div class="uc-card"><div class="uico">📋</div><h4 lang="it">PMO Report Automation</h4><h4 lang="en">PMO Report Automation</h4><p lang="it">Scribe e Scout collaborano alla produzione automatica di report settimanali di progetto, documenti di gara e presentazioni per stakeholder, partendo da dati grezzi e verbali di riunione.</p><p lang="en">Scribe and Scout auto-produce weekly project reports, tender documents, and stakeholder presentations from raw data and meeting minutes.</p></div>
+    <div class="uc-card"><div class="uico">💻</div><h4 lang="it">Webapp Creation</h4><h4 lang="en">Webapp Creation</h4><p lang="it">Codex e Pixel sviluppano e prototipano web application complete per CBS e CEDEC, integrandole con i database aziendali e producendo interfacce intuitive.</p><p lang="en">Codex and Pixel build full web apps for CBS and CEDEC, integrating with corporate databases and producing intuitive interfaces.</p></div>
+    <div class="uc-card"><div class="uico">🔬</div><h4 lang="it">Ricerca &amp; Gare</h4><h4 lang="en">Tender Management</h4><p lang="it">Scout esplora bandi e competitor, Atlas valuta la strategia di bidding, Mark prepara la documentazione di presentazione — un pipeline completo dalla scoperta all'offerta.</p><p lang="en">Scout explores tenders and competitors, Atlas evaluates bidding strategy, Mark prepares presentation docs — a complete pipeline from discovery to offer.</p></div>
+    <div class="uc-card"><div class="uico">🎯</div><h4 lang="it">Content &amp; Branding</h4><h4 lang="en">Content &amp; Branding</h4><p lang="it">Mark, Scribe e Pixel formano un reparto marketing virtuale che produce articoli, infografiche e social content per posizionare Andrea come thought leader nel settore.</p><p lang="en">Mark, Scribe, and Pixel form a virtual marketing department producing articles, infographics, and social content to position Andrea as a thought leader.</p></div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section>
+  <h2 class="section-title"><span>⚙️</span> Tech Stack</h2>
+  <p class="section-desc lang-content" lang="it">I modelli e l'infrastruttura che alimentano il sistema.</p>
+  <p class="section-desc lang-content" lang="en">The models and infrastructure powering the system.</p>
+  <div class="tech-box">
+    <div class="grp"><div class="gt">🤖 AI Models</div><div class="pills"><span class="pill">deepseek-v4-flash</span><span class="pill">deepseek-v4-pro</span><span class="pill">GPT-5.5</span><span class="pill">GPT-5.4-mini</span><span class="pill">Claude Opus 4.7</span><span class="pill">Claude Sonnet 4.6</span><span class="pill">Mistral Large</span><span class="pill">Kimi K2.6</span><span class="pill">MiniMax-M2.7</span></div></div>
+    <div class="grp"><div class="gt">🔌 Routing</div><div class="pills"><span class="pill">DeepSeek Native</span><span class="pill">OpenRouter BYOK</span><span class="pill">Anthropic Native</span><span class="pill">OpenAI Native</span><span class="pill">Mistral Direct</span></div></div>
+    <div class="grp"><div class="gt">🏗️ Infrastructure</div><div class="pills"><span class="pill">OpenClaw</span><span class="pill">Voyage AI</span><span class="pill">gogcli (Google)</span><span class="pill">Himalaya (IMAP)</span><span class="pill">TripIt (Travel)</span><span class="pill">PostgreSQL</span><span class="pill">ACP (Codex OAuth)</span></div></div>
+  </div>
+</section>
+
+<div class="credits">
+  <span>Built with ❤️ by <span class="fn">Andrea Sassi</span></span>
+  <span>✍️ Content curated by Scribe 🕊️</span>
+  <span>🎨 Design by Pixel 🦊</span>
+  <span>🧠 Orchestrated by Cleo 🦁</span>
+</div>
+
+</div>
+
+<footer>
+  Andrea AI Playbook v4.3 <span>·</span> AI Infrastructure 2026 <span>·</span> Powered by OpenClaw
+</footer>
+
+<script>
+  function setLang(l) {
+    document.body.className = 'lang-' + l;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.includes(l === 'it' ? 'Italiano' : 'English')));
+    document.documentElement.lang = l;
+  }
+</script>
 </body>
 </html>
