@@ -85,7 +85,7 @@ systemd, agent or runtime-service configuration changed.
 | Illegal direct closure | PASS | `RUNNING -> COMPLETE` rejected |
 | Persistent activation | PASS | `/root/AGENTS.md` contained all seven required policy markers |
 | Latest review selection | PASS | Selected preserved APPROVED review for PR `#1`, exact SHA `0a372451ca9014b7e2ffc9dccbf2d9084af40c18` |
-| Three-head equality | PENDING | Must match after final push |
+| Three-head equality | PASS | Local, remote branch and PR head matched after publication; exact target recorded in PR description |
 | Review immutability | PASS | Both historical review blob hashes unchanged from current HEAD |
 | Structure and secrets | PASS | Verify and secret-scan returned zero findings |
 
