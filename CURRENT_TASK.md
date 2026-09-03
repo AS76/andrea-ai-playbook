@@ -2,67 +2,79 @@
 
 ## Request
 
-Make the approved Codex-GitHub-ChatGPT Handoff Ledger the persistent default
-workflow for future significant Codex tasks, with autonomous review/remediation
-handling and no ledger noise for trivial work.
+Fix the degraded OpenClaw runtime observed on 2026-09-03.
 
 ## Objective
 
-Future Codex sessions operating under `/root/AGENTS.md` automatically invoke the
-existing ledger for significant work. The existing helper validates state
-transitions, selects the newest applicable review and verifies local/remote/PR
-head consistency.
+Restore reliable gateway operation while preserving model, OAuth, Telegram,
+ClawMem and security configuration.
 
 ## Scope
 
-- Persistent Codex instruction in `/root/AGENTS.md`
-- Existing ledger policy and helper behavior
-- State-machine and review-selection tests
-- Current task handoff and GitHub review request
+- OpenClaw gateway runtime and provider-auth snapshot path
+- Official plugin version alignment
+- Telegram, local health and Tailscale Funnel verification
+- Reversible production remediation and rollback evidence
 
 ## Out of Scope
 
-- Redesigning the ledger
-- Another memory system
-- OpenClaw, ClawMem, Vault, cron, systemd or agent configuration
-- Synthetic GitHub review creation
+- `openclaw doctor --fix`
+- OpenClaw core package update or downgrade
+- Model or authentication-route changes
+- Broad configuration rewrites
 
 ## Initial State
 
-- The ledger implementation was approved and its review history was preserved.
-- The workflow existed in repository documentation but was not referenced by the
-  persistent VPS-level Codex instructions.
-- The helper validated structure and secrets but did not simulate the complete
-  verdict state machine, identify the latest valid review or compare three heads.
+- OpenClaw 2026.9.1 was active but repeatedly blocked for 83–111 seconds.
+- Startup readiness took about 120 seconds after the HTTP listener appeared.
+- Runtime logs showed event-loop starvation, Telegram fetch timeouts and WS 1006.
+- Eight active official plugins remained at 2026.8.2.
 
-## Plan
+## Root Cause
 
-1. Add a concise persistent trigger to `/root/AGENTS.md`.
-2. Add one operational policy to the existing ledger architecture.
-3. Extend `tools/codex-handoff` with state, review and head checks.
-4. Test approval, remediation and blocked-evidence paths.
-5. Validate, scan, commit, push and request ChatGPT review.
+A CPU profile identified repeated `stableConfigStringify()` work from
+`providerConfigMatchesRuntimeSnapshot()`. The large configured OpenRouter model
+catalog was re-normalized and hashed for repeated auth/provider comparisons,
+causing excessive garbage collection and blocking the Node event loop.
+
+## Remediation
+
+- Aligned eight active official plugins to 2026.9.1 without capability bypass.
+- Added a process-local cache keyed by input/runtime config object identity and
+  provider id around the expensive provider snapshot comparison.
+- Removed stale Funnel routes targeting inactive local port 8787.
+- Kept `/root/.openclaw/openclaw.json` byte-identical.
+
+## Verification
+
+- [x] Core syntax validation
+- [x] Final cold-start readiness: 28.7 seconds
+- [x] No delayed heartbeat, starvation, freeze or WS 1006 in final gates
+- [x] Scout synthetic turn: `HEALTH_OK`, 16.3 seconds
+- [x] All 11 Telegram accounts: configured, running, connected, works
+- [x] Cleo real Telegram delivery: `OPENCLAW_FIX_OK`
+- [x] Gateway, ClawMem and Funnel root: HTTP 200
+- [x] 35 continuous probes: zero failures, maximum 234 ms
+- [x] Inspector diagnostic override removed; no port 9229 listener
+
+## Rollback
+
+Restore the backed-up provider-auth module and plugin project artifacts from
+`/root/.openclaw/backups/plugin-alignment-20260903T203900Z`, restore the saved
+Funnel JSON mapping if the obsolete routes are intentionally needed, then
+restart the gateway. Configuration backup SHA-256 matches the live file.
 
 ## Execution Status
 
-- [x] Audit
-- [x] Implementation
-- [x] Tests
+- [x] Initial audit
+- [x] Root-cause diagnosis
+- [x] Backup and remediation
 - [x] Runtime verification
-- [x] Documentation
-- [x] Handoff
+- [x] Handoff prepared
 - [ ] ChatGPT review
 - [ ] Final closure
 
-## Current Findings
-
-- `/root/AGENTS.md` is the effective persistent instruction point for future
-  Codex work under the VPS root.
-- Review applicability requires PR, exact reviewed SHA, verdict and immutable
-  review record; filename recency alone is insufficient.
-- A later closure commit is correctly distinct from the commit ChatGPT reviewed.
-
 ## Blockers / Decisions
 
-None. This significant policy change requires a fresh independent review before
-closure.
+None. The local core hotfix will be overwritten by a future package update and
+must be retired when upstream ships an equivalent fix.

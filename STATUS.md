@@ -1,8 +1,8 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-03T06:40:00Z
-Codex session: codex-session-2026-09-03-ledger-deployment
-Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Persist the default Codex review workflow
+Last update: 2026-09-03T21:05:00Z
+Codex session: codex-session-2026-09-03-openclaw-freeze-remediation
+Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Remediate OpenClaw gateway freezes
 Overall status: REVIEW_REQUIRED
 Runtime: PASS
 ChatGPT Review: PENDING_REVIEW
@@ -11,35 +11,23 @@ Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
 
 ## Current State
 
-- OpenClaw: 2026.8.2, configuration unchanged by this deployment
-- Gateway: active; WebSocket connection and read probe passed
-- ClawMem: active; REST health passed; referenced only by concise context labels
-- Vault: canonical memory authority, unchanged by this deployment
-- Memory architecture: Cleo orchestrates; Scout curates; unchanged
-- Git working tree: isolated ledger branch; implementation committed
+- OpenClaw: 2026.9.1 (`ad6fe23`)
+- Gateway: active; final cold-start readiness 28.7 seconds
+- Event loop: no delayed heartbeat, starvation, freeze or WS 1006 in final gates
+- Telegram: all 11 configured accounts passed probe; Cleo real delivery passed
+- Local gateway, ClawMem and public Funnel root: HTTP 200
+- Stale Funnel routes to inactive port 8787 removed
+- Official external plugins: aligned to core 2026.9.1
 
 ## Current Activity
 
-Implementation and Codex-side validation complete; awaiting independent review.
-
-## Last Completed Change
-
-Initial ledger deployment, reviewed APPROVED at
-`0a372451ca9014b7e2ffc9dccbf2d9084af40c18`.
+Implementation and runtime verification complete; awaiting independent review.
 
 ## Latest Handoff
 
-`handoffs/2026-09-03_0635_persistent-review-workflow.md`
-
-## Latest Review
-
-`reviews/2026-09-03_0624_github-handoff-ledger.md` — APPROVED.
+`handoffs/2026-09-03_2105_openclaw-freeze-remediation.md`
 
 ## Blockers
-
-None.
-
-## Needs Andrea Decision
 
 None.
 
