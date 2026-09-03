@@ -64,9 +64,15 @@ review.
 - The source checkout is dirty and one commit ahead of remote. An isolated
   worktree prevents unrelated content from entering this change.
 - GitHub CLI authentication and the existing remote are operational.
+- First review accepted the architecture but found three SHA roles conflated:
+  `df9ddb1` was the implementation commit, `3eb4f68` was the intermediate
+  evidence commit, and `3840308` was the then-current PR head.
+- A commit cannot contain its own not-yet-computed SHA. Active in-tree metadata
+  therefore names the authoritative PR-head ref; its exact resolved SHA is
+  recorded post-push in the PR description and verified against local/remote.
 
 ## Blockers / Decisions
 
-No implementation blocker. Final closure remains gated on independent ChatGPT
-review; direct ChatGPT GitHub write capability is UNVERIFIED, so relay mode may
-be required for the verdict.
+No implementation blocker. First review returned CHANGES_REQUESTED; commit
+identity remediation returns to PENDING_REVIEW after the final push and
+three-way head verification.

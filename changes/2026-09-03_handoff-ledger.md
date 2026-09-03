@@ -3,7 +3,8 @@
 Component: Codex-GitHub-ChatGPT Handoff Ledger
 Date: 2026-09-03
 Owner: Codex implementation; Andrea final authority
-Commit: `df9ddb188a9b582d6f6270c4a13a42c0728ccd23`
+Initial implementation commit: `df9ddb188a9b582d6f6270c4a13a42c0728ccd23`
+Active review target: PR `#1` HEAD (`refs/pull/1/head`)
 Reason: Remove manual transcript copying while preserving independent review and runtime authority boundaries.
 
 ## Before

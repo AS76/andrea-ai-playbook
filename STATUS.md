@@ -1,13 +1,13 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-03T06:15:00Z
+Last update: 2026-09-03T06:19:13Z
 Codex session: codex-session-2026-09-03-ledger-deployment
 Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Deploy Codex-GitHub-ChatGPT Handoff Ledger
 Overall status: REVIEW_REQUIRED
 Runtime: PASS
 ChatGPT Review: PENDING_REVIEW
-Current Commit: `df9ddb188a9b582d6f6270c4a13a42c0728ccd23`
-Reviewed Commit: NONE
+Current Commit: PR `#1` HEAD (`refs/pull/1/head`)
+Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
 
 ## Current State
 
@@ -32,7 +32,7 @@ Codex-GitHub-ChatGPT Handoff Ledger deployment.
 
 ## Latest Review
 
-Pending in GitHub pull request `#1`.
+`reviews/2026-09-03_0619_github-handoff-ledger.md` — CHANGES_REQUESTED; remediation applied, re-review pending.
 
 ## Blockers
 
@@ -44,4 +44,5 @@ None.
 
 ## Recommended Next Action
 
-Review the deployment from this file and preserve the verdict under `reviews/`.
+ChatGPT re-review of PR `#1` at its current head. The exact resolved SHA is
+recorded in the PR description after the final push.

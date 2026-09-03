@@ -9,12 +9,16 @@ Component: Codex-GitHub-ChatGPT Handoff Ledger
 Codex Status: PASS
 Runtime Verification: PASS
 ChatGPT Review: PENDING_REVIEW
-Commit: `df9ddb188a9b582d6f6270c4a13a42c0728ccd23`
+Initial implementation commit: `df9ddb188a9b582d6f6270c4a13a42c0728ccd23`
+Current Commit: PR `#1` HEAD (`refs/pull/1/head`)
+Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
 Branch: `codex/handoff-ledger`
 Related task: `CURRENT_TASK.md`
 Related issue/PR: GitHub pull request `#1`
 Related ClawMem context: memory architecture retrofit; gateway reliability; ClawMem production recovery
-Related review: None
+Related review: `reviews/2026-09-03_0619_github-handoff-ledger.md`
+Previous ChatGPT Review: CHANGES_REQUESTED
+Previous review path: `reviews/2026-09-03_0619_github-handoff-ledger.md`
 
 ## Request
 
@@ -90,7 +94,7 @@ Repository content only. No production runtime configuration changed.
 | Helper syntax | PASS | Python byte compilation completed |
 | Navigation/references | PASS | 5 required entry-point references resolved |
 | Isolated diff | PASS | Branch was based on `origin/main`; only 14 intended files entered the implementation commit |
-| Remote push | PASS | Local and remote branch heads matched at `3eb4f6867331d5f41b0a21e1148a8cd81e0ee901`; pull request `#1` created |
+| Initial remote push | PASS | Historical evidence commit `3eb4f6867331d5f41b0a21e1148a8cd81e0ee901` reached the remote and PR `#1` was created |
 
 ## Runtime Verification
 
@@ -126,6 +130,35 @@ runtime-data restoration is required.
 Obtain independent review through pull request `#1`. Final closure is
 intentionally not marked complete before an acceptable verdict.
 
+## Commit Identity Remediation
+
+Root cause of SHA inconsistency: the ledger was created in three sequential
+commits. `df9ddb188a9b582d6f6270c4a13a42c0728ccd23` created the implementation;
+`3eb4f6867331d5f41b0a21e1148a8cd81e0ee901` added pre-review evidence; and
+`38403082b391c1386791f7ec219c777dc92745aa` recorded publication. Active fields
+were not advanced after the later commits, while remote-push evidence retained
+the intermediate SHA.
+
+Remediation performed: the first review was preserved, historical hashes were
+given explicit roles, and every active review field now targets PR `#1` HEAD via
+`refs/pull/1/head`. A tracked file cannot embed the SHA of the commit containing
+that file before Git computes it, so the exact resolved SHA is recorded
+post-push in the PR description and verified against local and remote heads.
+
+Superseded SHA references:
+
+- `df9ddb188a9b582d6f6270c4a13a42c0728ccd23` — initial implementation commit;
+  historical, not the active review target.
+- `3eb4f6867331d5f41b0a21e1148a8cd81e0ee901` — intermediate evidence commit;
+  historical, not the active review target.
+- `38403082b391c1386791f7ec219c777dc92745aa` — PR head reviewed in cycle one;
+  superseded by this remediation cycle.
+
+New authoritative review commit: PR `#1` HEAD (`refs/pull/1/head`), with its
+exact post-push SHA in the PR description.
+
+ChatGPT Review Status: PENDING_REVIEW
+
 ## Recommended Next Action
 
 1. Review this commit from `STATUS.md`.
@@ -136,6 +169,6 @@ intentionally not marked complete before an acceptable verdict.
 Review requested: YES
 Review scope: architecture, privacy boundary, evidence quality, helper safety,
 state transitions, rollback and compliance with the requested workflow
-Reviewed commit: `df9ddb188a9b582d6f6270c4a13a42c0728ccd23`
+Reviewed commit: PR `#1` HEAD (`refs/pull/1/head`)
 Evidence requiring review: this handoff, change record, architecture document,
 templates, helper implementation and commit diff

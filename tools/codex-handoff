@@ -65,6 +65,13 @@ def verify() -> int:
     for field in ("Overall status:", "Runtime:", "ChatGPT Review:", "Current Commit:"):
         if field not in status:
             errors.append(f"STATUS.md missing field: {field}")
+    active = {}
+    for field in ("Current Commit", "Reviewed Commit"):
+        match = re.search(rf"^{field}:\s*(.+)$", status, re.MULTILINE)
+        if match:
+            active[field] = match.group(1).strip()
+    if len(active) == 2 and active["Current Commit"] != active["Reviewed Commit"]:
+        errors.append("STATUS.md active commit targets differ")
     errors.extend(secret_scan())
     if errors:
         for error in errors:
