@@ -51,10 +51,10 @@ review.
 
 - [x] Audit
 - [x] Implementation
-- [ ] Tests
-- [ ] Runtime verification
+- [x] Tests
+- [x] Runtime verification
 - [x] Documentation
-- [ ] Handoff
+- [x] Handoff
 - [ ] ChatGPT review
 - [ ] Final closure
 
@@ -67,4 +67,6 @@ review.
 
 ## Blockers / Decisions
 
-No blocker. Final closure remains gated on independent ChatGPT review.
+No implementation blocker. Final closure remains gated on independent ChatGPT
+review; direct ChatGPT GitHub write capability is UNVERIFIED, so relay mode may
+be required for the verdict.

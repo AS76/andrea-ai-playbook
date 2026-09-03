@@ -9,10 +9,10 @@ Component: Codex-GitHub-ChatGPT Handoff Ledger
 Codex Status: PASS
 Runtime Verification: PASS
 ChatGPT Review: PENDING_REVIEW
-Commit: PENDING
+Commit: `df9ddb188a9b582d6f6270c4a13a42c0728ccd23`
 Branch: `codex/handoff-ledger`
 Related task: `CURRENT_TASK.md`
-Related issue/PR: PENDING
+Related issue/PR: review branch; pull request created after push
 Related ClawMem context: memory architecture retrofit; gateway reliability; ClawMem production recovery
 Related review: None
 
@@ -85,17 +85,24 @@ Repository content only. No production runtime configuration changed.
 
 | Test | Result | Evidence |
 |---|---|---|
-| Required structure | PENDING | `tools/codex-handoff verify` |
-| Secret/privacy scan | PENDING | `tools/codex-handoff secret-scan` |
-| Helper syntax | PENDING | Python compilation |
-| Navigation/references | PENDING | Link and named-file checks |
-| Isolated diff | PENDING | Git status and diff inspection |
+| Required structure | PASS | 7 required entry/template files and first handoff found |
+| Secret/privacy scan | PASS | 0 findings across tracked and untracked review files |
+| Helper syntax | PASS | Python byte compilation completed |
+| Navigation/references | PASS | 5 required entry-point references resolved |
+| Isolated diff | PASS | Branch was based on `origin/main`; only 14 intended files entered the implementation commit |
 | Remote push | PENDING | Remote branch verification |
 
 ## Runtime Verification
 
-Pending final pre-review gate. Runtime evidence will cover the current service
-state and live probes only; ChatGPT is not represented as performing them.
+Codex verified on the production VPS:
+
+- OpenClaw configuration parsed successfully with only two pre-existing disabled-plugin warnings.
+- Gateway and ClawMem watcher units were active.
+- Gateway WebSocket connected and its read probe passed in 35 ms.
+- ClawMem REST health returned `status=ok` with vectors present.
+
+No service was restarted and no runtime configuration was modified. These are
+Codex runtime observations; ChatGPT has not independently verified the VPS.
 
 ## Git Diff Summary
 
@@ -116,7 +123,8 @@ runtime-data restoration is required.
 
 ## Remaining Work
 
-Run the pre-review checks, commit, push and obtain independent review.
+Push the branch and obtain independent review. Final closure is intentionally
+not marked complete before an acceptable verdict.
 
 ## Recommended Next Action
 
@@ -128,6 +136,6 @@ Run the pre-review checks, commit, push and obtain independent review.
 Review requested: YES
 Review scope: architecture, privacy boundary, evidence quality, helper safety,
 state transitions, rollback and compliance with the requested workflow
-Reviewed commit: PENDING
+Reviewed commit: `df9ddb188a9b582d6f6270c4a13a42c0728ccd23`
 Evidence requiring review: this handoff, change record, architecture document,
 templates, helper implementation and commit diff
