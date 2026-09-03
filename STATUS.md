@@ -32,7 +32,7 @@ Codex-GitHub-ChatGPT Handoff Ledger deployment.
 
 ## Latest Review
 
-None.
+Pending in GitHub pull request `#1`.
 
 ## Blockers
 

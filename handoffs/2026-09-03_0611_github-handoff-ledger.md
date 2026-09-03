@@ -12,7 +12,7 @@ ChatGPT Review: PENDING_REVIEW
 Commit: `df9ddb188a9b582d6f6270c4a13a42c0728ccd23`
 Branch: `codex/handoff-ledger`
 Related task: `CURRENT_TASK.md`
-Related issue/PR: review branch; pull request created after push
+Related issue/PR: GitHub pull request `#1`
 Related ClawMem context: memory architecture retrofit; gateway reliability; ClawMem production recovery
 Related review: None
 
@@ -90,7 +90,7 @@ Repository content only. No production runtime configuration changed.
 | Helper syntax | PASS | Python byte compilation completed |
 | Navigation/references | PASS | 5 required entry-point references resolved |
 | Isolated diff | PASS | Branch was based on `origin/main`; only 14 intended files entered the implementation commit |
-| Remote push | PENDING | Remote branch verification |
+| Remote push | PASS | Local and remote branch heads matched at `3eb4f6867331d5f41b0a21e1148a8cd81e0ee901`; pull request `#1` created |
 
 ## Runtime Verification
 
@@ -123,8 +123,8 @@ runtime-data restoration is required.
 
 ## Remaining Work
 
-Push the branch and obtain independent review. Final closure is intentionally
-not marked complete before an acceptable verdict.
+Obtain independent review through pull request `#1`. Final closure is
+intentionally not marked complete before an acceptable verdict.
 
 ## Recommended Next Action
 
