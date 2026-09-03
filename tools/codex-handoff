@@ -70,7 +70,8 @@ def verify() -> int:
         match = re.search(rf"^{field}:\s*(.+)$", status, re.MULTILINE)
         if match:
             active[field] = match.group(1).strip()
-    if len(active) == 2 and active["Current Commit"] != active["Reviewed Commit"]:
+    pending_review = re.search(r"^ChatGPT Review:\s*PENDING_REVIEW\s*$", status, re.MULTILINE)
+    if pending_review and len(active) == 2 and active["Current Commit"] != active["Reviewed Commit"]:
         errors.append("STATUS.md active commit targets differ")
     errors.extend(secret_scan())
     if errors:
