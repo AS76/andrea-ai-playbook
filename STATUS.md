@@ -1,13 +1,13 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-03T06:24:55Z
+Last update: 2026-09-03T06:35:56Z
 Codex session: codex-session-2026-09-03-ledger-deployment
-Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Deploy Codex-GitHub-ChatGPT Handoff Ledger
-Overall status: COMPLETE
+Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Persist the default Codex review workflow
+Overall status: REVIEW_REQUIRED
 Runtime: PASS
-ChatGPT Review: APPROVED
+ChatGPT Review: PENDING_REVIEW
 Current Commit: PR `#1` HEAD (`refs/pull/1/head`)
-Reviewed Commit: `0a372451ca9014b7e2ffc9dccbf2d9084af40c18`
+Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
 
 ## Current State
 
@@ -20,16 +20,16 @@ Reviewed Commit: `0a372451ca9014b7e2ffc9dccbf2d9084af40c18`
 
 ## Current Activity
 
-Ledger deployment closed after independent ChatGPT approval. GitHub-native
-self-approval was unavailable (HTTP 422) and is not represented as completed.
+Implementation and Codex-side validation complete; awaiting independent review.
 
 ## Last Completed Change
 
-Codex-GitHub-ChatGPT Handoff Ledger deployment.
+Initial ledger deployment, reviewed APPROVED at
+`0a372451ca9014b7e2ffc9dccbf2d9084af40c18`.
 
 ## Latest Handoff
 
-`handoffs/2026-09-03_0611_github-handoff-ledger.md`
+`handoffs/2026-09-03_0635_persistent-review-workflow.md`
 
 ## Latest Review
 
@@ -37,8 +37,7 @@ Codex-GitHub-ChatGPT Handoff Ledger deployment.
 
 ## Blockers
 
-GitHub-native APPROVE is unavailable to the connected identity because it is the
-PR author. This does not block the preserved independent review verdict.
+None.
 
 ## Needs Andrea Decision
 
@@ -46,4 +45,4 @@ None.
 
 ## Recommended Next Action
 
-Andrea may merge PR `#1` when desired.
+ChatGPT review of PR `#1` at its current head after publication.

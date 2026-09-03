@@ -2,50 +2,46 @@
 
 ## Request
 
-Create and deploy a GitHub-based interchange, audit and review system so ChatGPT
-can independently review Codex production work without SSH or manual transcript
-copying.
+Make the approved Codex-GitHub-ChatGPT Handoff Ledger the persistent default
+workflow for future significant Codex tasks, with autonomous review/remediation
+handling and no ledger noise for trivial work.
 
 ## Objective
 
-A concise, security-bounded ledger is available on GitHub, navigable from
-`STATUS.md`, with templates, lifecycle rules, a tested helper, a complete first
-handoff, runtime evidence, rollback instructions and a commit ready for ChatGPT
-review.
+Future Codex sessions operating under `/root/AGENTS.md` automatically invoke the
+existing ledger for significant work. The existing helper validates state
+transitions, selects the newest applicable review and verifies local/remote/PR
+head consistency.
 
 ## Scope
 
-- Ledger structure, templates and documentation
-- Safe helper automation
-- First deployment handoff and change record
-- Git, security and workflow validation
-- Push to an existing appropriate GitHub repository
+- Persistent Codex instruction in `/root/AGENTS.md`
+- Existing ledger policy and helper behavior
+- State-machine and review-selection tests
+- Current task handoff and GitHub review request
 
 ## Out of Scope
 
-- OpenClaw runtime configuration changes
-- ClawMem or Vault data export
-- Terminal or conversation transcript archival
-- New GitHub repository creation
-- Automatic ChatGPT invocation
+- Redesigning the ledger
+- Another memory system
+- OpenClaw, ClawMem, Vault, cron, systemd or agent configuration
+- Synthetic GitHub review creation
 
 ## Initial State
 
-- Multiple repositories existed on the VPS.
-- `AS76/andrea-ai-playbook` was the suitable existing architecture repository.
-- Its operational checkout contained unrelated changes, so deployment uses an
-  isolated worktree based on `origin/main`.
-- No repository-level Codex/ChatGPT review ledger existed.
-- Codex sessions and ClawMem already retained detailed working history; that
-  material must not be copied into GitHub.
+- The ledger implementation was approved and its review history was preserved.
+- The workflow existed in repository documentation but was not referenced by the
+  persistent VPS-level Codex instructions.
+- The helper validated structure and secrets but did not simulate the complete
+  verdict state machine, identify the latest valid review or compare three heads.
 
 ## Plan
 
-1. Create the ledger and templates in an isolated branch.
-2. Add privacy protections and a deterministic validation helper.
-3. Record this deployment as the first task and change.
-4. Test navigation, state transitions, secret scanning and runtime evidence.
-5. Commit, push and set the review state to pending.
+1. Add a concise persistent trigger to `/root/AGENTS.md`.
+2. Add one operational policy to the existing ledger architecture.
+3. Extend `tools/codex-handoff` with state, review and head checks.
+4. Test approval, remediation and blocked-evidence paths.
+5. Validate, scan, commit, push and request ChatGPT review.
 
 ## Execution Status
 
@@ -55,26 +51,18 @@ review.
 - [x] Runtime verification
 - [x] Documentation
 - [x] Handoff
-- [x] ChatGPT review
-- [x] Final closure
+- [ ] ChatGPT review
+- [ ] Final closure
 
 ## Current Findings
 
-- The selected repository is public; only sanitized engineering evidence is safe.
-- The source checkout is dirty and one commit ahead of remote. An isolated
-  worktree prevents unrelated content from entering this change.
-- GitHub CLI authentication and the existing remote are operational.
-- First review accepted the architecture but found three SHA roles conflated:
-  `df9ddb1` was the implementation commit, `3eb4f68` was the intermediate
-  evidence commit, and `3840308` was the then-current PR head.
-- A commit cannot contain its own not-yet-computed SHA. Active in-tree metadata
-  therefore names the authoritative PR-head ref; its exact resolved SHA is
-  recorded post-push in the PR description and verified against local/remote.
-- ChatGPT re-review returned APPROVED for commit `0a372451ca9014b7e2ffc9dccbf2d9084af40c18`.
-- GitHub-native APPROVE returned HTTP 422 because the connected identity is the
-  PR author. The independent verdict is preserved without claiming a native
-  GitHub approval event.
+- `/root/AGENTS.md` is the effective persistent instruction point for future
+  Codex work under the VPS root.
+- Review applicability requires PR, exact reviewed SHA, verdict and immutable
+  review record; filename recency alone is insufficient.
+- A later closure commit is correctly distinct from the commit ChatGPT reviewed.
 
 ## Blockers / Decisions
 
-None. The task meets the defined closure gate. PR merge remains Andrea's choice.
+None. This significant policy change requires a fresh independent review before
+closure.

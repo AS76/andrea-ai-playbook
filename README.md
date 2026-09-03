@@ -11,6 +11,8 @@ Codex CLI and ChatGPT. It is evidence and change history, not a memory store.
 
 Start at [STATUS.md](STATUS.md), follow the current handoff, review the named
 commit and diff, then preserve the review as a new file under `reviews/`.
+The persistent default process is defined in
+[architecture/operational-workflow.md](architecture/operational-workflow.md).
 
 Authority remains explicit:
 

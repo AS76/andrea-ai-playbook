@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import subprocess
 import sys
@@ -12,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
     "README.md", "STATUS.md", "CURRENT_TASK.md",
+    "architecture/operational-workflow.md",
     "templates/HANDOFF_TEMPLATE.md", "templates/REVIEW_TEMPLATE.md",
     "templates/CHANGE_TEMPLATE.md", "templates/INCIDENT_TEMPLATE.md",
 ]
@@ -24,6 +26,18 @@ SECRET_PATTERNS = {
     ),
     "authorization header": re.compile(r"(?i)\bauthorization\s*:\s*(?:bearer|basic)\s+[A-Za-z0-9_./+\-=]{12,}"),
     "private host identifier": re.compile(r"\bsrv\d{5,}\b"),
+}
+VERDICTS = {"APPROVED", "APPROVED_WITH_NOTES", "CHANGES_REQUESTED", "BLOCKED"}
+TRANSITIONS = {
+    "RUNNING": {"REVIEW_REQUIRED"},
+    "REVIEW_REQUIRED": {"PENDING_REVIEW"},
+    "PENDING_REVIEW": VERDICTS,
+    "APPROVED": {"COMPLETE"},
+    "APPROVED_WITH_NOTES": {"COMPLETE"},
+    "CHANGES_REQUESTED": {"REMEDIATION"},
+    "REMEDIATION": {"PENDING_REVIEW"},
+    "BLOCKED": {"EVIDENCE_COLLECTION"},
+    "EVIDENCE_COLLECTION": {"PENDING_REVIEW"},
 }
 
 
@@ -56,6 +70,104 @@ def secret_scan() -> list[str]:
     return findings
 
 
+def assert_path(states: list[str]) -> None:
+    for before, after in zip(states, states[1:]):
+        if after not in TRANSITIONS.get(before, set()):
+            raise ValueError(f"invalid transition: {before} -> {after}")
+
+
+def state_test() -> int:
+    paths = {
+        "approval": ["RUNNING", "REVIEW_REQUIRED", "PENDING_REVIEW", "APPROVED", "COMPLETE"],
+        "remediation": ["PENDING_REVIEW", "CHANGES_REQUESTED", "REMEDIATION", "PENDING_REVIEW"],
+        "evidence": ["PENDING_REVIEW", "BLOCKED", "EVIDENCE_COLLECTION", "PENDING_REVIEW"],
+    }
+    for name, states in paths.items():
+        assert_path(states)
+        print(f"PASS state-path={name} transitions={len(states) - 1}")
+    try:
+        assert_path(["RUNNING", "COMPLETE"])
+    except ValueError:
+        print("PASS illegal-transition-rejected=RUNNING->COMPLETE")
+        return 0
+    print("FAIL illegal transition accepted")
+    return 1
+
+
+def latest_review() -> tuple[Path, str, str, str]:
+    reviews = sorted(p for p in (ROOT / "reviews").glob("*.md") if p.name != "README.md")
+    if not reviews:
+        raise ValueError("no review records")
+    path = reviews[-1]
+    text = path.read_text(encoding="utf-8")
+    pr = re.search(r"^Reviewed PR:\s*`?#?(\d+)`?\s*$", text, re.MULTILINE)
+    commit = re.search(r"^Reviewed Commit:\s*`?([0-9a-f]{40})`?\s*$", text, re.MULTILINE)
+    verdict = re.search(
+        r"^## VERDICT\s*\n+\s*(APPROVED_WITH_NOTES|APPROVED|CHANGES_REQUESTED|BLOCKED)\s*$",
+        text,
+        re.MULTILINE,
+    )
+    if not pr or not commit or not verdict:
+        raise ValueError(f"invalid review metadata: {path.relative_to(ROOT)}")
+    return path, pr.group(1), commit.group(1), verdict.group(1)
+
+
+def review_latest() -> int:
+    try:
+        path, pr, commit, verdict = latest_review()
+    except ValueError as exc:
+        print(f"FAIL {exc}")
+        return 1
+    print(f"PASS review={path.relative_to(ROOT)} pr={pr} commit={commit} verdict={verdict}")
+    return 0
+
+
+def heads(pr_number: int) -> int:
+    local = git("rev-parse", "HEAD").strip()
+    branch = git("branch", "--show-current").strip()
+    remote = git("ls-remote", "origin", f"refs/heads/{branch}").strip().split("\t", 1)[0]
+    try:
+        payload = subprocess.check_output(
+            ["gh", "pr", "view", str(pr_number), "--json", "headRefOid,headRefName"],
+            cwd=ROOT,
+            text=True,
+        )
+        data = json.loads(payload)
+        pr_head = data["headRefOid"]
+    except (FileNotFoundError, subprocess.CalledProcessError, KeyError, json.JSONDecodeError) as exc:
+        print(f"FAIL PR head lookup: {exc}")
+        return 1
+    print(f"local={local}\nremote={remote}\npr={pr_head}")
+    if not local or not remote or not pr_head or len({local, remote, pr_head}) != 1:
+        print("FAIL heads-match=NO")
+        return 1
+    print("PASS heads-match=YES")
+    return 0
+
+
+def policy_check(agents_file: Path) -> int:
+    try:
+        text = agents_file.read_text(encoding="utf-8")
+    except OSError as exc:
+        print(f"FAIL policy source: {exc}")
+        return 1
+    required = (
+        "## Significant-Task GitHub Review Ledger",
+        "/root/codex-handoff-ledger",
+        "architecture/operational-workflow.md",
+        "REVIEW_REQUIRED/PENDING_REVIEW",
+        "CHANGES_REQUESTED",
+        "BLOCKED",
+        "HTTP 422",
+    )
+    missing = [item for item in required if item not in text]
+    if missing:
+        print("FAIL policy missing: " + ", ".join(missing))
+        return 1
+    print(f"PASS persistent-policy={agents_file} markers={len(required)}")
+    return 0
+
+
 def verify() -> int:
     errors = [f"missing: {name}" for name in REQUIRED if not (ROOT / name).is_file()]
     status = (ROOT / "STATUS.md").read_text(encoding="utf-8") if (ROOT / "STATUS.md").is_file() else ""
@@ -74,6 +186,11 @@ def verify() -> int:
     if pending_review and len(active) == 2 and active["Current Commit"] != active["Reviewed Commit"]:
         errors.append("STATUS.md active commit targets differ")
     errors.extend(secret_scan())
+    try:
+        assert_path(["RUNNING", "REVIEW_REQUIRED", "PENDING_REVIEW", "APPROVED", "COMPLETE"])
+        latest_review()
+    except ValueError as exc:
+        errors.append(str(exc))
     if errors:
         for error in errors:
             print(f"FAIL {error}")
@@ -95,7 +212,12 @@ def snapshot() -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate or summarize the handoff ledger")
-    parser.add_argument("command", choices=("verify", "secret-scan", "snapshot"))
+    parser.add_argument(
+        "command",
+        choices=("verify", "secret-scan", "snapshot", "state-test", "review-latest", "heads", "policy-check"),
+    )
+    parser.add_argument("--pr", type=int, help="pull request number for heads")
+    parser.add_argument("--agents", type=Path, default=Path("/root/AGENTS.md"), help="persistent Codex instruction file")
     args = parser.parse_args()
     if args.command == "verify":
         return verify()
@@ -107,6 +229,16 @@ def main() -> int:
             return 1
         print("PASS secret-findings=0")
         return 0
+    if args.command == "state-test":
+        return state_test()
+    if args.command == "review-latest":
+        return review_latest()
+    if args.command == "heads":
+        if args.pr is None:
+            parser.error("heads requires --pr NUMBER")
+        return heads(args.pr)
+    if args.command == "policy-check":
+        return policy_check(args.agents)
     return snapshot()
 
 
