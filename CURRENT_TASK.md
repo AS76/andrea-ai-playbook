@@ -2,35 +2,35 @@
 
 ## Request
 
-Evolve `AS76/chatgpt-codex-ledger` from a handoff channel into a durable
-engineering audit trail while preserving protocol 1.1 compatibility.
+Verify the current production OpenClaw state and reconstruct what Scout actually
+did with Obsidian/Vault on 2026-09-03, then publish sanitized durable evidence.
 
 ## Objective
 
-Resolve `CX-20260904-0001`, import this week's relevant Codex final reports, add
-a weekly OpenClaw context index, and publish protocol 1.2 with remote proof.
+Separate current runtime evidence from historical reconstruction, classify fact,
+inference, and unknown, prove the delegation chain, and update protocol 1.2 records.
 
 ## Scope
 
-- Append-only resolution for `CX-20260904-0001`
-- Fifteen source-backed Codex session records for ISO week 2026-W36
-- Weekly context index and protocol/status documentation
-- Security/privacy and historical-preservation gates
-- Direct GitHub contents and commit verification
+- Live OpenClaw/Gateway/Telegram/Funnel/hotfix/issue/updater/ClawMem checks
+- Scout/Cleo session, filesystem, backup, Vault git and sync reconstruction
+- Two new durable records, weekly index, and repository status
+- Security/privacy, append-only, push, and direct remote verification
 
 ## Verification
 
-- [x] Fifteen source session JSONL files exist
-- [x] All session records contain required provenance and report sections
-- [x] Security/privacy gates passed before push and across committed history
-- [x] Historical inbox/outbox blobs match parent, current, and GitHub remote
-- [x] GitHub API read protocol 1.2, resolution, all reports, index, and status
-- [x] Local HEAD, origin/main, and GitHub API SHA match
+- [x] Current listener, app readiness, RPC, HTTP, Funnel, channels and real delivery checked
+- [x] Hotfix compared with backup and pristine 2026.9.1
+- [x] Issue #136035 and watcher state checked live
+- [x] ClawMem DB, integrity, runtime and retrieval checked
+- [x] Cleo/Scout delegation chain and filesystem diffs reconstructed
+- [x] Security scan, publish, and direct GitHub verification
 - [ ] Independent ChatGPT review
 
 ## Result
 
-Published `AS76/chatgpt-codex-ledger` commit
-`38048d5d9308449b2b6ae2e6773732b0bee77f88`. The verified OpenClaw baseline is
-2026.9.1 (`ad6fe23`); "OpenClaw 2.0" remains the operator's cycle label, not an
-official version string found in source evidence.
+Published target commit `4236a72b618705e5d60b9d4d79cbd0aeb4a9f71a` and
+verified it through origin/main and the GitHub contents/commit APIs. Current
+runtime gates pass with transient-heartbeat warnings. Scout's delegation and
+three-file Vault-first correction are proven, but those canonical records are
+untracked by the Vault git repository. Status is PENDING_REVIEW.
