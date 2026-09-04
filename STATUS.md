@@ -1,10 +1,10 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-04T04:45:00Z
-Codex session: codex-session-2026-09-04-openclaw-scout-obsidian-audit
-Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Verify current OpenClaw and reconstruct Scout Vault work
+Last update: 2026-09-04T05:10:00Z
+Codex session: codex-session-2026-09-04-vault-provenance-remediation
+Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Vault provenance, git hygiene, and lint remediation
 Overall status: REVIEW_REQUIRED
-Runtime: PASS_WITH_WARNINGS
+Runtime: PASS_WITH_ACTIONS
 ChatGPT Review: PENDING_REVIEW
 Current Commit: PR `#1` HEAD (`refs/pull/1/head`)
 Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
@@ -17,7 +17,9 @@ Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
 - Telegram: all 11 configured accounts passed probe; current real Cleo delivery passed
 - Local Gateway and public Funnel root: HTTP 200; Tailscale online
 - ClawMem: active expected DB and retrieval pass; four pending embeddings and ranking drift
-- Scout delegation: execution and return proven; three Vault target files lack git tracking
+- Scout delegation: execution and return proven; isolated Vault branch provenance and Scout acceptance PASS
+- Vault lint: eight tests PASS; false path gap removed; real gaps retained
+- Scout routing: OpenRouter Auto Router, high thinking, no-override runtime probe PASS
 - Official external plugins: aligned to core 2026.9.1
 
 ## Current Activity
@@ -26,7 +28,7 @@ Implementation and remote verification complete. Awaiting independent review.
 
 ## Latest Handoff
 
-`handoffs/2026-09-04_0445_openclaw-scout-vault-audit.md`
+`handoffs/2026-09-04_0510_vault-provenance-lint-agent-routing.md`
 
 ## Blockers
 

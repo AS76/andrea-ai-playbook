@@ -2,35 +2,36 @@
 
 ## Request
 
-Verify the current production OpenClaw state and reconstruct what Scout actually
-did with Obsidian/Vault on 2026-09-03, then publish sanitized durable evidence.
+Remediate Obsidian/Vault provenance, git hygiene, and wikilink lint correctness
+without disturbing or publishing unrelated dirty-tree state.
 
 ## Objective
 
-Separate current runtime evidence from historical reconstruction, classify fact,
-inference, and unknown, prove the delegation chain, and update protocol 1.2 records.
+Version only Scout's three canonical EMA5 records, audit six preexisting commits,
+correct lint resolution with tests, obtain Scout acceptance, measure ClawMem
+canonical ranking, verify sync honestly, and publish sanitized ledger evidence.
 
 ## Scope
 
-- Live OpenClaw/Gateway/Telegram/Funnel/hotfix/issue/updater/ClawMem checks
-- Scout/Cleo session, filesystem, backup, Vault git and sync reconstruction
-- Two new durable records, weekly index, and repository status
-- Security/privacy, append-only, push, and direct remote verification
+- Safety snapshot and complete dirty-tree classification
+- Isolated git strategy for Scout records, lint tests/fix, and provenance schema
+- Scout acceptance, ClawMem ranking, and Obsidian sync checks
+- Protocol 1.2 durable record, security gate, push, and remote verification
 
 ## Verification
 
-- [x] Current listener, app readiness, RPC, HTTP, Funnel, channels and real delivery checked
-- [x] Hotfix compared with backup and pristine 2026.9.1
-- [x] Issue #136035 and watcher state checked live
-- [x] ClawMem DB, integrity, runtime and retrieval checked
-- [x] Cleo/Scout delegation chain and filesystem diffs reconstructed
-- [x] Security scan, publish, and direct GitHub verification
+- [x] Safety snapshot and dirty-tree classification
+- [x] Three Scout files versioned without unrelated changes
+- [x] Six local commits audited without bulk push
+- [x] Lint false positive reproduced, fixed, and tested
+- [x] Scout acceptance and ClawMem ranking measured
+- [x] Sync status classified
+- [x] Security scan, ledger publish, and remote verification
 - [ ] Independent ChatGPT review
 
 ## Result
 
-Published target commit `4236a72b618705e5d60b9d4d79cbd0aeb4a9f71a` and
-verified it through origin/main and the GitHub contents/commit APIs. Current
-runtime gates pass with transient-heartbeat warnings. Scout's delegation and
-three-file Vault-first correction are proven, but those canonical records are
-untracked by the Vault git repository. Status is PENDING_REVIEW.
+Published target commit `130f1d2d7eabfd48c092c1c56738a9e660e57da3`
+and verified the two isolated remediation branches and ledger contents through
+GitHub APIs. Scout acceptance passed. A historical database credential was
+sanitized before push and requires rotation. Status is PENDING_REVIEW.
