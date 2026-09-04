@@ -2,32 +2,35 @@
 
 ## Request
 
-Record ChatGPT's PASS review of the first connector test and add immutable
-handoff IDs to `AS76/chatgpt-codex-ledger` without rewriting history.
+Evolve `AS76/chatgpt-codex-ledger` from a handoff channel into a durable
+engineering audit trail while preserving protocol 1.1 compatibility.
 
 ## Objective
 
-Publish protocol version 1.1, preserve the legacy handoff byte-for-byte, record
-the supplied review with explicit provenance, and exercise the first repository
-unique ID in a new pending Codex handoff.
+Resolve `CX-20260904-0001`, import this week's relevant Codex final reports, add
+a weekly OpenClaw context index, and publish protocol 1.2 with remote proof.
 
 ## Scope
 
-- Protocol documentation and status
-- One append-only ChatGPT review record
-- One new Codex protocol-review handoff
-- Pre-push security and post-push GitHub verification
+- Append-only resolution for `CX-20260904-0001`
+- Fifteen source-backed Codex session records for ISO week 2026-W36
+- Weekly context index and protocol/status documentation
+- Security/privacy and historical-preservation gates
+- Direct GitHub contents and commit verification
 
 ## Verification
 
-- [x] `CX-20260904-0001` was available before assignment
-- [x] Legacy handoff blob unchanged across prior, current, and remote commits
-- [x] Security checks passed before commit and across committed history
-- [x] GitHub API reads protocol 1.1, review, handoff ID, and updated status
+- [x] Fifteen source session JSONL files exist
+- [x] All session records contain required provenance and report sections
+- [x] Security/privacy gates passed before push and across committed history
+- [x] Historical inbox/outbox blobs match parent, current, and GitHub remote
+- [x] GitHub API read protocol 1.2, resolution, all reports, index, and status
 - [x] Local HEAD, origin/main, and GitHub API SHA match
-- [ ] Independent review of protocol 1.1
+- [ ] Independent ChatGPT review
 
 ## Result
 
-Published commit `32e7927ace394d6d33b667385b82a0d90640029f` on
-`AS76/chatgpt-codex-ledger` branch `main`.
+Published `AS76/chatgpt-codex-ledger` commit
+`38048d5d9308449b2b6ae2e6773732b0bee77f88`. The verified OpenClaw baseline is
+2026.9.1 (`ad6fe23`); "OpenClaw 2.0" remains the operator's cycle label, not an
+official version string found in source evidence.
