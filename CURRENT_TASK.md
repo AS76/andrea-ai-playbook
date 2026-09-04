@@ -2,79 +2,53 @@
 
 ## Request
 
-Fix the degraded OpenClaw runtime observed on 2026-09-03.
+Publish and verify the private `AS76/chatgpt-codex-ledger` repository for the
+ChatGPT to Codex interchange protocol.
 
 ## Objective
 
-Restore reliable gateway operation while preserving model, OAuth, Telegram,
-ClawMem and security configuration.
+Create the missing repository from a new local working copy, add the minimal
+ledger protocol structure, run a secret scan before push, and prove the remote
+branch, commit, and files through GitHub.
 
 ## Scope
 
-- OpenClaw gateway runtime and provider-auth snapshot path
-- Official plugin version alignment
-- Telegram, local health and Tailscale Funnel verification
-- Reversible production remediation and rollback evidence
+- `/root/Documents/DEV/GitHub/chatgpt-codex-ledger`
+- Private GitHub repository `AS76/chatgpt-codex-ledger`
+- Protocol README, status, inbox, outbox, and append-only ledger structure
+- Local and remote security and publication verification
 
-## Out of Scope
+## Safety Constraints
 
-- `openclaw doctor --fix`
-- OpenClaw core package update or downgrade
-- Model or authentication-route changes
-- Broad configuration rewrites
-
-## Initial State
-
-- OpenClaw 2026.9.1 was active but repeatedly blocked for 83–111 seconds.
-- Startup readiness took about 120 seconds after the HTTP listener appeared.
-- Runtime logs showed event-loop starvation, Telegram fetch timeouts and WS 1006.
-- Eight active official plugins remained at 2026.8.2.
-
-## Root Cause
-
-A CPU profile identified repeated `stableConfigStringify()` work from
-`providerConfigMatchesRuntimeSnapshot()`. The large configured OpenRouter model
-catalog was re-normalized and hashed for repeated auth/provider comparisons,
-causing excessive garbage collection and blocking the Node event loop.
-
-## Remediation
-
-- Aligned eight active official plugins to 2026.9.1 without capability bypass.
-- Added a process-local cache keyed by input/runtime config object identity and
-  provider id around the expensive provider snapshot comparison.
-- Removed stale Funnel routes targeting inactive local port 8787.
-- Kept `/root/.openclaw/openclaw.json` byte-identical.
-
-## Verification
-
-- [x] Core syntax validation
-- [x] Final cold-start readiness: 28.7 seconds
-- [x] No delayed heartbeat, starvation, freeze or WS 1006 in final gates
-- [x] Scout synthetic turn: `HEALTH_OK`, 16.3 seconds
-- [x] All 11 Telegram accounts: configured, running, connected, works
-- [x] Cleo real Telegram delivery: `OPENCLAW_FIX_OK`
-- [x] Gateway, ClawMem and Funnel root: HTTP 200
-- [x] 35 continuous probes: zero failures, maximum 234 ms
-- [x] Inspector diagnostic override removed; no port 9229 listener
-
-## Rollback
-
-Restore the backed-up provider-auth module and plugin project artifacts from
-`/root/.openclaw/backups/plugin-alignment-20260903T203900Z`, restore the saved
-Funnel JSON mapping if the obsolete routes are intentionally needed, then
-restart the gateway. Configuration backup SHA-256 matches the live file.
+- Do not import unrelated private material
+- Do not rewrite existing Git history
+- Do not push if credentials or secrets are detected
+- Do not claim success without direct remote verification
 
 ## Execution Status
 
-- [x] Initial audit
-- [x] Root-cause diagnosis
-- [x] Backup and remediation
-- [x] Runtime verification
-- [x] Handoff prepared
-- [ ] ChatGPT review
-- [ ] Final closure
+- [x] Prior-state and local-path discovery
+- [x] GitHub repository existence check
+- [x] Local repository creation
+- [x] Security scan
+- [x] Private GitHub publication
+- [x] Remote verification
+- [ ] Independent review
 
-## Blockers / Decisions
+## Initial Findings
 
-None. The local core hotfix will be overwritten by a future package update and
-must be retired when upstream ships an equivalent fix.
+- No local working copy named `chatgpt-codex-ledger` was found.
+- `AS76/chatgpt-codex-ledger` does not currently exist on GitHub.
+- The specifically named 2026-09-03 inbox handoff is not present locally and
+  will not be fabricated.
+
+## Verified Result
+
+- Private repository: `AS76/chatgpt-codex-ledger`
+- Default branch: `main`
+- Published commit: `7abb1974fbf63f7ef14ef03f6cd15d9401b41dfb`
+- Local, Git remote, and GitHub API commit identities match.
+- GitHub API reads verified `README.md`, `STATUS.md`, `inbox/`, `outbox/`, and
+  `ledger/` from `main`.
+- Pre-push filename and credential-pattern scans passed for the entire one-commit
+  history.

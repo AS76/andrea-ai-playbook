@@ -1,8 +1,8 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-03T21:05:00Z
-Codex session: codex-session-2026-09-03-openclaw-freeze-remediation
-Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Remediate OpenClaw gateway freezes
+Last update: 2026-09-04T04:06:22Z
+Codex session: codex-session-2026-09-04-chatgpt-codex-ledger-publication
+Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Publish the ChatGPT-Codex interchange repository
 Overall status: REVIEW_REQUIRED
 Runtime: PASS
 ChatGPT Review: PENDING_REVIEW
@@ -21,11 +21,11 @@ Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
 
 ## Current Activity
 
-Implementation and runtime verification complete; awaiting independent review.
+Implementation and remote verification are complete; independent review is pending.
 
 ## Latest Handoff
 
-`handoffs/2026-09-03_2105_openclaw-freeze-remediation.md`
+`handoffs/2026-09-04_0406_chatgpt-codex-ledger-publication.md`
 
 ## Blockers
 
@@ -33,4 +33,4 @@ None.
 
 ## Recommended Next Action
 
-ChatGPT review of PR `#1` at its current head after publication.
+ChatGPT review of the published repository and this handoff evidence.
