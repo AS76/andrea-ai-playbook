@@ -2,36 +2,35 @@
 
 ## Request
 
-Remediate Obsidian/Vault provenance, git hygiene, and wikilink lint correctness
-without disturbing or publishing unrelated dirty-tree state.
+Safely merge the isolated Vault and lint remediations, rotate the exposed database
+credential, remediate canonical ranking narrowly, and diagnose Gateway readiness.
 
 ## Objective
 
-Version only Scout's three canonical EMA5 records, audit six preexisting commits,
-correct lint resolution with tests, obtain Scout acceptance, measure ClawMem
-canonical ranking, verify sync honestly, and publish sanitized ledger evidence.
+Complete remote merges without the dirty histories, prove credential invalidation,
+apply ranking changes only behind regression evidence, profile startup phases, and
+publish four sanitized durable records.
 
 ## Scope
 
-- Safety snapshot and complete dirty-tree classification
-- Isolated git strategy for Scout records, lint tests/fix, and provenance schema
-- Scout acceptance, ClawMem ranking, and Obsidian sync checks
-- Protocol 1.2 durable record, security gate, push, and remote verification
+- Review and merge two isolated remediation branches
+- Database credential mapping, rotation, consumer verification, invalidation
+- ClawMem ranking reproduction, narrow fix, regression and Scout acceptance
+- Gateway startup timeline/RCA and full final acceptance
+- Four durable records, security gate, and remote verification
 
 ## Verification
 
-- [x] Safety snapshot and dirty-tree classification
-- [x] Three Scout files versioned without unrelated changes
-- [x] Six local commits audited without bulk push
-- [x] Lint false positive reproduced, fixed, and tested
-- [x] Scout acceptance and ClawMem ranking measured
-- [x] Sync status classified
-- [x] Security scan, ledger publish, and remote verification
+- [x] Vault branch merged and remote main verified
+- [x] Lint branch merged and remote default branch verified
+- [x] Database credential rotated and old value invalidated
+- [x] ClawMem narrow ranking regression suite accepted
+- [x] Gateway startup RCA and final runtime gates complete
+- [x] Four ledger records published and remotely verified
 - [ ] Independent ChatGPT review
 
 ## Result
 
-Published target commit `130f1d2d7eabfd48c092c1c56738a9e660e57da3`
-and verified the two isolated remediation branches and ledger contents through
-GitHub APIs. Scout acceptance passed. A historical database credential was
-sanitized before push and requires rotation. Status is PENDING_REVIEW.
+REVIEW_REQUIRED. Target ledger commit
+`255e25856ad47e6cea16047a30831e5c6c207451` is remotely verified. Runtime is
+PASS_WITH_WARNINGS because startup remains slower than the historical baseline.

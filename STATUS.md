@@ -1,10 +1,10 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-04T05:10:00Z
-Codex session: codex-session-2026-09-04-vault-provenance-remediation
-Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Vault provenance, git hygiene, and lint remediation
+Last update: 2026-09-04T05:32:00Z
+Codex session: codex-session-2026-09-04-vault-clawmem-gateway-cycle
+Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Merge, credential rotation, ranking remediation, Gateway RCA
 Overall status: REVIEW_REQUIRED
-Runtime: PASS_WITH_ACTIONS
+Runtime: PASS_WITH_WARNINGS
 ChatGPT Review: PENDING_REVIEW
 Current Commit: PR `#1` HEAD (`refs/pull/1/head`)
 Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
@@ -12,11 +12,11 @@ Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
 ## Current State
 
 - OpenClaw: 2026.9.1 (`ad6fe23`)
-- Gateway: current listener/readiness/RPC/HTTP pass; ready about 29.6 seconds after service start
-- Event loop: no current stall; two transient heartbeat delays in current PID history
-- Telegram: all 11 configured accounts passed probe; current real Cleo delivery passed
+- Gateway: profiled restart ready 40.2 seconds after service start; listener/readiness/RPC/HTTP pass
+- Event loop: no sustained stall or WS1006 in the current generation
+- Telegram: all 11 configured accounts ready; real Cleo delivery message 63748 passed
 - Local Gateway and public Funnel root: HTTP 200; Tailscale online
-- ClawMem: active expected DB and retrieval pass; four pending embeddings and ranking drift
+- ClawMem: topic-scoped canonical authority remediation passes five tests, live retrieval, and Scout acceptance
 - Scout delegation: execution and return proven; isolated Vault branch provenance and Scout acceptance PASS
 - Vault lint: eight tests PASS; false path gap removed; real gaps retained
 - Scout routing: OpenRouter Auto Router, high thinking, no-override runtime probe PASS
@@ -24,11 +24,11 @@ Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
 
 ## Current Activity
 
-Implementation and remote verification complete. Awaiting independent review.
+Implementation and runtime verification are complete; independent review is required.
 
 ## Latest Handoff
 
-`handoffs/2026-09-04_0510_vault-provenance-lint-agent-routing.md`
+`handoffs/2026-09-04_0532_vault-clawmem-gateway-remediation.md`
 
 ## Blockers
 
