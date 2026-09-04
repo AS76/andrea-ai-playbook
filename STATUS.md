@@ -1,8 +1,8 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-04T04:06:22Z
-Codex session: codex-session-2026-09-04-chatgpt-codex-ledger-publication
-Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Publish the ChatGPT-Codex interchange repository
+Last update: 2026-09-04T04:13:10Z
+Codex session: codex-session-2026-09-04-chatgpt-codex-ledger-protocol-1-1
+Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Add immutable handoff IDs and record the first review
 Overall status: REVIEW_REQUIRED
 Runtime: PASS
 ChatGPT Review: PENDING_REVIEW
@@ -25,7 +25,7 @@ Implementation and remote verification are complete; independent review is pendi
 
 ## Latest Handoff
 
-`handoffs/2026-09-04_0406_chatgpt-codex-ledger-publication.md`
+`handoffs/2026-09-04_0413_chatgpt-codex-ledger-protocol-1-1.md`
 
 ## Blockers
 
