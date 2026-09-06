@@ -1,0 +1,25 @@
+# Credentials and local configuration
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.kdbx
+*.sqlite*
+auth.json
+credentials.json
+
+# Runtime evidence must be summarized, never dumped
+logs/
+raw-evidence/
+terminal-transcripts/
+MEMORY.md
+memory/
+
+# Local helper state
+.codex-handoff.local
+*.tmp
+*.bak
+__pycache__/
+*.pyc
