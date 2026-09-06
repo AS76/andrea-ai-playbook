@@ -2,30 +2,31 @@
 
 ## Request
 
-Finish the interrupted update, verify coherence, restart and health-check OpenClaw.
+Final remediation and acceptance of OpenClaw 2026.9.2 recovery, addressing review target `60e9833570173b06e7564fd6bf9374a129d607da`.
 
-## Result
+## Acceptance
 
-REVIEW_REQUIRED / PENDING_REVIEW. Runtime PASS_WITH_WARNINGS; lint remains non-clean.
+PASS_WITH_ACCEPTED_WARNINGS. Implementation and final-generation acceptance finished.
+Overall workflow: REVIEW_REQUIRED / PENDING_REVIEW; no independent approval is claimed.
 
-## Completed work
+## Completed
 
-- Preserved configuration, service definition and original 2026.9.2 module in a protected local recovery directory.
-- Terminated exact SIGTTOU-suspended updater processes after confirming core installation.
-- Started service; observed native Codex plugin convergence and one automatic startup restart.
-- Reproduced prolonged pre-ready CPU saturation and HTTP/RPC timeouts on the new unpatched package.
-- Restored provider-comparison memoization, with invalidation on published snapshot metadata changes; syntax and behavioral tests passed.
-- Stopped the unresponsive generation; SIGTERM did not finish, so the exact service main process was forcibly terminated before restart.
-- Verified readiness, authenticated RPC/version, service configuration, 11 Telegram probes, existing Cleo delivery, HTTP and listener queue.
-- Recorded durable sanitized evidence and residual limitations.
+- Proved actual snapshot metadata identity lifecycle; reproduced the separate mutable-object correctness defect in the old cache.
+- Replaced retained results with a stateless canonical structural comparison; 16 real-distribution regression groups pass, including 1000 generated differential cases.
+- Migrated Max tool notes into its canonical AGENTS Tools section, retaining aliases and original rollback copies; lint ERROR resolved.
+- Proved Lex's authored token-cap key is ineffective and has no supported all-route native Codex equivalent; preserved intent and routing with an explicit accepted warning.
+- Audited all 11 official external installs; updated eight active plugins to 2026.9.2 through exact safe installs. All nine enabled official external plugins are now 2026.9.2; two disabled legacy channel packages remain deliberately retained.
+- Added a read-only exact-source update guard, guarded-updater integration and a future-start systemd condition. Missing/changed source fails closed without automatic patching; reviewed upstream fixes are allowlisted only after review.
+- Verified final systemd/RPC/HTTP/event-loop/resource/Telegram acceptance and a successful isolated Cleo-to-Telegram active E2E probe.
+- Confirmed main configuration byte identity, all target-agent model inheritance and unchanged Hermes routing.
 
-## Boundaries and remaining work
+## Deviation and limitations
 
-No model/auth route edits, blanket doctor fix, capability acceptance, broad plugin update or test message sent.
-Max symlink migration, Lex parameter migration and explicit external plugin pins remain documented.
-The local cache assumes config objects are stable within a published runtime revision; independent review remains required.
+Two restart attempts were necessary: the first candidate retained an expensive negative-comparison fallback and failed startup-performance acceptance. It was superseded; only the second generation supplies final acceptance. The source guard drop-in was loaded afterward and its exact condition was verified in isolated systemd units, avoiding a third Gateway restart.
 
-## Evidence
+Remaining accepted warnings: Lex's cap is not enforced; disabled Discord/WhatsApp package migrations are deferred; the local mitigation requires review after package replacement. Full upstream Vitest sources are absent from the installed distribution. Independent review remains pending.
 
-`handoffs/2026-09-06_0454_openclaw-update-recovery.md`
-`evidence/2026-09-06-update-recovery/`
+## Records
+
+`handoffs/2026-09-06_0530_openclaw-final-acceptance.md`
+`evidence/2026-09-06-final-acceptance/`

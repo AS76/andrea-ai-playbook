@@ -1,0 +1,119 @@
+{
+  "globalChildOverride": false,
+  "targetInheritanceVerified": true,
+  "rows": [
+    {
+      "agent": "cleo",
+      "primary": "openrouter/auto-beta",
+      "fallbacks": [
+        "google/gemini-3.8-flash",
+        "anthropic/claude-sonnet-5"
+      ],
+      "inheritedTargetModel": "openrouter/auto-beta"
+    },
+    {
+      "agent": "max",
+      "primary": "deepseek-direct/deepseek-v4-pro",
+      "fallbacks": [
+        "google/gemini-3.8-flash",
+        "openai/gpt-5.6-sol"
+      ],
+      "inheritedTargetModel": "deepseek-direct/deepseek-v4-pro"
+    },
+    {
+      "agent": "lex",
+      "primary": "anthropic/claude-sonnet-5",
+      "fallbacks": [
+        "deepseek-direct/deepseek-v4-pro",
+        "openai/gpt-5.6-sol"
+      ],
+      "inheritedTargetModel": "anthropic/claude-sonnet-5"
+    },
+    {
+      "agent": "pixel",
+      "primary": "google/gemini-3.8-flash",
+      "fallbacks": [
+        "google/gemini-3.8-flash",
+        "anthropic/claude-sonnet-5"
+      ],
+      "inheritedTargetModel": "google/gemini-3.8-flash"
+    },
+    {
+      "agent": "visa",
+      "primary": "anthropic/claude-sonnet-5",
+      "fallbacks": [
+        "openai/gpt-5.6-sol",
+        "deepseek-direct/deepseek-v4-pro"
+      ],
+      "inheritedTargetModel": "anthropic/claude-sonnet-5"
+    },
+    {
+      "agent": "scout",
+      "primary": "openrouter/auto-beta",
+      "fallbacks": [
+        "google/gemini-3.8-flash",
+        "deepseek-direct/deepseek-v4-flash"
+      ],
+      "inheritedTargetModel": "openrouter/auto-beta"
+    },
+    {
+      "agent": "scribe",
+      "primary": "google/gemini-3.8-flash",
+      "fallbacks": [
+        "deepseek-direct/deepseek-v4-flash",
+        "anthropic/claude-sonnet-5"
+      ],
+      "inheritedTargetModel": "google/gemini-3.8-flash"
+    },
+    {
+      "agent": "atlas",
+      "primary": "openai/gpt-5.6-sol",
+      "fallbacks": [
+        "deepseek-direct/deepseek-v4-pro",
+        "anthropic/claude-fable-5-1"
+      ],
+      "inheritedTargetModel": "openai/gpt-5.6-sol"
+    },
+    {
+      "agent": "mark",
+      "primary": "deepseek-direct/deepseek-v4-flash",
+      "fallbacks": [
+        "google/gemini-3.8-flash"
+      ],
+      "inheritedTargetModel": "deepseek-direct/deepseek-v4-flash"
+    },
+    {
+      "agent": "counsel",
+      "primary": "anthropic/claude-sonnet-5",
+      "fallbacks": [
+        "openai/gpt-5.6-sol",
+        "deepseek-direct/deepseek-v4-pro"
+      ],
+      "inheritedTargetModel": "anthropic/claude-sonnet-5"
+    },
+    {
+      "agent": "tutor",
+      "primary": "openrouter/auto-beta",
+      "fallbacks": [
+        "google/gemini-3.8-flash"
+      ],
+      "inheritedTargetModel": "openrouter/auto-beta"
+    },
+    {
+      "agent": "worker",
+      "primary": "deepseek-direct/deepseek-v4-flash",
+      "fallbacks": [
+        "google/gemini-3.8-flash"
+      ],
+      "inheritedTargetModel": "deepseek-direct/deepseek-v4-flash"
+    }
+  ],
+  "openclawConfigIdenticalToBefore": true,
+  "hermesConfigUnchanged": true,
+  "hermes": {
+    "provider": "openrouter",
+    "primary": "openrouter/auto-beta",
+    "fallback": "deepseek/deepseek-v4-flash"
+  },
+  "scoutThinkingDefault": "high"
+}

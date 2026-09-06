@@ -1,0 +1,13 @@
+{
+  "approved_local": {
+    "version": "2026.9.2",
+    "provider_sha256": "0d59c2d41e2baa0f6dc0637b6e027d2c738d615eaa0165855d52429181ab3920",
+    "lifecycle_sha256": "543ddeb1428b80bb08ad5cc1ffabb23ea70e581189e813d97af8ab9d2ca70f63"
+  },
+  "known_unmitigated": {
+    "version": "2026.9.2",
+    "provider_sha256": "ba609b816d15183df983279f07c63f2be4b66b2bae6a0ee600d3b650cc784766",
+    "lifecycle_sha256": "543ddeb1428b80bb08ad5cc1ffabb23ea70e581189e813d97af8ab9d2ca70f63"
+  },
+  "reviewed_upstream_fixes": []
+}
