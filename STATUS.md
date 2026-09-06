@@ -1,8 +1,7 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-04T05:32:00Z
-Codex session: codex-session-2026-09-04-vault-clawmem-gateway-cycle
-Current task: [`CURRENT_TASK.md`](CURRENT_TASK.md) — Merge, credential rotation, ranking remediation, Gateway RCA
+Last update: 2026-09-06T04:54:00Z
+Current task: `CURRENT_TASK.md` — OpenClaw 2026.9.2 post-update recovery
 Overall status: REVIEW_REQUIRED
 Runtime: PASS_WITH_WARNINGS
 ChatGPT Review: PENDING_REVIEW
@@ -11,29 +10,23 @@ Reviewed Commit: PR `#1` HEAD (`refs/pull/1/head`)
 
 ## Current State
 
-- OpenClaw: 2026.9.1 (`ad6fe23`)
-- Gateway: profiled restart ready 40.2 seconds after service start; listener/readiness/RPC/HTTP pass
-- Event loop: no sustained stall or WS1006 in the current generation
-- Telegram: all 11 configured accounts ready; real Cleo delivery message 63748 passed
-- Local Gateway and public Funnel root: HTTP 200; Tailscale online
-- ClawMem: topic-scoped canonical authority remediation passes five tests, live retrieval, and Scout acceptance
-- Scout delegation: execution and return proven; isolated Vault branch provenance and Scout acceptance PASS
-- Vault lint: eight tests PASS; false path gap removed; real gaps retained
-- Scout routing: OpenRouter Auto Router, high thinking, no-override runtime probe PASS
-- Official external plugins: aligned to core 2026.9.1
+- OpenClaw 2026.9.2 installed and serving authenticated read-only RPC.
+- Gateway ready in 45.2 seconds after patched restart; no automatic restarts in final generation.
+- Telegram 11/11 configured accounts connected, polling and probe healthy; existing Cleo delivery observed in journal.
+- Local HTTP 20/20 success, maximum 32 ms; public Gateway HTTP 200; listener queue zero.
+- Provider snapshot comparison cache restored with publication-metadata invalidation after package update overwrote prior local mitigation.
+- Configuration unchanged during recovery; service backup permissions tightened to 0600.
 
-## Current Activity
+## Remaining limitations
 
-Implementation and runtime verification are complete; independent review is required.
+Lint remains non-clean: Max TOOLS.md symlink blocks migration; Lex authored maxOutputTokens is not automatically migratable.
+Official external plugins retain explicit 2026.9.1 pins, except Codex converged automatically to 2026.9.2.
+The local core mitigation can be overwritten by package updates and requires independent review.
 
 ## Latest Handoff
 
-`handoffs/2026-09-04_0532_vault-clawmem-gateway-remediation.md`
-
-## Blockers
-
-None.
+`handoffs/2026-09-06_0454_openclaw-update-recovery.md`
 
 ## Recommended Next Action
 
-ChatGPT review of the published repository and this handoff evidence.
+Independent ChatGPT review of this task and current PR head. Previous reviews remain preserved.

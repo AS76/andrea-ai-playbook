@@ -2,35 +2,30 @@
 
 ## Request
 
-Safely merge the isolated Vault and lint remediations, rotate the exposed database
-credential, remediate canonical ranking narrowly, and diagnose Gateway readiness.
-
-## Objective
-
-Complete remote merges without the dirty histories, prove credential invalidation,
-apply ranking changes only behind regression evidence, profile startup phases, and
-publish four sanitized durable records.
-
-## Scope
-
-- Review and merge two isolated remediation branches
-- Database credential mapping, rotation, consumer verification, invalidation
-- ClawMem ranking reproduction, narrow fix, regression and Scout acceptance
-- Gateway startup timeline/RCA and full final acceptance
-- Four durable records, security gate, and remote verification
-
-## Verification
-
-- [x] Vault branch merged and remote main verified
-- [x] Lint branch merged and remote default branch verified
-- [x] Database credential rotated and old value invalidated
-- [x] ClawMem narrow ranking regression suite accepted
-- [x] Gateway startup RCA and final runtime gates complete
-- [x] Four ledger records published and remotely verified
-- [ ] Independent ChatGPT review
+Finish the interrupted update, verify coherence, restart and health-check OpenClaw.
 
 ## Result
 
-REVIEW_REQUIRED. Target ledger commit
-`255e25856ad47e6cea16047a30831e5c6c207451` is remotely verified. Runtime is
-PASS_WITH_WARNINGS because startup remains slower than the historical baseline.
+REVIEW_REQUIRED / PENDING_REVIEW. Runtime PASS_WITH_WARNINGS; lint remains non-clean.
+
+## Completed work
+
+- Preserved configuration, service definition and original 2026.9.2 module in a protected local recovery directory.
+- Terminated exact SIGTTOU-suspended updater processes after confirming core installation.
+- Started service; observed native Codex plugin convergence and one automatic startup restart.
+- Reproduced prolonged pre-ready CPU saturation and HTTP/RPC timeouts on the new unpatched package.
+- Restored provider-comparison memoization, with invalidation on published snapshot metadata changes; syntax and behavioral tests passed.
+- Stopped the unresponsive generation; SIGTERM did not finish, so the exact service main process was forcibly terminated before restart.
+- Verified readiness, authenticated RPC/version, service configuration, 11 Telegram probes, existing Cleo delivery, HTTP and listener queue.
+- Recorded durable sanitized evidence and residual limitations.
+
+## Boundaries and remaining work
+
+No model/auth route edits, blanket doctor fix, capability acceptance, broad plugin update or test message sent.
+Max symlink migration, Lex parameter migration and explicit external plugin pins remain documented.
+The local cache assumes config objects are stable within a published runtime revision; independent review remains required.
+
+## Evidence
+
+`handoffs/2026-09-06_0454_openclaw-update-recovery.md`
+`evidence/2026-09-06-update-recovery/`
