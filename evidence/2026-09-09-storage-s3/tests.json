@@ -1,0 +1,16 @@
+{
+  "nightly_streaming_live": "PASS",
+  "nightly_cipher_bytes": 261141297,
+  "local_archive_created": false,
+  "full_remote_sha256": "188ae37c773fd9255101d435161edde95e598c27268ecf0bed5a8dbff4f71e59",
+  "failed_producer_object_absent": "PASS",
+  "failed_producer_multipart_aborted": "PASS",
+  "vault_upload_failure_preserves_source": "PASS",
+  "vault_concurrent_change_preserves_source": "PASS",
+  "production_vault_prune": "DRY_RUN_ONLY",
+  "package_ram_namespace_test": "PASS",
+  "persistent_synthetic_file_absent": true,
+  "dpkg_live_backup_unit": "PASS",
+  "apt_actual_maintenance": "NOT_RUN",
+  "systemd_unit_configuration": "PASS"
+}
