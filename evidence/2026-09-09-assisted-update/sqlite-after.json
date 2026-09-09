@@ -1,0 +1,38 @@
+[
+  {
+    "path": "/root/.openclaw/state/openclaw.sqlite",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 16
+  },
+  {
+    "path": "/root/.openclaw/state.sqlite",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 0
+  },
+  {
+    "path": "/root/.openclaw/state/sessions.db",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 0
+  },
+  {
+    "path": "/root/.openclaw/state/cron.db",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 0
+  }
+]

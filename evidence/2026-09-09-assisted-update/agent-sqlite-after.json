@@ -1,0 +1,110 @@
+[
+  {
+    "agent": "pixel",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "mark",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "scribe",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "counsel",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "cleo",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "scout",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "worker",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "atlas",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "visa",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "lex",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "max",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  },
+  {
+    "agent": "openclaw",
+    "quick_check": [
+      [
+        "ok"
+      ]
+    ],
+    "user_version": 19
+  }
+]

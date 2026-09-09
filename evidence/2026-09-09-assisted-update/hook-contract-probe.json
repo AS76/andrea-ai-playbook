@@ -1,0 +1,14 @@
+{
+  "test": "isolated actual plugin code with stubbed filesystem; no real conversation or travel file read",
+  "contextVault": {
+    "standardBeforeCompactionMessages": 1,
+    "writes": 0,
+    "verdict": "FAIL: event.messages ignored because plugin reads event.context"
+  },
+  "timeInject": {
+    "configuredUseTravelTimezone": false,
+    "observedTravelRead": true,
+    "verdict": "FAIL: typed hook context lacks pluginConfig; configured false ignored"
+  },
+  "productionFilesChanged": false
+}

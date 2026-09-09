@@ -1,19 +1,16 @@
 # CURRENT TASK
 
-## Request
+Request: assisted OpenClaw update; subsequently authorized native Europe/Rome time and disabling time-inject.
+Overall status: REVIEW_REQUIRED
+ChatGPT Review: PENDING_REVIEW
+Engineering acceptance: PARTIAL
+Authorized native-time change: IMPLEMENTED / VERIFIED
 
-Final Git reconciliation only for PR #1, preserving accepted engineering commit `47fb3826c21f22d4c69d0fc2a3ad53acfb1e1d1e`.
+Core 2026.9.3 on dedicated Node 24.21.0 is active. Backup and source gate are retained. Config validation, exact semantic delta, native temporal functions, authenticated RPC, 10 HTTP requests and the Cleo session_status test pass. The config CLI's unrelated catalog normalization was reverted before restart.
 
-## State
+No new hook consent was granted. context-vault is separate from the temporal feature decision and still needs compatibility/isolation remediation. The pre-existing findmy polling conflict and startup latency remain documented limitations. Runtime-only downgrade is blocked after SQLite schema migration.
 
-Production acceptance: PASS_WITH_ACCEPTED_WARNINGS (historical evidence, unchanged).
-Independent review: APPROVED_WITH_NOTES, exact target above, user-supplied ChatGPT review recorded.
-Git / PR: PASS_MERGE_READY. Main merged with history preserved; checks PASS, normal push synchronized, GitHub mergeable=true / clean. PR stays open for owner merge.
-
-No production files, services, credentials, Vault, ClawMem, Hermes or agent configuration were modified. No runtime probes were repeated.
-
-## Records
-
-- [Reconciliation](handoffs/2026-09-06_0541_git-reconciliation.md)
-- [Independent review](reviews/2026-09-06_0541_openclaw-acceptance.md)
-- [Preserved engineering acceptance](handoffs/2026-09-06_0530_openclaw-final-acceptance.md)
+Handoff: handoffs/2026-09-09_0528_assisted-update-native-time.md
+Evidence: evidence/2026-09-09-assisted-update/
+Review target: current PR #1 HEAD; exact SHA verified after push.
+Next action: independent evidence review; no COMPLETE claim.

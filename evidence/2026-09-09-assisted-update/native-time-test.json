@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": [
+    "time-inject disabled",
+    "native Europe/Rome",
+    "local date rollover",
+    "session_status instruction",
+    "heartbeat/cron stale time refreshed without duplication"
+  ],
+  "source": "actual installed 2026.9.3 functions"
+}
