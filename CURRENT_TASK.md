@@ -1,13 +1,15 @@
 # CURRENT TASK
 
-Request: preserve OpenClaw/extensions; move nonessential files to S3; ensure new operational backups do not accumulate on VPS disk.
+Request: verify V4.1 Flash on OpenRouter, replace Scout V4 Pro if usable, test functionality; explain unexpected Fable selection.
 Overall status: REVIEW_REQUIRED
 ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: PASS_WITH_ACTIONS
+Engineering acceptance: BLOCKED_PROVIDER_GUARDRAIL
 
-Implemented: verified cold archival, S3 streaming nightly/Vault pipelines, RAM-only vendor package backup scratch with S3 output, and operational backup policy. Runtime and failure-path checks passed within the handoff's stated scope. Hermes and Claude Code retained.
+Outcome: public catalog availability confirmed, actual provider request rejected by account paid-model-training guardrail. All model changes rolled back to V4 Pro 0813. Gateway ready 08:39:14Z; health RPC PASS (86ms).
 
-Handoff: handoffs/2026-09-09_0700_storage-cleanup-s3-only.md
-Evidence: evidence/2026-09-09-storage-s3/
-Review target: current PR #1 HEAD; exact SHA verified after push.
-Next action: independent evidence review. Prior update/time handoff remains pending; existing unrelated issues were not fixed.
+Initial Fable test: failed requested-model acceptance; missing modelPolicy.allow led installed resolver to first allowed catalog entry. Evidence and operator omission preserved. Exact policy addition corrected selection, but provider guardrail still blocked inference. No guardrail relaxation or broader routing modification.
+
+Handoff: handoffs/2026-09-10_0812_scout-v41-flash.md
+Evidence: evidence/2026-09-10-scout-v41/
+Review target: current PR #1 HEAD; exact SHA to verify after push.
+Remaining: independent review. Future migration needs a compatible provider endpoint or separately authorized account-policy decision.

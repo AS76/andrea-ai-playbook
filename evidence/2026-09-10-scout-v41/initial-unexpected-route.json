@@ -1,0 +1,30 @@
+{
+  "status": "ok",
+  "runId": "39d1fbb3-d347-4edb-a9f4-dee1107f82a5",
+  "error": null,
+  "payloads": [
+    {
+      "text": "SCOUT_V41_OK 3973",
+      "mediaUrl": null
+    }
+  ],
+  "terminalReceipt": {
+    "runId": "39d1fbb3-d347-4edb-a9f4-dee1107f82a5",
+    "sessionId": "89fcd980-4c8b-4c85-a112-56d1f893993c",
+    "turnId": "39d1fbb3-d347-4edb-a9f4-dee1107f82a5",
+    "requested": {
+      "provider": "anthropic",
+      "model": "claude-fable-5"
+    },
+    "effective": {
+      "provider": "anthropic",
+      "model": "claude-fable-5",
+      "responseModel": "claude-fable-5"
+    },
+    "successfulToolNames": [
+      "exec"
+    ],
+    "rerouted": false
+  },
+  "durationMs": 84492
+}

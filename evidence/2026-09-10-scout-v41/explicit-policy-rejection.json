@@ -1,0 +1,11 @@
+{
+  "status": false,
+  "runId": "ae54ce73-0c5d-45d6-97bf-b93ecb8e4a25",
+  "error": {
+    "type": "cli_error",
+    "message": "Model override \"openrouter/deepseek/deepseek-v4.1-flash\" is not allowed for agent \"scout\" by agents.defaults.modelPolicy.allow. Add \"openrouter/deepseek/deepseek-v4.1-flash\" or \"openrouter/*\" to agents.defaults.modelPolicy.allow, or remove/empty the list to allow any model."
+  },
+  "payloads": null,
+  "terminalReceipt": null,
+  "durationMs": null
+}
