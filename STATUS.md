@@ -2,17 +2,18 @@
 
 Last update: 2026-09-11
 Current task: MCP runtime lifecycle remediation for isolated Cleo heartbeats
-Overall status: REVIEW_REQUIRED
-ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: RUNTIME_VERIFIED
+Overall status: COMPLETE
+ChatGPT Review: APPROVED_WITH_NOTES
+Engineering acceptance: PASS_WITH_ACCEPTED_NOTES
 Runtime: 15-minute MCP idle TTL reclaimed the observed heartbeat cohort; ten consecutive isolated heartbeats completed and no retained cohort remained
+Reviewed Commit: 24cd1f75483fd7a958dd30a7eec5358c0de975b4
+Closure Commit: current PR #1 HEAD, resolved after push
 Current Commit: current PR #1 HEAD, resolved after push
 Branch: codex/handoff-ledger
 
-V4.1 is listed on OpenRouter, but the sole endpoint is excluded by the existing paid-model-training guardrail. All four model changes were rolled back; Scout primary is V4 Pro 0813 with original Gemini/Sonnet fallbacks and thinking high. No policy relaxation.
+The accepted notes are non-blocking: the 15-minute TTL is global session-cache policy rather than heartbeat-scoped cleanup; the five-hour validation is bounded; and heartbeat-owned run-end retirement remains the preferred upstream product fix. No further runtime change was requested or applied.
 
-Initial test unexpectedly invoked Fable due to missing modelPolicy.allow and installed first-allowed-catalog selection behavior. Preserved as failed acceptance evidence. Repeated 315-second active-work drain timeout and startup handshake degradation are documented.
-
-Latest handoff: handoffs/2026-09-11_1635_mcp-heartbeat-lifecycle.md
+Reviewed handoff: handoffs/2026-09-11_1635_mcp-heartbeat-lifecycle.md
 Evidence: evidence/2026-09-11-mcp-heartbeat-lifecycle/
-The prior Scout routing handoff and pending review remain preserved. No COMPLETE claim before independent review.
+Review: reviews/2026-09-11_1640_mcp-heartbeat-lifecycle.md
+Prior Scout routing evidence and review history remain preserved but are no longer the current PR review target.
