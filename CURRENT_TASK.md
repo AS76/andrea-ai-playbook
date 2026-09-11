@@ -1,15 +1,16 @@
 # CURRENT TASK
 
-Request: verify V4.1 Flash on OpenRouter, replace Scout V4 Pro if usable, test functionality; explain unexpected Fable selection.
+Request: apply one supported minimal lifecycle correction for MCP runtimes created by isolated Cleo heartbeats, then validate it across one natural heartbeat with a detached observer.
 Overall status: REVIEW_REQUIRED
 ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: BLOCKED_PROVIDER_GUARDRAIL
+Engineering acceptance: RUNTIME_VERIFIED
 
-Outcome: public catalog availability confirmed, actual provider request rejected by account paid-model-training guardrail. All model changes rolled back to V4 Pro 0813. Gateway ready 08:39:14Z; health RPC PASS (86ms).
+Confirmed initial state: Cleo's 30-minute isolated heartbeat creates a fresh session-scoped three-server MCP cohort; completed cohorts remain because `mcp.sessionIdleTtlMs` is absent and resolves to zero. `memory-probe.sh` remains suspended.
 
-Initial Fable test: failed requested-model acceptance; missing modelPolicy.allow led installed resolver to first allowed catalog entry. Evidence and operator omission preserved. Exact policy addition corrected selection, but provider guardrail still blocked inference. No guardrail relaxation or broader routing modification.
+Authorized scope: first determine whether run-end MCP cleanup is supported and heartbeat-scoped. Use it only if supported; otherwise configure only `mcp.sessionIdleTtlMs = 900000`. Stream and verify an encrypted rollback directly to established S3 before mutation. Do not patch source, alter heartbeat cadence, re-enable memory-probe, change models, or add secondary hardening.
 
-Handoff: handoffs/2026-09-10_0812_scout-v41-flash.md
-Evidence: evidence/2026-09-10-scout-v41/
-Review target: current PR #1 HEAD; exact SHA to verify after push.
-Remaining: independent review. Future migration needs a compatible provider endpoint or separately authorized account-policy decision.
+Result: installed 2026.9.3 exposes `cleanupBundleMcpOnRunEnd` only as an internal run parameter, not as a supported heartbeat-scoped configuration option. Applied only `mcp.sessionIdleTtlMs = 900000` after a verified encrypted S3 rollback. One controlled Gateway restart loaded the setting. A detached observer captured one natural heartbeat, its three local MCP runtime groups, and complete reclamation at 11:54:21 UTC after the configured TTL. The Gateway PID remained unchanged, OOM counters stayed zero, and ten consecutive isolated heartbeats completed with fresh session IDs without leaving a retained cohort.
+
+Evidence: `evidence/2026-09-11-mcp-heartbeat-lifecycle/`. Handoff: `handoffs/2026-09-11_1635_mcp-heartbeat-lifecycle.md`. Independent review remains required; no additional hardening was applied.
+
+Prior task preserved: `handoffs/2026-09-10_0812_scout-v41-flash.md` and `evidence/2026-09-10-scout-v41/` remain unchanged with their pending review history.
