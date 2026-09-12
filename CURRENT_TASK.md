@@ -1,9 +1,9 @@
 # CURRENT TASK
 
 Request: safely remediate the reported OpenClaw startup/state migration issue, then implement a reusable conservative safe-update transaction with backup, Doctor gating, lifecycle control, acceptance, rollback distinctions, locking, structured logs, and a runbook.
-Overall status: REVIEW_REQUIRED
-ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: PASS_WITH_WARNINGS
+Overall status: COMPLETE
+ChatGPT Review: APPROVED_WITH_NOTES
+Engineering acceptance: PASS_WITH_ACCEPTED_NOTES
 
 Confirmed initial state: not yet established. The reported 2026.9.3 version, healthy user Gateway, pending migration, Telegram allowlist gap, task/audit counts, and no-update result are being treated as untrusted until independently verified.
 
@@ -15,4 +15,4 @@ Result: no migration was present in either Doctor mode, so no Doctor fix or Gate
 
 Prior task preserved: `handoffs/2026-09-10_0812_scout-v41-flash.md` and `evidence/2026-09-10-scout-v41/` remain unchanged with their pending review history.
 
-Review history: exact commit `7d7e463a782401233d85bb7a44237e5bfe207f5b` was `BLOCKED` for insufficient review evidence, not implementation failure. The verdict remains immutable in `reviews/2026-09-12_7d7e463_openclaw-safe-update.md`. Current remediation commit is PR #1 HEAD, resolved after push, and awaits independent re-review.
+Review history: exact commit `7d7e463a782401233d85bb7a44237e5bfe207f5b` was `BLOCKED` for insufficient review evidence, not implementation failure; that verdict remains immutable in `reviews/2026-09-12_7d7e463_openclaw-safe-update.md`. Exact remediation commit `b89079eae53c678666b6301ccfe1f6fa255a0bc4` is `APPROVED_WITH_NOTES` with no blocking findings; the accepted review is preserved at `reviews/2026-09-12_b89079e_openclaw-safe-update.md`. The approval covers the safe-update remediation only and is not authorization to perform the OpenClaw 2026.9.4 production upgrade. Closure commit is current PR #1 HEAD, resolved after push, and changes documentation/metadata only.

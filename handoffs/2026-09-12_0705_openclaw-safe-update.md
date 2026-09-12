@@ -29,3 +29,7 @@ ChatGPT reviewed exact commit `7d7e463a782401233d85bb7a44237e5bfe207f5b` as `BLO
 The remediation publishes the complete current wrapper and runbook, sanitized outputs for lock contention, insufficient disk, `NO_UPDATE`, `MANUAL_REVIEW_REQUIRED`, and backup-only, the exact installed 2026.9.3 source path that conditionally builds `doctor --non-interactive --fix`, and dynamic agent-registry evidence. The current eight-entry production registry is intentional as the acceptance baseline and stable across the referenced 2026-09-09 and 2026-09-11 snapshots. Acceptance does not hard-code eight: it captures and compares `keys(.agents.entries)` across the transaction.
 
 No production runtime or topology change occurred during review remediation. Review target after publication is the new remediation commit; `7d7e463a782401233d85bb7a44237e5bfe207f5b` remains the exact blocked reviewed commit.
+
+## Accepted re-review
+
+ChatGPT returned `APPROVED_WITH_NOTES` for exact remediation commit `b89079eae53c678666b6301ccfe1f6fa255a0bc4`; no blocking findings remain. The review is preserved at `reviews/2026-09-12_b89079e_openclaw-safe-update.md`. Its authorization boundary is explicit: approval covers this safe-update remediation and does not authorize execution of the OpenClaw 2026.9.4 production upgrade. The later closure commit changes ledger and PR metadata only and does not replace the reviewed commit identity.
