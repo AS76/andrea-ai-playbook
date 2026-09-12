@@ -1,20 +1,16 @@
 # CURRENT TASK
 
-Request: apply one supported minimal lifecycle correction for MCP runtimes created by isolated Cleo heartbeats, then validate it across one natural heartbeat with a detached observer.
-Overall status: COMPLETE
-ChatGPT Review: APPROVED_WITH_NOTES
-Engineering acceptance: PASS_WITH_ACCEPTED_NOTES
+Request: safely remediate the reported OpenClaw startup/state migration issue, then implement a reusable conservative safe-update transaction with backup, Doctor gating, lifecycle control, acceptance, rollback distinctions, locking, structured logs, and a runbook.
+Overall status: REVIEW_REQUIRED
+ChatGPT Review: PENDING_REVIEW
+Engineering acceptance: PASS_WITH_WARNINGS
 
-Confirmed initial state: Cleo's 30-minute isolated heartbeat creates a fresh session-scoped three-server MCP cohort; completed cohorts remain because `mcp.sessionIdleTtlMs` is absent and resolves to zero. `memory-probe.sh` remains suspended.
+Confirmed initial state: not yet established. The reported 2026.9.3 version, healthy user Gateway, pending migration, Telegram allowlist gap, task/audit counts, and no-update result are being treated as untrusted until independently verified.
 
-Authorized scope: first determine whether run-end MCP cleanup is supported and heartbeat-scoped. Use it only if supported; otherwise configure only `mcp.sessionIdleTtlMs = 900000`. Stream and verify an encrypted rollback directly to established S3 before mutation. Do not patch source, alter heartbeat cadence, re-enable memory-probe, change models, or add secondary hardening.
+Authorized scope: read-only discovery; verified encrypted S3 recovery point; minimal supported migration remediation from an independent shell with the Gateway stopped; post-start acceptance; evidence-based Telegram allowlist correction only if trusted IDs and supported keys are proven; and implementation/testing of the permanent safe-update workflow. Model routing, topology, ClawMem, Vault, MCP, OpenRouter, Codex, unrelated services, cleanup, and broad audit remediation are excluded.
 
-Result: installed 2026.9.3 exposes `cleanupBundleMcpOnRunEnd` only as an internal run parameter, not as a supported heartbeat-scoped configuration option. Applied only `mcp.sessionIdleTtlMs = 900000` after a verified encrypted S3 rollback. One controlled Gateway restart loaded the setting. A detached observer captured one natural heartbeat, its three local MCP runtime groups, and complete reclamation at 11:54:21 UTC after the configured TTL. The Gateway PID remained unchanged, OOM counters stayed zero, and ten consecutive isolated heartbeats completed with fresh session IDs without leaving a retained cohort.
+Plan: analyze -> document intended narrow changes and rollback -> stream/verify backup -> remediate only if Doctor scope is understood -> restart and validate -> implement and simulate/test the reusable workflow -> publish sanitized evidence for independent review.
 
-Evidence: `evidence/2026-09-11-mcp-heartbeat-lifecycle/`. Handoff: `handoffs/2026-09-11_1635_mcp-heartbeat-lifecycle.md`.
-
-Review outcome: the user supplied `APPROVED_WITH_NOTES` for exact reviewed commit `24cd1f75483fd7a958dd30a7eec5358c0de975b4`. Notes are accepted and non-blocking: TTL is global rather than heartbeat-scoped, the five-hour validation is bounded, and an upstream run-end cleanup remains preferable. Review preserved in `reviews/2026-09-11_1640_mcp-heartbeat-lifecycle.md`. This closure changes ledger and PR metadata only; no runtime action was taken.
-
-Closure commit: current PR #1 HEAD, resolved after push. The PR metadata must identify the fixed reviewed commit above separately from the later closure commit.
+Result: no migration was present in either Doctor mode, so no Doctor fix or Gateway restart was justified. Telegram account allowlists were already populated and healthy. A 2026.9.4 candidate exists, but official dry-run refuses package-manager ownership and installed updater source can invoke Doctor fix; update was stopped before mutation. The wrapper/runbook now provide locking, verified S3 backup, explicit status JSON, preflight/no-update/failure gates, and a conservative manual-review boundary. Handoff: `handoffs/2026-09-12_0705_openclaw-safe-update.md`.
 
 Prior task preserved: `handoffs/2026-09-10_0812_scout-v41-flash.md` and `evidence/2026-09-10-scout-v41/` remain unchanged with their pending review history.
