@@ -1,9 +1,19 @@
 # CURRENT TASK
 
-Request: safely remediate the reported OpenClaw startup/state migration issue, then implement a reusable conservative safe-update transaction with backup, Doctor gating, lifecycle control, acceptance, rollback distinctions, locking, structured logs, and a runbook.
-Overall status: COMPLETE
-ChatGPT Review: APPROVED_WITH_NOTES
-Engineering acceptance: PASS_WITH_ACCEPTED_NOTES
+Request: diagnose and recover OpenClaw after an OS-upgrade reboot and a user-invoked `doctor --fix` appeared stuck.
+Overall status: REVIEW_REQUIRED
+ChatGPT Review: PENDING_REVIEW
+Engineering acceptance: PASS_WITH_LIMITS
+
+Scope: diagnose live process/service state; do not rerun Doctor, update packages, change configuration, or repair unrelated warnings; permit the existing stop timeout to resolve; start the failed user Gateway once; verify config, RPC health, listener, process stability, and Telegram transport probes.
+
+Observed cause: the Doctor process was no longer present. Its requested Gateway restart remained in systemd `deactivating (stop-sigterm)` because OpenClaw reported `activeTasks=1`. The 330-second systemd stop timeout expired and systemd terminated the old Gateway process. `openclaw` configuration modification time predated the incident and config validation passed, so no current config rewrite was observed.
+
+Action: started `openclaw-gateway.service` once after it reached failed state. No Doctor/update/config/plugin/routing/database operation was performed.
+
+Acceptance: new PID 4900 remained `active/running`; isolated 2026.9.3 runtime reported Gateway health `ok`; event loop was not degraded at acceptance; expected plugins loaded without health errors; Telegram was ready/running/connected and all configured account probes reported success. No outbound Telegram message was sent, so end-to-end delivery is NOT PROVEN. Startup took about 71 seconds in `sidecars.control-ui-assets`. Missing-package warnings for Discord, Qwen, and WhatsApp remain separate and were not repaired.
+
+Handoff: `handoffs/2026-09-12_1033_openclaw-post-reboot-drain-recovery.md`.
 
 Confirmed initial state: not yet established. The reported 2026.9.3 version, healthy user Gateway, pending migration, Telegram allowlist gap, task/audit counts, and no-update result are being treated as untrusted until independently verified.
 
