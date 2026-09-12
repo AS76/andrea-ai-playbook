@@ -1,9 +1,25 @@
 # CURRENT TASK
 
-Request: diagnose and recover OpenClaw after an OS-upgrade reboot and a user-invoked `doctor --fix` appeared stuck.
+Request: execute an OpenClaw update using the guarded updater required by VPS policy.
 Overall status: REVIEW_REQUIRED
 ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: PASS_WITH_LIMITS
+Engineering acceptance: BLOCKED_BEFORE_MUTATION
+
+Objective: run the guarded latest-release preflight, resolve the exact target, create and verify the encrypted S3 recovery point before mutation, and continue only through the wrapper's approved gates. Do not bypass its fail-closed Doctor/update semantics.
+
+Initial state: OpenClaw 2026.9.3; user Gateway active/running on PID 4900 after the separately documented post-reboot drain recovery; ledger worktree clean before this task.
+
+Plan: guarded `--check latest`; inspect its sanitized result; guarded `--apply <exact-version>` only if the check identifies an applicable release; then verify version, configuration, Gateway readiness/RPC, process stability, and Telegram probes if mutation occurs. Record a terminal blocked state honestly if the wrapper refuses before mutation.
+
+Terminal result: `--check latest` resolved 2026.9.4 but the official dry-run refused because package-manager ownership was unknown. The guarded run reported `MANUAL_REVIEW_REQUIRED`, `doctor_fix_executed=false`, `restart_result=not_run`, `rollback_attempted=false`, and `current_runtime_unchanged`. Local installed runner inspection independently confirmed an update Doctor policy with `fix: true`. No `--apply` was attempted because it would repeat the already-terminal official dry-run refusal before its backup/apply phases.
+
+Current handoff: `handoffs/2026-09-12_1035_openclaw-2026-9-4-update-blocked.md`.
+
+Prior task preserved: `handoffs/2026-09-12_1033_openclaw-post-reboot-drain-recovery.md`.
+
+---
+
+## Prior post-reboot recovery record
 
 Scope: diagnose live process/service state; do not rerun Doctor, update packages, change configuration, or repair unrelated warnings; permit the existing stop timeout to resolve; start the failed user Gateway once; verify config, RPC health, listener, process stability, and Telegram transport probes.
 
