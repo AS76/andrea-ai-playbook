@@ -37,3 +37,11 @@ Date: 2026-09-12 UTC
 - real discovery for 2026.9.4: PASS fail-closed, exited 20 with `MANUAL_REVIEW_REQUIRED` because the official updater refused package ownership.
 - backup-only path: PASS with S3 encryption and full remote SHA-256 readback.
 - update mutation/Doctor-fix/restart/rollback branches: NOT YET PRODUCTION-EXERCISED.
+
+## Review remediation for commit 7d7e463
+
+The `BLOCKED` evidence review is preserved at `reviews/2026-09-12_7d7e463_openclaw-safe-update.md`; it is an evidence deficiency, not an implementation failure. This directory now includes byte-identical complete copies of the current production wrapper and runbook, sanitized test projections in `test-fixtures.json`, installed updater source locations and excerpts in `installed-updater-doctor-path.md`, and the dynamic registry acceptance contract in `agent-registry-acceptance.json`.
+
+The effective production registry intentionally used as this task's acceptance baseline has eight entries: `atlas`, `cleo`, `lex`, `max`, `pixel`, `scout`, `scribe`, and `visa`. The same key set is present in the 2026-09-09 pre-update snapshot, the 2026-09-11 pre-MCP-change snapshot, and current config. “Eight” is an observed result, not an acceptance constant: a future transaction must capture `keys(.agents.entries)` before mutation and compare the post-update key set to that captured baseline. The broader workspace role catalog is not being redefined, and this task made no topology change.
+
+Remediation QA confirms SHA-256 equality between each published complete copy and its production source. No OpenClaw update, Doctor fix, Gateway restart, new backup, topology change, or unrelated remediation was performed.

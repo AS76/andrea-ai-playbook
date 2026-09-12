@@ -21,3 +21,11 @@ The unchanged runtime remained active with PID 23838, `NRestarts=0`, port 18789 
 ## Review request
 
 Review the fail-closed decision, the distinction between reported and observed migration state, the explicit limitation of the isolated updater, backup evidence, test classification, and the absence of collateral production changes. Evidence: `evidence/2026-09-12-openclaw-safe-update/summary.md`.
+
+## Review history and evidence remediation
+
+ChatGPT reviewed exact commit `7d7e463a782401233d85bb7a44237e5bfe207f5b` as `BLOCKED` for insufficient review evidence, not for implementation failure. The review is preserved at `reviews/2026-09-12_7d7e463_openclaw-safe-update.md`.
+
+The remediation publishes the complete current wrapper and runbook, sanitized outputs for lock contention, insufficient disk, `NO_UPDATE`, `MANUAL_REVIEW_REQUIRED`, and backup-only, the exact installed 2026.9.3 source path that conditionally builds `doctor --non-interactive --fix`, and dynamic agent-registry evidence. The current eight-entry production registry is intentional as the acceptance baseline and stable across the referenced 2026-09-09 and 2026-09-11 snapshots. Acceptance does not hard-code eight: it captures and compares `keys(.agents.entries)` across the transaction.
+
+No production runtime or topology change occurred during review remediation. Review target after publication is the new remediation commit; `7d7e463a782401233d85bb7a44237e5bfe207f5b` remains the exact blocked reviewed commit.
