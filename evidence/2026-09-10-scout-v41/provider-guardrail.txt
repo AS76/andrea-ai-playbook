@@ -1,0 +1,2 @@
+2026-09-10T08:31:48Z OpenRouter HTTP 404 for deepseek/deepseek-v4.1-flash. Exact diagnostic: 0 endpoints out of 1 requested are available matching your guardrail restrictions and data policy. Paid model training violation (guardrail): 1 endpoint excluded; configurable at https://openrouter.ai/workspaces/default/guardrails
+Failover decision: surface_error, reason=model_not_found, attempt=1, next=none. No successful V4.1 inference.

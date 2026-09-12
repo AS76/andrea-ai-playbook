@@ -2,10 +2,35 @@
 
 Repository operativo per il sistema multi-agent OpenClaw di Andrea Sassi.
 
+[Visualizza il Playbook](https://as76.github.io/andrea-ai-playbook/)
+
+Multi-Agent Operating System — IT/EN bilingual.
+
+## Codex Handoff Ledger
+
+This repository also carries the asynchronous engineering-review ledger between
+Codex CLI and ChatGPT. It is evidence and change history, not a memory store.
+
+Start at [STATUS.md](STATUS.md), follow the current handoff, review the named
+commit and diff, then preserve the review as a new file under `reviews/`.
+The persistent default process is defined in
+[architecture/operational-workflow.md](architecture/operational-workflow.md).
+
+Authority remains explicit:
+
+- Codex executes and verifies the production runtime.
+- ChatGPT independently reviews architecture, diffs and evidence quality.
+- ClawMem provides semantic working context; the Obsidian Vault remains the
+  canonical knowledge layer where applicable.
+- Andrea is the final authority.
+
+Public-repository rule: never add secrets, raw logs, private correspondence,
+memory dumps, real infrastructure identifiers or unnecessary personal data.
+
 La GitHub Page resta la vetrina pubblica del progetto:
 
 - Page root: https://as76.github.io/andrea-ai-playbook/
-- Dashboard source: [docs/index.html](docs/index.html)
+- Dashboard source: [index.html](index.html)
 
 ## Scopo
 
@@ -36,16 +61,18 @@ Il README non e il playbook completo. La sorgente operativa primaria e nei file 
 └─ CHANGELOG.md
 ```
 
+La struttura sopra include percorsi pianificati; i riferimenti mancanti sono indicati esplicitamente sotto. Il dashboard attuale è `index.html` nella radice.
+
 ## File principali
 
-- [docs/identity.md](docs/identity.md): identita narrativa e visuale derivata dal sito v4.3.
+- `docs/identity.md` (previsto; non presente nel repository): identita narrativa e visuale derivata dal sito v4.3.
 - [docs/architecture.md](docs/architecture.md): architettura hub-and-spoke e lifecycle operativo.
-- [docs/operating-model.md](docs/operating-model.md): modello operativo v5.0.
-- [configs/routing.yaml](configs/routing.yaml): routing machine-readable.
-- [configs/openclaw.agents.yaml](configs/openclaw.agents.yaml): inventario agenti da verificare contro OpenClaw reale.
-- [policies/autonomy.md](policies/autonomy.md): livelli L0-L4.
+- `docs/operating-model.md` (previsto; non presente nel repository): modello operativo v5.0.
+- `configs/routing.yaml` (previsto; non presente nel repository): routing machine-readable.
+- `configs/openclaw.agents.yaml` (previsto; non presente nel repository): inventario agenti da verificare contro OpenClaw reale.
+- `policies/autonomy.md` (previsto; non presente nel repository): livelli L0-L4.
 - [policies/vault-schema.md](policies/vault-schema.md): regole hard-rule scrittura vault Obsidian (6 lesson dal fix 2026-06-21).
-- [evals/routing-tests.md](evals/routing-tests.md): test cases end-to-end.
+- `evals/routing-tests.md` (previsto; non presente nel repository): test cases end-to-end.
 
 ## Regole operative base
 

@@ -1,0 +1,138 @@
+{
+  "local": [
+    {
+      "status": 200,
+      "seconds": 0.232
+    },
+    {
+      "status": 200,
+      "seconds": 0.0044
+    },
+    {
+      "status": 200,
+      "seconds": 0.0071
+    },
+    {
+      "status": 200,
+      "seconds": 0.0047
+    },
+    {
+      "status": 200,
+      "seconds": 0.005
+    },
+    {
+      "status": 200,
+      "seconds": 0.0654
+    },
+    {
+      "status": 200,
+      "seconds": 0.0072
+    },
+    {
+      "status": 200,
+      "seconds": 0.0114
+    },
+    {
+      "status": 200,
+      "seconds": 0.0056
+    },
+    {
+      "status": 200,
+      "seconds": 0.0076
+    },
+    {
+      "status": 200,
+      "seconds": 0.0045
+    },
+    {
+      "status": 200,
+      "seconds": 0.0052
+    },
+    {
+      "status": 200,
+      "seconds": 0.0078
+    },
+    {
+      "status": 200,
+      "seconds": 0.0035
+    },
+    {
+      "status": 200,
+      "seconds": 0.0087
+    },
+    {
+      "status": 200,
+      "seconds": 0.0059
+    },
+    {
+      "status": 200,
+      "seconds": 0.0049
+    },
+    {
+      "status": 200,
+      "seconds": 0.0041
+    },
+    {
+      "status": 200,
+      "seconds": 0.0049
+    },
+    {
+      "status": 200,
+      "seconds": 0.005
+    },
+    {
+      "status": 200,
+      "seconds": 0.0044
+    },
+    {
+      "status": 200,
+      "seconds": 0.0068
+    },
+    {
+      "status": 200,
+      "seconds": 0.0038
+    },
+    {
+      "status": 200,
+      "seconds": 0.0075
+    },
+    {
+      "status": 200,
+      "seconds": 0.0109
+    },
+    {
+      "status": 200,
+      "seconds": 0.2195
+    },
+    {
+      "status": 200,
+      "seconds": 0.0066
+    },
+    {
+      "status": 200,
+      "seconds": 0.0087
+    },
+    {
+      "status": 200,
+      "seconds": 0.0103
+    },
+    {
+      "status": 200,
+      "seconds": 0.8944
+    }
+  ],
+  "public": [
+    {
+      "status": 200,
+      "seconds": 0.033
+    },
+    {
+      "status": 200,
+      "seconds": 0.0322
+    },
+    {
+      "status": 200,
+      "seconds": 0.0215
+    }
+  ]
+}

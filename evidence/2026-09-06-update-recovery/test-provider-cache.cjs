@@ -1,0 +1,28 @@
+const fs = require('node:fs');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+const file = process.argv[2];
+const text = fs.readFileSync(file, 'utf8');
+const start = text.indexOf('let providerSnapshotMatchMetadata;');
+const end = text.indexOf('\nfunction sentinelizeConfigSecretRefEnvApiKey', start);
+let metadata = {revision: 1};
+let hashes = 0;
+const stable = v => v && typeof v === 'object' ? Array.isArray(v) ? '['+v.map(stable).join(',')+']' : '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+stable(v[k])).join(',')+'}' : JSON.stringify(v);
+const ctx = vm.createContext({getRuntimeConfigSnapshotMetadata:()=>metadata, resolveProviderConfig:(c,p)=>c?.models?.providers?.[p], hashRuntimeConfigValue:v=>{hashes++;return stable(v)}});
+vm.runInContext(text.slice(start,end)+'\nthis.match=providerConfigMatchesRuntimeSnapshot;',ctx);
+const cfg = (key='a') => ({models:{providers:{p:{apiKey:key,models:Array.from({length:406},(_,i)=>({id:'m'+i}))}}}});
+const a=cfg(), b=cfg();
+const match=(inputConfig,runtimeConfig,provider='p')=>ctx.match({inputConfig,runtimeConfig,provider});
+assert.equal(match(null,b),false);assert.equal(match({},b),false);assert.equal(match(a,b,'absent'),false);
+assert.equal(match(a,a),true);assert.equal(hashes,0);
+assert.equal(match(a,b),true);const first=hashes;
+for(let i=0;i<1000;i++)assert.equal(match(a,b),true);
+assert.equal(hashes,first);
+assert.equal(match(a,cfg('different')),false);
+assert.equal(match(cfg('different'),b),false);
+b.models.providers.p.apiKey='new';metadata={revision:2};
+assert.equal(match(a,b),false);
+b.models.providers.p.apiKey='a';metadata={revision:3};assert.equal(match(a,b),true);
+metadata=null;assert.equal(match(a,b),true);
+for(let i=0;i<100;i++){const x=cfg(String(i%7)), y=cfg(String(i%5));assert.equal(match(x,y),stable(x)===stable(y));}
+console.log('PASS: absence, same identity, equivalent snapshots, 1000 cache hits, changed input/runtime identities, publication invalidation, reset, 100 reference comparisons');

@@ -1,0 +1,32 @@
+--- model-auth-provider-config-C_kr_q2g.js.upstream
++++ model-auth-provider-config-C_kr_q2g.js
+@@ -326,0 +327,25 @@
++// Local mitigation v3: compare the canonical structure without retained results.
++// Mirrors stableConfigStringify semantics for supported acyclic configuration data.
++function providerConfigCanonicalEqual(left, right) {
++	if (left === right) return true;
++	const leftObject = left !== null && typeof left === "object";
++	const rightObject = right !== null && typeof right === "object";
++	if (!leftObject || !rightObject) {
++		if (leftObject !== rightObject) return false;
++		return (JSON.stringify(left) ?? "null") === (JSON.stringify(right) ?? "null");
++	}
++	if (Array.isArray(left) || Array.isArray(right)) {
++		if (!Array.isArray(left) || !Array.isArray(right) || left.length !== right.length) return false;
++		for (let i = 0; i < left.length; i++) {
++			if ((i in left) !== (i in right)) return false;
++			if (i in left && !providerConfigCanonicalEqual(left[i], right[i])) return false;
++		}
++		return true;
++	}
++	const leftKeys = Object.keys(left);
++	if (leftKeys.length !== Object.keys(right).length) return false;
++	for (const key of leftKeys) {
++		if (!Object.hasOwn(right, key) || !providerConfigCanonicalEqual(left[key], right[key])) return false;
++	}
++	return true;
++}
+@@ -331,2 +356 @@
+-	const toComparableConfig = (providerConfig) => ({ models: { providers: { [params.provider]: providerConfig } } });
+-	return hashRuntimeConfigValue(toComparableConfig(inputProvider)) === hashRuntimeConfigValue(toComparableConfig(runtimeProvider));
++	return providerConfigCanonicalEqual(inputProvider, runtimeProvider);

@@ -1,0 +1,20 @@
+PASS same identity
+PASS structurally equivalent distinct configs
+PASS different credentials and provider settings
+PASS repeated calls
+PASS real publication metadata identity and revision
+PASS real source-only publication lifecycle
+PASS config replacement
+PASS mutation without publication remains observable
+PASS missing provider
+PASS multiple providers
+PASS clear reset and reused revision
+PASS canonical hash fallback equivalence including undefined/null
+PASS reference comparison matrix
+PASS canonical edge cases, key ordering and sparse arrays
+PASS deterministic generated canonical differential corpus
+same-object 1000 calls: 0.6ms
+PASS prior cache mutation bug reproduced and corrected
+upstream canonical hash 100 equivalent comparisons: 61.7ms
+stateless canonical comparison 100 equivalent comparisons: 5.7ms
+PASS 16 actual-distribution regression groups

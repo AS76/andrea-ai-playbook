@@ -1,0 +1,12 @@
+[
+  {
+    "case": "approved",
+    "main_executed": true,
+    "expectation_met": true
+  },
+  {
+    "case": "unknown",
+    "main_executed": false,
+    "expectation_met": true
+  }
+]

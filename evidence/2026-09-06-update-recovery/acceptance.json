@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-06",
+  "core": "2026.9.2 (3928bad)",
+  "runtime": "PASS_WITH_WARNINGS",
+  "ready_seconds_from_systemd_start": 45.169,
+  "local_http_samples": 20,
+  "local_http_successes": 20,
+  "local_http_max_seconds": 0.032,
+  "public_http": 200,
+  "authenticated_rpc": true,
+  "telegram_accounts_healthy": 11,
+  "listener_recv_q": 0,
+  "final_restart_counter": 0,
+  "service_config_audit_ok": true,
+  "config_unchanged_during_recovery": true,
+  "diagnostic_lint_ok": false,
+  "lint_findings": [
+    "Max TOOLS.md symlink blocks automatic migration",
+    "Lex maxOutputTokens cannot automatically migrate to native Codex transport"
+  ],
+  "new_cpu_profile_obtained": false
+}

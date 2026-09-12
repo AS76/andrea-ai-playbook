@@ -1,0 +1,148 @@
+{
+  "rpc": {
+    "ok": true,
+    "version": "2026.9.2",
+    "buildId": "2026.9.2-release-3928bad9badf-2026-09-05T15-22-41.651Z"
+  },
+  "serviceAudit": {
+    "ok": true,
+    "issues": []
+  },
+  "eventLoop": {
+    "degraded": false,
+    "degradedSinceMs": null,
+    "reasons": [],
+    "intervalMs": 1004.6040130000038,
+    "delayP99Ms": 23.6,
+    "delayMaxMs": 23.6,
+    "utilization": 0.023,
+    "cpuCoreRatio": 0.026
+  },
+  "telegram": [
+    {
+      "account": "atlas",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "counsel",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "default",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "lex",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "mark",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "max",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "pixel",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "scout",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "scribe",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "tutor",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    },
+    {
+      "account": "visa",
+      "running": true,
+      "connected": true,
+      "mode": "polling",
+      "probeHealthy": true,
+      "lastError": null
+    }
+  ],
+  "lint": {
+    "ok": false,
+    "checksRun": 30,
+    "checksSkipped": 30,
+    "findings": [
+      {
+        "checkId": "core/doctor/codex-session-routes",
+        "severity": "warning",
+        "message": "Explicit native Codex model routes cannot reproduce authored request transport parameters.",
+        "fixHint": "- agents.entries.lex.params.maxOutputTokens: authored maxOutputTokens cannot be migrated automatically.\n- Remove these params or set the affected route's agentRuntime.id to \"openclaw\"; Doctor cannot migrate them without changing behavior."
+      }
+    ]
+  },
+  "commandExits": {
+    "gateway": 0,
+    "channels": 0,
+    "lint": 1,
+    "doctor": 0,
+    "config": 0
+  },
+  "verdict": "PASS_WITH_ACCEPTED_WARNINGS",
+  "finalGenerationStartUtc": "2026-09-06T05:22:47Z",
+  "readyUtc": "2026-09-06T05:23:30.106Z",
+  "readySeconds": 43.106,
+  "systemdActiveRunning": true,
+  "nRestarts": 0,
+  "listener": "loopback:18789",
+  "recvQ": 0,
+  "steadyCpuPercent30s": 4.57,
+  "steadyRssKiB30s": 1092011,
+  "taskRestartAttempts": 2,
+  "finalGatewayRestartNeeded": true,
+  "openclawConfigUnchanged": true,
+  "hermesConfigUnchanged": true,
+  "sourceGuardDirectCheck": "PASS_LOCAL_MITIGATION",
+  "sourceGuardSystemdIntegration": "approved proceeds; unknown skips main",
+  "sourceGuardDropInCurrentGeneration": "loaded after final start; direct pre-start check and isolated systemd condition tests passed"
+}

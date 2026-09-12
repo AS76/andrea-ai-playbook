@@ -1,0 +1,9 @@
+{
+  "utc": "2026-09-10T08:12:35Z",
+  "status": "PASS",
+  "bytes": 400701,
+  "sha256": "a0801902f482aaa416bb81408fdfecf92fb5ca2b528daeb9cad12142906bd866",
+  "object": "operational/2026-09-10/scout-v41-prechange.json.gpg",
+  "local_archive_created": false,
+  "verification": "producer exit, encryption exit, full remote SHA-256 readback"
+}
