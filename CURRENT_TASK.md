@@ -1,19 +1,21 @@
 # CURRENT TASK
 
-Request: recover OpenClaw after the 2026.9.4 update path left the Gateway starved and then failed; user explicitly authorized interruption of the still-running updater/diagnostic subtree and controlled recovery.
+Request: surgically refactor Cleo's orchestration layer so Cleo chooses among local work, existing specialists, bounded isolated temporary workers, limited parallel work, and independent verification while retaining final synthesis ownership.
 
 Overall status: REVIEW_REQUIRED
-ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: RUNTIME_RECOVERED_WITH_CONTAINMENT
+ChatGPT Review: NOT_STARTED
+Engineering acceptance: PASS — A-H complete, including F1 and F2
 
-Result: terminated only the authorized updater subtree, independently reproduced the starvation, ruled out SkillHub with an A/B run, and isolated the core skill watcher as the effective containment boundary. The persistent delta is only `skills.load.watch=false`; SkillHub is enabled.
+Scope: active Cleo workspace orchestration instructions and only the supported OpenClaw 2026.9.4 sub-agent controls required to bound Cleo's native spawning. No model, provider, credential, Telegram/channel, memory architecture, permanent-agent, package, or unrelated runtime changes.
 
-Recovery evidence: Gateway active/running on OpenClaw 2026.9.4 and Node 24.21.0; health 29 ms; event-loop utilization 0.04 and P99 23.2 ms; listener backlog zero; status reachable; Telegram 11/11 accounts OK; recovered-generation telemetry includes successful inbound processing and completed outbound delivery.
+Discovery: active agent id `cleo`; workspace `/root/.openclaw/workspace/main`; agent directory `/root/.openclaw/agents/cleo/agent`; active workspace bootstrap includes AGENTS.md, SOUL.md, USER.md, IDENTITY.md and runtime-selected memory/context. Existing policy duplicates delegation-first rules in AGENTS.md and SOUL.md, including an arbitrary two-tool cutoff. No configured Manager agent exists.
 
-Safety: encrypted configuration rollback streamed directly to S3 with full SHA-256 readback and no local archive. No Doctor fix, capability grant, unit reinstall, routing change, database mutation, or package operation was performed.
+Planned config delta: Cleo-specific `subagents.delegationMode=prefer`, add `cleo` to Cleo's existing specialist allowlist, set `maxConcurrent=3`, `maxChildrenPerAgent=3`, and `maxSpawnDepth=1`. Preserve model routing and all unrelated bytes.
 
-Operational tradeoff: automatic skill-directory watching is disabled. Restart or a supported manual refresh is required after deliberate skill changes until the upstream invalidation behavior is corrected.
+Rollback: S3 object `backups/openclaw/2026-09-16/cleo-orchestration-prechange-20260916T024218Z.tar.gpg`, SHA-256 `b661a5b66854c19c765784376b919f7a123eef5055c24793fe3a5347dc931db1`; restore only listed files after remote download/decryption, validate config, then restart only if the config restore requires runtime reload.
 
-Current handoff: `handoffs/2026-09-12_1310_openclaw-skill-watch-containment.md`.
+Current evidence: A-C passed again without regression. D proved two children overlapped and Cleo collected both before one synthesis. E proved adversarial independent verification. F1 proved isolated work and F2 proved a legitimate same-agent transcript fork. G proved bounded timeout fallback without retry storm. H proved delegated authority did not expand.
 
-Prior records remain preserved, including `handoffs/2026-09-12_1035_openclaw-2026-9-4-update-blocked.md` and `handoffs/2026-09-12_1033_openclaw-post-reboot-drain-recovery.md`.
+Handoff: `handoffs/2026-09-16_0330_cleo-bounded-orchestration-final.md`.
+
+Next action: independent ChatGPT evidence review. The workspace commit is intentionally withheld because the heavily dirty pre-existing tree prevents proving a complete task-only commit without absorbing unrelated user changes. Do not push.
