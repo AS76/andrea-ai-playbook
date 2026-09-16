@@ -1,21 +1,13 @@
 # CURRENT TASK
 
-Request: surgically refactor Cleo's orchestration layer so Cleo chooses among local work, existing specialists, bounded isolated temporary workers, limited parallel work, and independent verification while retaining final synthesis ownership.
-
+Request: remove Claude Code and OpenCode and their dedicated dependencies.
 Overall status: REVIEW_REQUIRED
-ChatGPT Review: NOT_STARTED
-Engineering acceptance: PASS — A-H complete, including F1 and F2
-
-Scope: active Cleo workspace orchestration instructions and only the supported OpenClaw 2026.9.4 sub-agent controls required to bound Cleo's native spawning. No model, provider, credential, Telegram/channel, memory architecture, permanent-agent, package, or unrelated runtime changes.
-
-Discovery: active agent id `cleo`; workspace `/root/.openclaw/workspace/main`; agent directory `/root/.openclaw/agents/cleo/agent`; active workspace bootstrap includes AGENTS.md, SOUL.md, USER.md, IDENTITY.md and runtime-selected memory/context. Existing policy duplicates delegation-first rules in AGENTS.md and SOUL.md, including an arbitrary two-tool cutoff. No configured Manager agent exists.
-
-Planned config delta: Cleo-specific `subagents.delegationMode=prefer`, add `cleo` to Cleo's existing specialist allowlist, set `maxConcurrent=3`, `maxChildrenPerAgent=3`, and `maxSpawnDepth=1`. Preserve model routing and all unrelated bytes.
-
-Rollback: S3 object `backups/openclaw/2026-09-16/cleo-orchestration-prechange-20260916T024218Z.tar.gpg`, SHA-256 `b661a5b66854c19c765784376b919f7a123eef5055c24793fe3a5347dc931db1`; restore only listed files after remote download/decryption, validate config, then restart only if the config restore requires runtime reload.
-
-Current evidence: A-C passed again without regression. D proved two children overlapped and Cleo collected both before one synthesis. E proved adversarial independent verification. F1 proved isolated work and F2 proved a legitimate same-agent transcript fork. G proved bounded timeout fallback without retry storm. H proved delegated authority did not expand.
-
-Handoff: `handoffs/2026-09-16_0330_cleo-bounded-orchestration-final.md`.
-
-Next action: independent ChatGPT evidence review. The workspace commit is intentionally withheld because the heavily dirty pre-existing tree prevents proving a complete task-only commit without absorbing unrelated user changes. Do not push.
+ChatGPT Review: PENDING_REVIEW
+Engineering acceptance: PASS
+Scope: standalone installations and app-specific configuration/data for root and codexuser.
+Initial state: neither CLI appeared on root PATH, but OpenCode had a standalone binary and Claude Code remained installed in codexuser's npm prefix. App-specific package trees and data directories remained.
+Change: after encrypted S3 rollback verification, removed the dedicated installs, Node package trees, app settings/data, and Claude Code desktop handler. Shared Claude SDK binaries bundled with the ClawMem MCP cache and active OpenClaw source checkout were preserved.
+Verification: exact removed paths absent; root and codexuser global npm inventories show neither package; root PATH resolves neither CLI; no matching CLI process found.
+Rollback: encrypted S3 object `maintenance/2026-09-16/claude-opencode-uninstall-20260916T1700Z.tar.gpg`; SHA-256 `c7e311020824c57bc4f6427198beb1b8f414ee4814ddc1bef622b92062016865`; full remote encrypted-object readback passed. Decryption and restore were not exercised.
+Handoff: `handoffs/2026-09-16_claude-opencode-cleanup.md`.
+Next action: independent ChatGPT evidence review.
