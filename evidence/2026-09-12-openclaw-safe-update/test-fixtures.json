@@ -1,0 +1,56 @@
+{
+  "source": "sanitized projections of mode-0600 production test outputs under /root/.openclaw/update-runs; no command in this remediation performed an update, Doctor fix, restart, backup, or topology change",
+  "tests": {
+    "lock_contention": {
+      "verified_again": "2026-09-12 UTC",
+      "method": "hold /run/lock/openclaw-safe-update.lock with flock, invoke --check latest",
+      "exit_code": 10,
+      "stdout_stderr": "PRECHECK_FAILED: another update owns /run/lock/openclaw-safe-update.lock",
+      "production_mutation": false
+    },
+    "insufficient_disk": {
+      "source_result": "/root/.openclaw/update-runs/20260912T065837Z-157658/result.json",
+      "exit_code": 10,
+      "update_result": "insufficient_disk",
+      "doctor_fix_executed": false,
+      "restart_result": "not_run",
+      "rollback_attempted": false,
+      "final_status": "PRECHECK_FAILED"
+    },
+    "no_update": {
+      "source_result": "/root/.openclaw/update-runs/20260912T070114Z-159144/result.json",
+      "target_fixture": "installed 2026.9.3",
+      "exit_code": 0,
+      "update_result": "no_newer_applicable_release",
+      "doctor_fix_executed": false,
+      "restart_result": "not_run",
+      "acceptance_result": "current_runtime_unchanged",
+      "rollback_attempted": false,
+      "final_status": "NO_UPDATE"
+    },
+    "manual_review_required": {
+      "source_result": "/root/.openclaw/update-runs/20260912T065913Z-157993/result.json",
+      "candidate": "2026.9.4",
+      "exit_code": 20,
+      "update_result": "blocked_before_update:official_updater_refused",
+      "doctor_fix_executed": false,
+      "restart_result": "not_run",
+      "acceptance_result": "current_runtime_unchanged",
+      "rollback_attempted": false,
+      "final_status": "MANUAL_REVIEW_REQUIRED"
+    },
+    "backup_only": {
+      "source_result": "/root/.openclaw/update-runs/20260912T065924Z-157991/result.json",
+      "source_backup_result": "/root/.openclaw/update-runs/20260912T065924Z-157991/backup-result.json",
+      "exit_code": 0,
+      "update_result": "backup_only",
+      "backup_object": "openclaw/recovery/safe-update-20260912T065924Z.tar.gz.gpg",
+      "remote_readback_sha256": "2ab456a504bec687261bfa64355687c59667640d41a236f9d420b33800340d65",
+      "local_archive_created": false,
+      "doctor_fix_executed": false,
+      "restart_result": "not_run",
+      "rollback_attempted": false,
+      "final_status": "SUCCESS"
+    }
+  }
+}

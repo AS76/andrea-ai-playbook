@@ -1,0 +1,11 @@
+{
+  "gatewayReadyUtc": "2026-09-10T08:39:14.069Z",
+  "pid": 2568885,
+  "healthRpc": {
+    "ok": true,
+    "durationMs": 86
+  },
+  "llmInferencePerformed": false,
+  "rollbackSelectionEvidence": "rollback-selection.json",
+  "limitation": "Existing sessions, Telegram delivery and fallback failover not tested."
+}

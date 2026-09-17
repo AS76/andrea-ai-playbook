@@ -1,0 +1,13 @@
+{
+  "scout": {
+    "primary": "openrouter/deepseek/deepseek-v4-pro-0813",
+    "fallbacks": [
+      "openrouter/google/gemini-3.8-flash",
+      "openrouter/anthropic/claude-sonnet-5"
+    ]
+  },
+  "thinkingDefault": "high",
+  "v41ProviderEntryPresent": false,
+  "v41AllowlistPresent": false,
+  "v41ModelsEntryPresent": false
+}

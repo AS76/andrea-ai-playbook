@@ -1,0 +1,22 @@
+--- a/dist/model-auth-provider-config-6b_JxQon.js
++++ b/dist/model-auth-provider-config-6b_JxQon.js
+@@
++const providerRuntimeSnapshotMatchCache = /* @__PURE__ */ new WeakMap();
+ function providerConfigMatchesRuntimeSnapshot(params) {
++  if (!params.inputConfig || !params.runtimeConfig) return false;
++  const cachedByRuntimeConfig = providerRuntimeSnapshotMatchCache.get(params.inputConfig);
++  const cachedByProvider = cachedByRuntimeConfig?.get(params.runtimeConfig);
++  if (cachedByProvider?.has(params.provider)) return cachedByProvider.get(params.provider);
+   const inputProvider = resolveProviderConfig(params.inputConfig, params.provider);
+   const runtimeProvider = resolveProviderConfig(params.runtimeConfig ?? void 0, params.provider);
+   if (!inputProvider || !runtimeProvider) return false;
+   const toComparableConfig = (providerConfig) => ({ models: { providers: { [params.provider]: providerConfig } } });
+-  return hashRuntimeConfigValue(toComparableConfig(inputProvider)) === hashRuntimeConfigValue(toComparableConfig(runtimeProvider));
++  const matches = hashRuntimeConfigValue(toComparableConfig(inputProvider)) === hashRuntimeConfigValue(toComparableConfig(runtimeProvider));
++  const nextByRuntimeConfig = cachedByRuntimeConfig ?? /* @__PURE__ */ new WeakMap();
++  if (!cachedByRuntimeConfig) providerRuntimeSnapshotMatchCache.set(params.inputConfig, nextByRuntimeConfig);
++  const nextByProvider = cachedByProvider ?? /* @__PURE__ */ new Map();
++  if (!cachedByProvider) nextByRuntimeConfig.set(params.runtimeConfig, nextByProvider);
++  nextByProvider.set(params.provider, matches);
++  return matches;
+ }

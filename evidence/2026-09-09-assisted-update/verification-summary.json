@@ -1,0 +1,93 @@
+{
+  "timestamp": "2026-09-09T05:27:58.951243+00:00",
+  "coreVersion": "2026.9.3",
+  "nodeVersion": "24.21.0",
+  "service": {
+    "pid": 1987594,
+    "active": true,
+    "NRestarts": 0,
+    "loopbackOnly": true,
+    "recvQ": 0,
+    "readyAt": "2026-09-09T05:26:15.961Z"
+  },
+  "config": {
+    "exactAuthorizedSemanticDelta": true,
+    "changes": {
+      "agents.defaults.userTimezone": "Europe/Rome",
+      "plugins.entries.time-inject.enabled": false
+    },
+    "newHookConsentGranted": false,
+    "cliNormalizationRevertedBeforeRestart": true,
+    "routingUnchanged": true
+  },
+  "healthRpcOk": true,
+  "telegram": {
+    "accounts": 12,
+    "running": 12,
+    "accountsWithError": [
+      "findmy"
+    ],
+    "deliveryTested": false,
+    "findmyConflictPresentBeforeUpdate": true
+  },
+  "plugins": {
+    "loaded": 46,
+    "disabled": 30,
+    "errors": 0,
+    "timeInjectDisabled": true
+  },
+  "agentTest": {
+    "status": "ok",
+    "payloads": [
+      {
+        "text": "NATIVE_TIME_OK \u2014 Europe/Rome \u2014 7:26 AM",
+        "mediaUrl": null
+      }
+    ],
+    "toolSummary": {
+      "calls": 3,
+      "tools": [
+        "tool_search",
+        "session_status",
+        "tool_call"
+      ],
+      "failures": 0
+    },
+    "executionTrace": {
+      "winnerProvider": "openrouter",
+      "winnerModel": "openrouter/auto",
+      "attempts": [
+        {
+          "provider": "openrouter",
+          "model": "openrouter/auto",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "channelDelivery": false
+  },
+  "startupLimitations": {
+    "earlyHealthRpcTimeoutMs": 10000,
+    "earlyHttpTimeoutSeconds": 5,
+    "subsequentHttpSuccess": 10,
+    "processStartUtc": "2026-09-09T05:24:54Z",
+    "listenerUtc": "2026-09-09T05:25:19.012Z",
+    "approxProcessToReadySeconds": 82,
+    "approxListenerToReadySeconds": 57,
+    "residualBlockingOwner": "NOT_PROVEN",
+    "upstreamIssue136035State": "OPEN",
+    "upstreamCheckedDate": "2026-09-09"
+  },
+  "overallAcceptance": "PARTIAL",
+  "remaining": [
+    "context-vault typed hook compatibility and conversation consent",
+    "preexisting findmy polling conflict",
+    "preexisting plaintext configuration warning",
+    "preserved legacy skill backups",
+    "startup responsiveness",
+    "runtime-only downgrade blocked by schema migration"
+  ]
+}

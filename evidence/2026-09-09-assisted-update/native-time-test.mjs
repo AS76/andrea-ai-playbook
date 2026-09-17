@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { t as section, o as timezone, r as dateStamp } from '/opt/openclaw-2026.9.3/lib/node_modules/openclaw/dist/date-time-v78lkuND.mjs';
+import { t as refresh } from '/opt/openclaw-2026.9.3/lib/node_modules/openclaw/dist/current-time-DwdOCfPV.mjs';
+const cfg=JSON.parse(fs.readFileSync('/root/.openclaw/openclaw.json','utf8'));
+assert.equal(cfg.plugins.entries['time-inject'].enabled,false);
+assert.equal(timezone(cfg.agents.defaults.userTimezone),'Europe/Rome');
+assert.equal(dateStamp(Date.parse('2026-09-09T22:30:00Z'),'Europe/Rome'),'2026-09-10');
+const prompt=section({userDate:'2026-09-10',userTimezone:'Europe/Rome',sessionStatusAvailable:true}).join('\n');
+assert(prompt.includes('Time zone: Europe/Rome'));assert(prompt.includes('session_status'));
+const old=refresh('Synthetic heartbeat',cfg,Date.parse('2026-09-09T05:00:00Z'));
+const fresh=refresh(old,cfg,Date.parse('2026-09-09T05:30:00Z'));
+assert(fresh.includes('Europe/Rome'));assert(fresh.includes('05:30 UTC'));assert(!fresh.includes('05:00 UTC'));
+assert.equal((fresh.match(/Current time:/g)||[]).length,1);
+console.log(JSON.stringify({status:'PASS',checks:['time-inject disabled','native Europe/Rome','local date rollover','session_status instruction','heartbeat/cron stale time refreshed without duplication'],source:'actual installed 2026.9.3 functions'},null,2));

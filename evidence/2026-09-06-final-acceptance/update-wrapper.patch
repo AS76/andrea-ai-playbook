@@ -1,0 +1,14 @@
+--- openclaw-safe-update.sh.before
++++ openclaw-safe-update.sh
+@@ -171,0 +172,11 @@
++# Read-only post-update source acceptance. Unknown source must be reviewed first.
++set +e
++python3 /root/.openclaw/scripts/openclaw-provider-mitigation-check.py >"$RUN_DIR/provider-mitigation-check.json" 2>&1
++MITIGATION_RC=$?
++set -e
++printf 'provider_mitigation_check_exit_code=%s\n' "$MITIGATION_RC" >>"$RUN_DIR/result.env"
++if [[ $MITIGATION_RC -ne 0 ]]; then
++  printf 'FAIL: provider mitigation missing or upstream source changed; inspect %s. No patch applied.\n' "$RUN_DIR/provider-mitigation-check.json" >&2
++  exit 1
++fi
++

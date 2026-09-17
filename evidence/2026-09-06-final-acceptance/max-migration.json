@@ -1,0 +1,14 @@
+{
+  "workspace_tools_before": "/root/.openclaw/workspace/max/TOOLS.md",
+  "target_before": "/root/.openclaw/agents/max/TOOLS.md",
+  "canonical_after": "/root/.openclaw/agents/max/AGENTS.md",
+  "workspace_agents_alias_preserved": true,
+  "legacy_workspace_entry": "archived intact",
+  "legacy_agent_tools": "symlink to AGENTS.md, no duplicate content",
+  "original_notes_preserved_once": true,
+  "broken_symlink": false,
+  "bytes_before_agents": 5299,
+  "bytes_before_tools": 2250,
+  "bytes_after_agents": 7612,
+  "single_tools_section": true
+}

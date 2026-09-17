@@ -1,0 +1,32 @@
+--- model-auth-provider-config-C_kr_q2g.js.original
++++ model-auth-provider-config-C_kr_q2g.js
+@@ -5 +5 @@
+-import { d as hashRuntimeConfigValue, l as getRuntimeConfigSourceSnapshot, o as getRuntimeConfigSnapshot } from "./runtime-snapshot-BaQikjTR.js";
++import { s as getRuntimeConfigSnapshotMetadata, d as hashRuntimeConfigValue, l as getRuntimeConfigSourceSnapshot, o as getRuntimeConfigSnapshot } from "./runtime-snapshot-BaQikjTR.js";
+@@ -326,0 +327,3 @@
++// Local post-update mitigation: published snapshot metadata invalidates the cache.
++let providerSnapshotMatchMetadata;
++let providerSnapshotMatches = new WeakMap();
+@@ -328,2 +331,13 @@
+-	const inputProvider = resolveProviderConfig(params.inputConfig, params.provider);
+-	const runtimeProvider = resolveProviderConfig(params.runtimeConfig ?? void 0, params.provider);
++	const metadata = getRuntimeConfigSnapshotMetadata();
++	if (metadata !== providerSnapshotMatchMetadata) {
++		providerSnapshotMatchMetadata = metadata;
++		providerSnapshotMatches = new WeakMap();
++	}
++	const inputConfig = params.inputConfig;
++	const runtimeConfig = params.runtimeConfig;
++	if (!inputConfig || !runtimeConfig) return false;
++	let runtimeMatches = providerSnapshotMatches.get(inputConfig);
++	let providerMatches = runtimeMatches?.get(runtimeConfig);
++	if (providerMatches?.has(params.provider)) return providerMatches.get(params.provider);
++	const inputProvider = resolveProviderConfig(inputConfig, params.provider);
++	const runtimeProvider = resolveProviderConfig(runtimeConfig, params.provider);
+@@ -332 +346,5 @@
+-	return hashRuntimeConfigValue(toComparableConfig(inputProvider)) === hashRuntimeConfigValue(toComparableConfig(runtimeProvider));
++	const matches = inputProvider === runtimeProvider || hashRuntimeConfigValue(toComparableConfig(inputProvider)) === hashRuntimeConfigValue(toComparableConfig(runtimeProvider));
++	if (!runtimeMatches) providerSnapshotMatches.set(inputConfig, runtimeMatches = new WeakMap());
++	if (!providerMatches) runtimeMatches.set(runtimeConfig, providerMatches = new Map());
++	providerMatches.set(params.provider, matches);
++	return matches;

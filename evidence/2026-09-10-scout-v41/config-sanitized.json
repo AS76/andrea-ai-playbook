@@ -1,0 +1,46 @@
+{
+  "version": "2026.9.3",
+  "scout": {
+    "primary": "openrouter/deepseek/deepseek-v4.1-flash",
+    "fallbacks": [
+      "openrouter/google/gemini-3.8-flash",
+      "openrouter/anthropic/claude-sonnet-5"
+    ]
+  },
+  "thinkingDefault": "high",
+  "model": {
+    "id": "deepseek/deepseek-v4.1-flash",
+    "name": "DeepSeek: DeepSeek V4.1 Flash",
+    "reasoning": true,
+    "input": [
+      "text",
+      "image"
+    ],
+    "contextWindow": 1048576,
+    "maxTokens": 384000,
+    "cost": {
+      "input": 0.3,
+      "output": 1.2,
+      "cacheRead": 0.006,
+      "cacheWrite": 0
+    },
+    "api": "openai-completions",
+    "compat": {
+      "supportsTools": true,
+      "supportsTemperature": true,
+      "thinkingFormat": "openrouter",
+      "supportedReasoningEfforts": [
+        "max",
+        "high",
+        "low"
+      ]
+    },
+    "thinkingLevelMap": {
+      "low": "low",
+      "high": "high",
+      "max": "max"
+    }
+  },
+  "modelPolicyAddedExactRef": "openrouter/deepseek/deepseek-v4.1-flash",
+  "modelPolicyContainsNewRef": true
+}

@@ -1,0 +1,6 @@
+[Service]
+ExecStart=
+ExecStart=/opt/node-v24.21.0-linux-x64/bin/node --max-old-space-size=3970 /opt/openclaw-2026.9.3/lib/node_modules/openclaw/dist/index.js gateway --port 18789
+ExecCondition=
+ExecCondition=/usr/bin/python3 /root/.openclaw/scripts/openclaw-isolated-source-check.py
+Environment="PATH=/opt/node-v24.21.0-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"

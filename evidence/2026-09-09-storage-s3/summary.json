@@ -1,0 +1,134 @@
+{
+  "utc": "2026-09-09T07:04:13Z",
+  "groups": [
+    {
+      "group": "abandoned-bridge",
+      "cipher_bytes": 4917414,
+      "cipher_sha256": "462c26577d732467f85c86fec54a437d4ac25175b68f260a2260216a87804f16",
+      "entries": 1156,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "build-caches",
+      "cipher_bytes": 124472174,
+      "cipher_sha256": "5e42cee9a930a3351a24fc9b0152aee4b3973999fff52f5670091a0c2dadd581",
+      "entries": 11648,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "configuration-history",
+      "cipher_bytes": 3172991,
+      "cipher_sha256": "a82f2df8f2740d8094519c07a459f403eaafd370124c7a0d9065e2f41679e04e",
+      "entries": 255,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "desktop-trash",
+      "cipher_bytes": 758547537,
+      "cipher_sha256": "1926973f04b6a23abe44566cd73a75bb5f52f3624cd2b76ef708177edbec33c3",
+      "entries": 49521,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "drive-downloads",
+      "cipher_bytes": 2204668913,
+      "cipher_sha256": "cf11aff51fe07c0dff2765fabf5ed4fd486cb8777871497c53d56a166c7ed037",
+      "entries": 564,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "historical-backups",
+      "cipher_bytes": 249459379,
+      "cipher_sha256": "122a044dd286ef3302d9b4986c1d28e3c9fe1d41c6f193c68e2aed5f64d352d3",
+      "entries": 1620,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "installed-runtime-downloads",
+      "cipher_bytes": 92341212,
+      "cipher_sha256": "d1ef291eae7eb89ec493a96099420a8685d475b2a32da0edb5a0ad8e071c07d0",
+      "entries": 2,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "nightly-plaintext",
+      "cipher_bytes": 2270545238,
+      "cipher_sha256": "507a8bd39dfb2121ee42eb7e0374f3f344cf76a9936f5e346aa3b90475d8df15",
+      "entries": 7,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "npm-cache",
+      "cipher_bytes": 513575546,
+      "cipher_sha256": "71818b878b11e2d5c3dd2d471fe00fd132e1744aa08c9ccaaf2548f4b1ce54ad",
+      "entries": 10038,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "old-update-runs",
+      "cipher_bytes": 51564925,
+      "cipher_sha256": "6b68685116d99eb1b79dc607ef0e0fc74d581b1b683b99974843be5becdc8fc2",
+      "entries": 100,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "openclaw-backups",
+      "cipher_bytes": 330704055,
+      "cipher_sha256": "592aba1cca8e4fa3e0875ebaea607f9cf9138533d0e6a3e28eb303816d48573c",
+      "entries": 583,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "package-backup-history",
+      "cipher_bytes": 2910992,
+      "cipher_sha256": "c5cfa287243ffe68a628d52244b81420a5f118e2e4a2ffaab9a19f1c871b5443",
+      "entries": 42,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "preupdate-state",
+      "cipher_bytes": 5732263758,
+      "cipher_sha256": "48cc794bb6062fe69adee3a9aa20ca4dff0dbc2d1cafbbd611eb919e6107e972",
+      "entries": 1,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    },
+    {
+      "group": "retired-archives",
+      "cipher_bytes": 11717616,
+      "cipher_sha256": "42909ab3bae8c95e94dee75748143aea414de9de0fa79d339613acaf770a781c",
+      "entries": 523,
+      "source_removal": "DONE",
+      "verified": "full remote ciphertext hash, successful decryption, tar compare against every source entry"
+    }
+  ],
+  "archive_group_count": 14,
+  "existing_encrypted_backups_moved": 3,
+  "encrypted_group_bytes": 12350861750,
+  "df": "Filesystem        1B-blocks        Used   Available Use% Mounted on\n/dev/sda1      102888095744 63492341760 39378976768  62% /\n",
+  "local_staging_archives": 0,
+  "local_nightly_archives": 0,
+  "gateway_pid": 1987594,
+  "hermes_pid": 1867482,
+  "gateway_http": "PASS",
+  "gateway_rpc": "PASS",
+  "plugins_loaded": 46,
+  "plugin_load_errors": 0,
+  "clawmem_rest": "PASS",
+  "findmy": "preexisting intermittent conflict not remediated",
+  "packages_removed": [],
+  "service_restarts": [],
+  "manager_daemon_reload": true
+}

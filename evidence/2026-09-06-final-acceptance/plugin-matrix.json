@@ -1,0 +1,293 @@
+[
+  {
+    "id": "brave",
+    "package": "@openclaw/brave-plugin",
+    "before": "2026.9.1",
+    "candidate": "2026.9.2",
+    "final": "2026.9.2",
+    "configuredDependencyPin": "2026.9.2",
+    "enabled": true,
+    "status": "loaded",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [
+      "icon"
+    ],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Updated: unchanged capability contracts and configSchema; manifest catalog/icon/help deltas inspected; native install safety gate passed without capability acceptance.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "codex",
+    "package": "@openclaw/codex",
+    "before": "2026.9.2",
+    "candidate": "2026.9.2",
+    "final": "2026.9.2",
+    "configuredDependencyPin": "2026.9.2",
+    "enabled": true,
+    "status": "loaded",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Already 2026.9.2; manifest identical to registry release.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "deepseek",
+    "package": "@openclaw/deepseek-provider",
+    "before": "2026.9.1",
+    "candidate": "2026.9.2",
+    "final": "2026.9.2",
+    "configuredDependencyPin": "2026.9.2",
+    "enabled": true,
+    "status": "loaded",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [
+      "modelCatalog",
+      "providerCatalogEntry",
+      "icon"
+    ],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Updated: unchanged capability contracts and configSchema; manifest catalog/icon/help deltas inspected; native install safety gate passed without capability acceptance.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "discord",
+    "package": "@openclaw/discord",
+    "before": "2026.5.27",
+    "candidate": "2026.9.2",
+    "final": "2026.5.27",
+    "configuredDependencyPin": "2026.5.27",
+    "enabled": false,
+    "status": "disabled",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [
+      "doctorContract",
+      "skills",
+      "channelConfigs",
+      "channelEnvVars"
+    ],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Retained disabled legacy install: 2026.9.2 changes channel schema and adds transcript capability and channel behavior changes; no configured active account requires migration.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "lobster",
+    "package": "@openclaw/lobster",
+    "before": "2026.9.1",
+    "candidate": "2026.9.2",
+    "final": "2026.9.2",
+    "configuredDependencyPin": "2026.9.2",
+    "enabled": true,
+    "status": "loaded",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Updated: unchanged capability contracts and configSchema; manifest catalog/icon/help deltas inspected; native install safety gate passed without capability acceptance.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "mistral",
+    "package": "@openclaw/mistral-provider",
+    "before": "2026.9.1",
+    "candidate": "2026.9.2",
+    "final": "2026.9.2",
+    "configuredDependencyPin": "2026.9.2",
+    "enabled": true,
+    "status": "loaded",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [
+      "modelCatalog",
+      "capabilityCatalogEntry",
+      "icon"
+    ],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Updated: unchanged capability contracts and configSchema; manifest catalog/icon/help deltas inspected; native install safety gate passed without capability acceptance.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "moonshot",
+    "package": "@openclaw/moonshot-provider",
+    "before": "2026.9.1",
+    "candidate": "2026.9.2",
+    "final": "2026.9.2",
+    "configuredDependencyPin": "2026.9.2",
+    "enabled": true,
+    "status": "loaded",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [
+      "providerCatalogEntry",
+      "modelCatalog"
+    ],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Updated: unchanged capability contracts and configSchema; manifest catalog/icon/help deltas inspected; native install safety gate passed without capability acceptance.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "perplexity",
+    "package": "@openclaw/perplexity-plugin",
+    "before": "2026.9.1",
+    "candidate": "2026.9.2",
+    "final": "2026.9.2",
+    "configuredDependencyPin": "2026.9.2",
+    "enabled": true,
+    "status": "loaded",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [
+      "icon"
+    ],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Updated: unchanged capability contracts and configSchema; manifest catalog/icon/help deltas inspected; native install safety gate passed without capability acceptance.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "slack",
+    "package": "@openclaw/slack",
+    "before": "2026.9.1",
+    "candidate": "2026.9.2",
+    "final": "2026.9.2",
+    "configuredDependencyPin": "2026.9.2",
+    "enabled": true,
+    "status": "loaded",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [
+      "channelConfigs"
+    ],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Updated: unchanged capability contracts and configSchema; manifest catalog/icon/help deltas inspected; native install safety gate passed without capability acceptance.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "voyage",
+    "package": "@openclaw/voyage-provider",
+    "before": "2026.9.1",
+    "candidate": "2026.9.2",
+    "final": "2026.9.2",
+    "configuredDependencyPin": "2026.9.2",
+    "enabled": true,
+    "status": "loaded",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [],
+    "contractsUnchanged": true,
+    "configSchemaUnchanged": true,
+    "decision": "Updated: unchanged capability contracts and configSchema; manifest catalog/icon/help deltas inspected; native install safety gate passed without capability acceptance.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  },
+  {
+    "id": "whatsapp",
+    "package": "@openclaw/whatsapp",
+    "before": "2026.5.27",
+    "candidate": "2026.9.2",
+    "final": "2026.5.27",
+    "configuredDependencyPin": "2026.5.27",
+    "enabled": false,
+    "status": "disabled",
+    "trustedOfficialInstall": true,
+    "manifestChangedKeys": [
+      "skills",
+      "contracts",
+      "doctorContract",
+      "channelConfigs"
+    ],
+    "contractsUnchanged": false,
+    "configSchemaUnchanged": true,
+    "decision": "Retained disabled legacy install: 2026.9.2 changes channel schema and adds WhatsApp tools and state migration contract.",
+    "registryIntegrityVerified": true,
+    "officialRepository": {
+      "url": "git+https://github.com/openclaw/openclaw.git",
+      "type": "git"
+    },
+    "candidateEngines": null,
+    "candidatePeerDependencies": {
+      "openclaw": ">=2026.9.2"
+    }
+  }
+]

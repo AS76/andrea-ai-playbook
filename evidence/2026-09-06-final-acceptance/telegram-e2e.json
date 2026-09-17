@@ -1,0 +1,23 @@
+{
+  "type": "active isolated agent E2E after final restart",
+  "status": "ok",
+  "markerMatched": true,
+  "deliverySucceeded": true,
+  "deliveryStatus": {
+    "requested": true,
+    "attempted": true,
+    "status": "sent",
+    "succeeded": true,
+    "resultCount": 1,
+    "payloadOutcomes": [
+      {
+        "index": 0,
+        "status": "sent",
+        "resultCount": 1
+      }
+    ]
+  },
+  "provider": "openrouter",
+  "model": "openrouter/auto-beta",
+  "durationMs": 7331
+}

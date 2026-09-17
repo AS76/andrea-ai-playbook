@@ -1,0 +1,23 @@
+{
+  "observed_at": "2026-09-12 UTC",
+  "intentional_current_production_registry": true,
+  "meaning": "the effective production registry used for this acceptance, not a claim that the broader workspace catalog contains only eight named roles",
+  "source": "/root/.openclaw/openclaw.json .agents.entries",
+  "entry_type": "object",
+  "count_expression": "(.agents.entries | keys | length)",
+  "ids_expression": "(.agents.entries | keys)",
+  "observed_count": 8,
+  "observed_ids": ["atlas", "cleo", "lex", "max", "pixel", "scout", "scribe", "visa"],
+  "stable_comparison": {
+    "2026-09-09_pre_update_snapshot": ["atlas", "cleo", "lex", "max", "pixel", "scout", "scribe", "visa"],
+    "2026-09-11_pre_mcp_change_snapshot": ["atlas", "cleo", "lex", "max", "pixel", "scout", "scribe", "visa"],
+    "2026-09-12_current": ["atlas", "cleo", "lex", "max", "pixel", "scout", "scribe", "visa"]
+  },
+  "acceptance_contract": {
+    "hard_coded_agent_count": false,
+    "baseline_source": "capture keys(.agents.entries) before a future mutation",
+    "post_update_rule": "compare the post-update key set with the captured pre-update key set; derive counts from both sets",
+    "current_eight_is_evidence_not_constant": true
+  },
+  "topology_changed_by_this_task": false
+}

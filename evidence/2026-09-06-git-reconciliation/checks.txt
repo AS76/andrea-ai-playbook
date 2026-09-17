@@ -1,0 +1,21 @@
+$ python3 tools/codex-handoff verify
+PASS structure=8 required-files handoffs=12 secret-findings=0
+
+$ python3 tools/codex-handoff secret-scan
+PASS secret-findings=0
+
+$ python3 tools/codex-handoff state-test
+PASS state-path=approval transitions=4
+PASS state-path=remediation transitions=3
+PASS state-path=evidence transitions=3
+PASS illegal-transition-rejected=RUNNING->COMPLETE
+
+$ python3 tools/codex-handoff review-latest
+PASS review=reviews/2026-09-06_0541_openclaw-acceptance.md pr=1 commit=47fb3826c21f22d4c69d0fc2a3ad53acfb1e1d1e verdict=APPROVED_WITH_NOTES
+
+$ python3 tools/codex-handoff policy-check
+PASS persistent-policy=/root/AGENTS.md markers=7
+
+$ git diff --check
+
+$ git diff --cached --check

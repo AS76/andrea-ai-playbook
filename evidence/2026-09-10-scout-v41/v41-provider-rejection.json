@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "runId": "bccfede9-074d-4871-bf9d-8f16501b8008",
+  "origin": "gateway",
+  "error": {
+    "type": "cli_error",
+    "message": "The selected model was not found by the provider. Check the model id or choose a different model."
+  }
+}

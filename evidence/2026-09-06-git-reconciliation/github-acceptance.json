@@ -1,0 +1,10 @@
+{
+  "reconciliation_commit": "c25282f97a6c1c5502c0228a0eaa347cdc5f227a",
+  "local_remote_pr_heads_equal": true,
+  "main_and_pr_base": "9d575348b80485647b6fc9a0369b3da9f4f3fa1b",
+  "pr": 1,
+  "state": "open",
+  "mergeable": true,
+  "mergeable_state": "clean",
+  "note": "Observed after normal merge push. Subsequent closure commit only records this result; its exact head and fresh mergeability are verified after its normal push and recorded in the PR description."
+}

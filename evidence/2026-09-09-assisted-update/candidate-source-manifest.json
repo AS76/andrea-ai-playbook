@@ -1,0 +1,10 @@
+{
+  "version": "2026.9.3",
+  "files": {
+    "/opt/openclaw-2026.9.3/lib/node_modules/openclaw/package.json": "226a35245ba5ba8b36ac707e68439eef62a9abb07a3234a154008d959976be7e",
+    "/opt/openclaw-2026.9.3/lib/node_modules/openclaw/dist/loader-runtime-load-BgaHcThS.mjs": "639e59eb638b543b91a7195b72ef4508f523c61f5568c4837b7a4ee08f7c6402",
+    "/opt/openclaw-2026.9.3/lib/node_modules/openclaw/dist/runtime-snapshot-DN09mLxf.mjs": "4b691074f7f51007d7883f6fbbe29885ed1b5a86e5a2e99ecabe60a6ee1f7ab0",
+    "/opt/openclaw-2026.9.3/lib/node_modules/openclaw/dist/worker/worker.mjs": "e634d82ddedba07571b503407cc375742e7c519f05f6f8f4da11004e1bd60e1c",
+    "/opt/node-v24.21.0-linux-x64/bin/node": "7fde7b8afa198da66257f42ee2001d874c7355631e6d1579a5fb5ef1f246df4c"
+  }
+}

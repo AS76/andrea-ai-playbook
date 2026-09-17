@@ -1,0 +1,12 @@
+{
+  "stage": "rollback offline resolver",
+  "configured": {
+    "provider": "openrouter",
+    "model": "deepseek/deepseek-v4-pro-0813"
+  },
+  "selected": {
+    "provider": "openrouter",
+    "model": "deepseek/deepseek-v4-pro-0813"
+  },
+  "networkInference": false
+}
