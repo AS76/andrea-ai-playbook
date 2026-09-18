@@ -1,16 +1,15 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-17
-Current task: OpenClaw 48h context and latency forensic audit
+Last update: 2026-09-18
+Current task: Cleo to Hermes relational refinement 1, PR #5
 Overall status: REVIEW_REQUIRED
 ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: PASS — retrospective dataset, report, evidence manifest and privacy checks completed
-Runtime: OpenClaw 2026.9.4 Gateway identified; no production change applied
-Reviewed Commit: codex/handoff-ledger
+Engineering acceptance: STATIC_CANDIDATE_ONLY; behavioral and live reliability acceptance UNVERIFIED
+Runtime: Hermes v0.21.3 default gateway unchanged; candidate profile not installed or tested
+Reviewed Commit: codex/cleo-hermes-candidate-20260918 (review target, not yet reviewed)
 Closure Commit: none for current task
-Current Commit: codex/handoff-ledger
-Branch: codex/handoff-ledger
+Current Commit: codex/cleo-hermes-candidate-20260918 (review target, not yet reviewed)
+Branch: codex/cleo-hermes-candidate-20260918
 
-Current objective: independent review of sanitized 48-hour findings and their evidence limits. No remediation authorized or applied.
-
-Safety state: OpenClaw read only throughout. Primary ledger checkout retained its unrelated uncommitted context-remediation files; this audit was isolated in a linked Git worktree. No polling, telemetry, process, session, memory or configuration changes.
+Current objective: independent review of one sanitized relational refinement before any Hermes profile mutation.
+Safety state: default Hermes, OpenClaw, models, services, cron and memory files unchanged; private transcript evidence stayed local.
