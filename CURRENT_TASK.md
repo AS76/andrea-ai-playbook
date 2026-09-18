@@ -1,21 +1,19 @@
 # CURRENT TASK
 
-Request: surgically refactor Cleo's orchestration layer so Cleo chooses among local work, existing specialists, bounded isolated temporary workers, limited parallel work, and independent verification while retaining final synthesis ownership.
+Request: diagnose and repair the local OpenClaw 2026.9.4 failed update while preserving configuration, history, databases, and later operator stops.
 
 Overall status: REVIEW_REQUIRED
-ChatGPT Review: NOT_STARTED
-Engineering acceptance: PASS — A-H complete, including F1 and F2
+ChatGPT Review: PENDING_REVIEW
+Engineering acceptance: PARTIAL
 
-Scope: active Cleo workspace orchestration instructions and only the supported OpenClaw 2026.9.4 sub-agent controls required to bound Cleo's native spawning. No model, provider, credential, Telegram/channel, memory architecture, permanent-agent, package, or unrelated runtime changes.
+Scope: update admission and finalization, Doctor diagnostics, config and database rollback, Gateway service state and health.
 
-Discovery: active agent id `cleo`; workspace `/root/.openclaw/workspace/main`; agent directory `/root/.openclaw/agents/cleo/agent`; active workspace bootstrap includes AGENTS.md, SOUL.md, USER.md, IDENTITY.md and runtime-selected memory/context. Existing policy duplicates delegation-first rules in AGENTS.md and SOUL.md, including an arbitrary two-tool cutoff. No configured Manager agent exists.
+Baseline: failed update run recorded package-manager owner unknown with no package changes; CLI version 2026.9.4; Gateway explicitly stopped at 09:39:45 UTC before the failed update. Initial health returned ECONNREFUSED.
 
-Planned config delta: Cleo-specific `subagents.delegationMode=prefer`, add `cleo` to Cleo's existing specialist allowlist, set `maxConcurrent=3`, `maxChildrenPerAgent=3`, and `maxSpawnDepth=1`. Preserve model routing and all unrelated bytes.
+Change: streamed encrypted S3 rollback copy, then ran `openclaw update repair --json`. It completed full finalization with warnings and `restart: false`. The internal Doctor repair left the stopped Gateway unchanged. Current config matches the local pre-update copy byte for byte.
 
-Rollback: S3 object `backups/openclaw/2026-09-16/cleo-orchestration-prechange-20260916T024218Z.tar.gpg`, SHA-256 `b661a5b66854c19c765784376b919f7a123eef5055c24793fe3a5347dc931db1`; restore only listed files after remote download/decryption, validate config, then restart only if the config restore requires runtime reload.
+Verification: `openclaw update status --json` reports npm ownership and a succeeded repair run; `openclaw config validate` passes; `openclaw status --all` reports 2026.9.4 up to date and Gateway unreachable; systemd confirms inactive since the original stop. Running Gateway health and RPC were not verifiable.
 
-Current evidence: A-C passed again without regression. D proved two children overlapped and Cleo collected both before one synthesis. E proved adversarial independent verification. F1 proved isolated work and F2 proved a legitimate same-agent transcript fork. G proved bounded timeout fallback without retry storm. H proved delegated authority did not expand.
+Remaining work: an independent operator must decide when to resume the previously stopped Gateway and then run `openclaw health --json` plus `openclaw status --all` or `openclaw gateway status --deep` against that runtime. Review preserved legacy Skill Workshop backup ownership and plugin finalization warnings separately.
 
-Handoff: `handoffs/2026-09-16_0330_cleo-bounded-orchestration-final.md`.
-
-Next action: independent ChatGPT evidence review. The workspace commit is intentionally withheld because the heavily dirty pre-existing tree prevents proving a complete task-only commit without absorbing unrelated user changes. Do not push.
+Handoff: `handoffs/2026-09-18_openclaw-update-refusal-repair.md`.
