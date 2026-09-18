@@ -12,3 +12,7 @@ Baseline SHA-256, read only:
 | memories/MEMORY.md | `e091d4b81d2707909f9bc09d1ba741b741d17c0c78966da11bab73ff6199a22e` |
 
 Official docs checked 2026-09-18 against installed source at `e83b1d51`. Firecrawl CLI was unavailable; official Hermes site and NousResearch repository were checked through web research and the installed docs/source tree.
+
+## Relational refinement 1 — 2026-09-18
+
+Reviewed a bounded local relational sample, including a short social check-in, explicit positive feedback after continuity, a partly positive writing revision, open thinking, frustration, and correction. Added a private local evidence index; no raw conversation was copied to the shareable files. Replaced rather than appended SOUL language: 1,743 → 1,569 characters. USER seed: 493 → 544 characters. Revised behavioral profile and acceptance suite; added relational liveness review and diff rationale. No model, profile, gateway, memory, OpenClaw, or service mutation. This is the single authorized refinement pass.

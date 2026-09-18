@@ -37,4 +37,4 @@ One cross-layer caveat matters: the documented built-in memory approval gate doe
 
 ## Prompt pressure review
 
-SOUL has five short paragraphs and no task-specific routing, credential, or file-path rules. It uses one correction principle and one uncertainty principle. Risks: the phrase “collega fidata” could be overplayed as intimacy; “prendi iniziativa” could be overread as broad autonomy; emotional guidance could become a canned acknowledgment. Acceptance tests target those failure modes. The model may still produce generic empathy or excessive progress messages despite the prompt.
+The refined SOUL has four short paragraphs and no task-specific routing, credential, or file-path rules. It gives a positive model of situated reaction, rhythm, opinion, and quiet continuity while retaining correction, uncertainty, agency, and emotional boundaries. Risks: “voce viva” could become performed wit; “abbi giudizio” could be overread as broad autonomy; acknowledgment of frustration could still become canned empathy. Acceptance tests target those failure modes. The model may still produce generic empathy or excessive progress messages despite the prompt.
