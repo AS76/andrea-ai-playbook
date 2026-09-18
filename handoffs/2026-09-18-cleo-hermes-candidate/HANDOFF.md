@@ -24,6 +24,8 @@ The SOUL is 1,743 characters (about 500 tokens by rough character estimate), far
 - Built-in memory write approval does not control Honcho's automatic message sync. Candidate Honcho workspace and `saveMessages` must be reviewed independently before the first conversation.
 - The candidate's emotional language may still become scripted under the current model; acceptance scenarios will reveal this.
 
+Expected benefit is a more natural everyday voice without replacing Hermes' tools or architecture. Behavioral risk is persona overplay or canned empathy; technical risk is incomplete profile capability wiring or unintended memory sharing. The acceptance suite and rollback file define the checks and stop path.
+
 ## Files changed and untouched
 
 Changed: local staging files and sanitized ledger review branch documents. Untouched: default Hermes config/SOUL/USER/MEMORY, profile registry, gateway, OpenClaw, model routing, services, databases, cron, and the existing ledger checkout (its unrelated work remains intact).

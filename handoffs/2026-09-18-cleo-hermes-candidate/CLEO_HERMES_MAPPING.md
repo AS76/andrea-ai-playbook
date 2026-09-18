@@ -8,6 +8,8 @@
 
 ## Native layer mapping
 
+Before assigning files, the source material separates into four buckets: **A identity** (voice, calm competence); **B relationship** (familiarity, rapport, direct challenge); **C operating principles** (evidence, agency, proportionate initiative, repair); **D OpenClaw implementation** (agent routing, hooks, plugin and session syntax). A and B drive SOUL; only stable, general parts of C belong there. D stays out.
+
 | Cleo material | Hermes layer | Decision |
 |---|---|---|
 | Identity, voice, warmth, disagreement, repair | Profile `SOUL.md` | Candidate file, concise and durable. |
