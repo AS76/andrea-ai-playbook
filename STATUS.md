@@ -1,16 +1,16 @@
 # SYSTEM STATUS
 
 Last update: 2026-09-18
-Current task: PR #3 reconciliation, Jev disable, controlled Gateway and Telegram acceptance, plugin inventory
+Current task: bounded Jev plugin and Showly MCP removal
 Overall status: REVIEW_REQUIRED
-ChatGPT Review: PENDING_REVIEW for this continuation
+ChatGPT Review: PENDING_REVIEW for this removal continuation
 Engineering acceptance: PARTIAL / DEGRADED
-Runtime: OpenClaw 2026.9.4 Gateway active after one controlled restart; Jev installed but disabled; 72/72 health RPCs passed over 18 minutes and Telegram E2E delivery passed. Three transient event-loop degradations occurred; the Scout agent cron succeeded after 290.5 seconds, about ten times its recent duration.
+Runtime: OpenClaw 2026.9.4 Gateway active after one controlled restart; Jev plugin and Showly MCP removed. Bounded post-ready observation: 48/48 RPCs passed, no event-loop degradation or plugin load errors; Telegram E2E passed. Scout cron succeeded in 78.284 seconds, improved from 290.528 but still above its prior 20–29 second range.
 Reviewed Commit: none for this continuation
 Closure Commit: none for this continuation
 Current Commit: codex/openclaw-update-refusal-20260918 (current PR head)
 Branch: codex/openclaw-update-refusal-20260918
 
-Current objective: independent review of the reconciled PR #3 and the Jev disable acceptance evidence. Further plugin removal remains deferred until event-loop stability and the prolonged Scout cron are understood.
+Current objective: independent review of the bounded Jev/Showly cleanup and its PARTIAL / DEGRADED acceptance. The Scout runtime and previously known unrelated integrations remain unresolved without expansion of this task.
 
-Safety state: encrypted Jev prepatch S3 rollback copy and its remote SHA-256 readback were verified in the prior session. No plugin removal or automatic repair of Composio, iDrive, Showly, context-vault, or other unrelated components is authorized. Historical failed gates remain preserved in their timestamped handoffs.
+Safety state: Jev and Showly are removed; the exact pre-removal config and Jev directory have a verified encrypted S3 rollback copy. No repair of Composio, iDrive, context-vault, or other unrelated components was attempted. Historical failed gates remain preserved in their timestamped handoffs.
