@@ -1,6 +1,6 @@
 # Jev disable, controlled observation, and plugin inventory — 2026-09-18
 
-Status: **PARTIAL / DEGRADED**. The planned health window ended; the Scout agent cron continued beyond it.
+Status: **PARTIAL / DEGRADED**. The planned health window and both real cron runs completed; agent-load event-loop stability remains unproven.
 
 ## Ledger reconciliation before production change
 
@@ -20,7 +20,7 @@ Status: **PARTIAL / DEGRADED**. The planned health window ended; the Scout agent
 - A Gateway-routed Cleo turn produced `E2E-OK-1150`, and the live Telegram transport logged `outbound send ok` to the established Andrea chat with message ID `64439`. A prior plain test message was accepted as message ID `64438`.
 - True Telegram inbound→agent→outbound was then observed twice. The polling worker received fresh update IDs `503142623` and `503142624`; Cleo's direct Telegram session gained corresponding user and assistant turns; the transport logged replies as message IDs `64441` and `64443` to the same chat. Andrea confirmed receiving the return message. This is **PASS** for the Telegram E2E transport/delivery path. The user supplied short markers rather than the full requested instruction, so exact-output instruction compliance was not measured.
 - The 15-second health monitor ran from 11:48:12 through 12:05:57 UTC: **72/72 RPCs passed**, with no timeouts, Jev loads, or live plugin errors. Three samples reported transient event-loop degradation at 11:53:58, 12:01:43, and 12:05:43 (`delayP99Ms=1414.5`, `747.6`, and `902.8`); the next sample recovered each time. The first two coincided with Telegram/Cleo traffic; the third occurred during the Scout agent cron. This does not establish Jev as the cause of earlier Gateway timeouts or prove sustained event-loop stability under agent load.
-- The real `sync-refresh-batch` Scout agent cron began at 12:04:24 UTC. RPCs passed during the monitor overlap. It remained in progress at 12:08 UTC, much longer than its previous ~20–29 second runs, and the journal recorded repeated model requests and slow SQLite lifecycle/reclamation operations. Its completion status is pending. The Gateway stayed active with PID `457327` and `NRestarts=0`.
+- The real `sync-refresh-batch` Scout agent cron began at 12:04:24 UTC and completed `ok`/`succeeded` after 290,528 ms, versus its preceding ~20–29 second runs. RPCs passed during monitor overlap. The journal recorded repeated model requests and slow SQLite lifecycle/reclamation operations. A post-completion RPC passed with event-loop `degraded=false`, `delayP99Ms=22.2`; Gateway stayed active with PID `457327` and `NRestarts=0`. The unusually long run and transient degradation still need causal investigation.
 
 ## Plugin inventory (live evidence, not just persisted registry labels)
 
@@ -49,13 +49,13 @@ The persisted registry discovers 81 plugins (`48 loaded`, `33 disabled` in the C
 | Showly 1500 ms tools listing timeout | [OpenClaw issue #137379](https://github.com/openclaw/openclaw/issues/137379) reports the same timeout text with a different large MCP server; it closed `not_planned`. | Our Showly probe passed once with 33 tools; exact Showly GitHub precedent was not found. No timeout/config change applied. |
 | Jev local SDK/build mismatch | No `jev-decision-gate` issue found in the OpenClaw repository search. | Local plugin is retained but disabled. No uninstall decision until runtime stability and feature need are evaluated. |
 
-No automatic repair or removal was attempted for Composio, iDrive e2, Showly, context-vault, or other components. The retention decision is **deferred**: keep Jev installed but disabled for rollback; keep currently loaded components and unresolved integrations unchanged while the Scout cron and event-loop behavior are investigated. No removal has enough stability or dependency evidence yet.
+No automatic repair or removal was attempted for Composio, iDrive e2, Showly, context-vault, or other components. The retention decision is **deferred**: keep Jev installed but disabled for rollback; keep currently loaded components and unresolved integrations unchanged while the prolonged Scout cron and event-loop behavior are investigated. No removal has enough stability or dependency evidence yet.
 
 ## Acceptance, rollback, and review request
 
-- **TEST_VERIFIED:** one-line config validation; Telegram inbound→Cleo→outbound delivery with user-confirmed receipt; existing command cron completion; 72/72 monitored health RPCs.
+- **TEST_VERIFIED:** one-line config validation; Telegram inbound→Cleo→outbound delivery with user-confirmed receipt; existing command and Scout agent cron completion; 72/72 monitored health RPCs.
 - **RUNTIME_VERIFIED:** Gateway remained active after exactly one controlled restart; Jev stayed installed and disabled; 16 other plugins loaded, with no live plugin error. Three monitored event-loop degradations recovered on the next sample.
-- **UNVERIFIED:** sustained event-loop stability under agent load, Scout cron completion and its output, exact-output Telegram instruction compliance, the root cause of the prior RPC timeouts, and feature-level health of every loaded plugin.
-- **Risk:** the ongoing Scout cron exceeded its recent duration and produced additional transient event-loop load. Do not treat the environment as fully stable or remove more plugins on this evidence.
+- **UNVERIFIED:** sustained event-loop stability under agent load, the Scout cron's downstream effects, exact-output Telegram instruction compliance, the root cause of the prior RPC timeouts, and feature-level health of every loaded plugin.
+- **Risk:** the Scout cron took roughly ten times its recent duration and produced additional transient event-loop load. Do not treat the environment as fully stable or remove more plugins on this evidence.
 - **Rollback:** the verified encrypted S3 pre-change config copy can restore Jev's prior enabled state, followed by config validation and a separately planned restart. Restore and decrypt were not exercised. No rollback is indicated while Gateway RPC and Telegram delivery continue to work.
 - **Review request:** assess the narrow Jev disable and the partial runtime acceptance; preserve the open stability question and plugin decision gate. No claim of final incident closure is made.
