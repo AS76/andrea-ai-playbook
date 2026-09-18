@@ -1,0 +1,18 @@
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -86,7 +86,7 @@
+ type TelemetryRecord = {
+   event: string;
+-  ts: string;
++  ts?: string;
+@@ -105,7 +105,7 @@
+ async function logTelemetry(cfg: Config, rec: TelemetryRecord): Promise<void> {
+   try {
+-    const line = JSON.stringify({ ts: new Date().toISOString(), ...rec });
++    const line = JSON.stringify({ ...rec, ts: new Date().toISOString() });
+@@ -277,7 +277,7 @@
+         } satisfies PluginHookBeforeAgentFinalizeResult;
+       },
+-      { timeoutMs: 8000, allowConversationAccess: true },
++      { timeoutMs: 8000 },
+     );
