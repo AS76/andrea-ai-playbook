@@ -1,10 +1,10 @@
 # CURRENT TASK
 
-Request: proceed with scoped Jev remediation from the existing blocked checkpoint without bypassing updater ownership.
+Request: resume the stopped-Gateway Jev remediation from the cleared updater ownership checkpoint and complete controlled runtime acceptance.
 
 Overall status: REVIEW_REQUIRED
 ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: BLOCKED
+Engineering acceptance: PARTIAL — scoped Jev load and Gateway recovery runtime verified; new Telegram delivery unverified
 
 Scope: original updater ownership gate, isolated Jev registration check, encrypted S3 rollback copy, and repeated pre-start checks.
 
@@ -14,6 +14,7 @@ Prior episode: streamed encrypted S3 rollback copy, then ran `openclaw update re
 
 Verification: exact CLI and isolated service package paths established; original updater process remains live. Config hash matches its pre-update copy. Shared and 13 agent SQLite quick checks pass. The last Gateway startup logged a failure of enabled `jev-decision-gate`; Doctor lint reports an `idrivee2` MCP error. The Gateway remains inactive and health returns ECONNREFUSED.
 
-Decision: repeated pre-start BLOCKED. The original updater still owns this Codex triage subtree. A three-edit isolated Jev proposal compiled, imported, and registered all four hooks with guards disabled; an encrypted S3 rollback copy passed full remote readback. The handoff orders updater exit before plugin promotion. No production plugin mutation or Gateway start occurred. PR #3 remains draft and conflicting with newer PR #1 commits.
+Decision: the original updater and triage child exited. The verified encrypted S3 rollback copy protected the narrow Jev source/build repair. The plugin loaded in the controlled Gateway start; RPC, sustained liveness, Telegram probes, and a Gateway-routed Cleo turn passed. New Telegram delivery remains unverified. PR #3 remains draft and conflicting with newer PR #1 commits.
 
 Handoffs: `handoffs/2026-09-18_openclaw-update-refusal-repair.md`, `handoffs/2026-09-18_jev-updater-remediation-assessment.md`, and `handoffs/2026-09-18_jev-remediation-prepared-gate.md`.
+Continuation handoff: `handoffs/2026-09-18_jev-gateway-controlled-acceptance.md`.
