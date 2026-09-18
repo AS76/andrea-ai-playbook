@@ -4,7 +4,7 @@ Request: resume the stopped-Gateway Jev remediation from the cleared updater own
 
 Overall status: REVIEW_REQUIRED
 ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: PARTIAL — scoped Jev load and Gateway recovery runtime verified; new Telegram delivery unverified
+Engineering acceptance: DEGRADED — scoped Jev load verified; two later Gateway RPC timeouts recovered; new Telegram delivery unverified
 
 Scope: original updater ownership gate, isolated Jev registration check, encrypted S3 rollback copy, and repeated pre-start checks.
 
@@ -14,7 +14,7 @@ Prior episode: streamed encrypted S3 rollback copy, then ran `openclaw update re
 
 Verification: exact CLI and isolated service package paths established; original updater process remains live. Config hash matches its pre-update copy. Shared and 13 agent SQLite quick checks pass. The last Gateway startup logged a failure of enabled `jev-decision-gate`; Doctor lint reports an `idrivee2` MCP error. The Gateway remains inactive and health returns ECONNREFUSED.
 
-Decision: the original updater and triage child exited. The verified encrypted S3 rollback copy protected the narrow Jev source/build repair. The plugin loaded in the controlled Gateway start; RPC, sustained liveness, Telegram probes, and a Gateway-routed Cleo turn passed. New Telegram delivery remains unverified. PR #3 remains draft and conflicting with newer PR #1 commits.
+Decision: the original updater and triage child exited. The verified encrypted S3 rollback copy protected the narrow Jev source/build repair. The plugin loaded in the controlled Gateway start; Telegram probes and a Gateway-routed Cleo turn passed. Two later Gateway health RPCs timed out, then recovered. New Telegram delivery remains unverified. PR #3 remains draft and conflicting with newer PR #1 commits.
 
 Handoffs: `handoffs/2026-09-18_openclaw-update-refusal-repair.md`, `handoffs/2026-09-18_jev-updater-remediation-assessment.md`, and `handoffs/2026-09-18_jev-remediation-prepared-gate.md`.
 Continuation handoff: `handoffs/2026-09-18_jev-gateway-controlled-acceptance.md`.

@@ -1,6 +1,6 @@
 # Jev repair and controlled Gateway acceptance — 2026-09-18
 
-Status: **RUNTIME_VERIFIED for the scoped Jev load and Gateway recovery; PARTIAL for full channel delivery.** Review required.
+Status: **RUNTIME_VERIFIED for the scoped Jev load; DEGRADED for Gateway liveness; PARTIAL for full channel delivery.** Review required.
 
 ## FACT — checkpoint and protection
 
@@ -18,12 +18,13 @@ Status: **RUNTIME_VERIFIED for the scoped Jev load and Gateway recovery; PARTIAL
 
 - Started `openclaw-gateway.service` through its existing systemd user unit. The unit stayed `active/running` on one MainPID with `NRestarts=0`. Loopback port 18789 listened with `Recv-Q=0`. `openclaw gateway status --deep` reported CLI/Gateway version 2026.9.4 and a successful connectivity probe.
 - The live Gateway logged Jev registration with `enabled=false, completion=false, progress=false`; `openclaw health --json` listed `jev-decision-gate` among loaded plugins and had no plugin errors. The plugin's own version probe reported `runtime=unknown`, a warning that limits its version self-check; the Gateway runtime itself reported 2026.9.4.
-- Startup briefly timed out and reported event-loop degradation during initialization. Subsequent and sustained RPC health reported `ok=true`, `eventLoop.degraded=false`, no liveness reasons, and no service restart. A Gateway-routed Cleo turn in an isolated acceptance session returned exactly `GATEWAY_ACCEPTANCE_OK`; its terminal receipt showed requested route `openrouter/auto`, effective OpenRouter response model `z-ai/glm-5.3-flash`, with no fallback attempt. No Telegram delivery was requested.
+- Startup briefly timed out and reported event-loop degradation during initialization. Subsequent RPC health reported `ok=true`, `eventLoop.degraded=false`, no liveness reasons, and no service restart. A Gateway-routed Cleo turn in an isolated acceptance session returned exactly `GATEWAY_ACCEPTANCE_OK`; its terminal receipt showed requested route `openrouter/auto`, effective OpenRouter response model `z-ai/glm-5.3-flash`, with no fallback attempt. No Telegram delivery was requested.
 - `openclaw channels status --probe --json` returned successful Telegram bot probes. All configured enabled Telegram accounts reached `connected=true`, `lifecycle=ready`; disabled accounts remained disabled. Post-start config hash still matched the pre-update copy, and all 14 SQLite read-only quick checks remained `ok`.
 
 ## Remaining limits and warnings
 
 - Telegram transport/probe and an agent reply passed, but a new end-to-end inbound Telegram message and delivered reply were not observed. Full delivery acceptance is **UNVERIFIED**.
+- After the ledger push, two consecutive `openclaw health --json` probes timed out at 10 seconds while the service stayed active on the same PID. `Recv-Q` briefly reached 3, and logs showed a concurrent Lex cron turn and slow SQLite reclamation. A later probe recovered to `ok=true`, `eventLoop.degraded=false`, with default Telegram connected. This is an intermittent liveness failure, **DEGRADED**, not proof that the Lex turn caused it. No Jev load error was logged during the interval.
 - Startup logged an automatic repair of 12 managed npm plugin peer links and a Composio peer-link warning; live health lists Composio `configured-unavailable`. It also logged a blocked `context-vault` `before_prompt_build` hook, a captured `models.json` OpenRouter `apiKey` schema warning, and `idrivee2` OAuth / `showly` tool-listing errors. These were not changed under this Jev repair and require separate investigation before claiming every capability healthy.
 - Startup reported preserved Skill Workshop backup roots without configured owners. No Doctor fix was invoked in this session. The original update repair's separate Doctor pass is documented in the earlier handoff.
 - Draft PR #3 is based on the PR #1 ledger branch and remains conflicting with newer PR #1 commits. Do not rewrite the historical review branch until the base lineage is decided.
