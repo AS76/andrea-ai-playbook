@@ -1,0 +1,144 @@
+[
+  {
+    "status": "error",
+    "reason": "doctor-failed",
+    "before": {
+      "version": "2026.9.4",
+      "buildId": "2026.9.4-release-3a9d69db306c-2026-09-10T22-53-16.719Z"
+    },
+    "after": {
+      "version": null,
+      "buildId": "2026.9.4-release-3a9d69db306c-2026-09-10T22-53-16.719Z"
+    },
+    "steps": [
+      {
+        "name": "global update",
+        "exitCode": 0,
+        "durationMs": 30397
+      },
+      {
+        "name": "candidate migration rehearsal",
+        "exitCode": 0,
+        "durationMs": 234176
+      },
+      {
+        "name": "candidate lint",
+        "exitCode": 1,
+        "durationMs": 298688
+      }
+    ]
+  },
+  {
+    "status": "error",
+    "reason": "global-install-failed",
+    "before": {
+      "version": "2026.9.4",
+      "buildId": "2026.9.4-release-3a9d69db306c-2026-09-10T22-53-16.719Z"
+    },
+    "after": {
+      "version": "2026.9.4",
+      "buildId": "2026.9.4-release-3a9d69db306c-2026-09-10T22-53-16.719Z"
+    },
+    "steps": [
+      {
+        "name": "global update",
+        "exitCode": 0,
+        "durationMs": 27391
+      },
+      {
+        "name": "candidate migration rehearsal",
+        "exitCode": 0,
+        "durationMs": 241232
+      },
+      {
+        "name": "candidate doctor lint",
+        "exitCode": 0,
+        "durationMs": 152369
+      },
+      {
+        "name": "candidate config validation",
+        "exitCode": 0,
+        "durationMs": 6621
+      },
+      {
+        "name": "candidate plugin resolution",
+        "exitCode": 0,
+        "durationMs": 3974
+      },
+      {
+        "name": "candidate migration continuation",
+        "exitCode": 0,
+        "durationMs": 2892
+      },
+      {
+        "name": "candidate gateway canary",
+        "exitCode": 0,
+        "durationMs": 79812
+      },
+      {
+        "name": "global install swap",
+        "exitCode": 1,
+        "durationMs": 30268
+      }
+    ]
+  },
+  {
+    "status": "error",
+    "reason": "state-migrated-no-rollback",
+    "before": {
+      "version": "2026.9.4",
+      "buildId": "2026.9.4-release-3a9d69db306c-2026-09-10T22-53-16.719Z"
+    },
+    "after": {
+      "version": "2026.9.5",
+      "buildId": "2026.9.5-release-ec9c1a13db89-2026-09-18T18-51-37.323Z"
+    },
+    "steps": [
+      {
+        "name": "global update",
+        "exitCode": 0,
+        "durationMs": 36543
+      },
+      {
+        "name": "candidate migration rehearsal",
+        "exitCode": 0,
+        "durationMs": 228294
+      },
+      {
+        "name": "candidate doctor lint",
+        "exitCode": 0,
+        "durationMs": 156300
+      },
+      {
+        "name": "candidate config validation",
+        "exitCode": 0,
+        "durationMs": 4758
+      },
+      {
+        "name": "candidate plugin resolution",
+        "exitCode": 0,
+        "durationMs": 3857
+      },
+      {
+        "name": "candidate migration continuation",
+        "exitCode": 0,
+        "durationMs": 2421
+      },
+      {
+        "name": "candidate gateway canary",
+        "exitCode": 0,
+        "durationMs": 91424
+      },
+      {
+        "name": "global install swap",
+        "exitCode": 0,
+        "durationMs": 212692
+      },
+      {
+        "name": "openclaw doctor",
+        "exitCode": 1,
+        "durationMs": 71958
+      }
+    ]
+  }
+]

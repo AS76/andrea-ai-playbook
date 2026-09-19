@@ -1,0 +1,29 @@
+PASS noop --check latest -> NO_UPDATE
+PASS noop --apply openclaw@2026.9.5 -> NO_UPDATE
+PASS normal --dry-run openclaw@2026.9.5 -> READY
+PASS future --check latest -> MANUAL_REVIEW_REQUIRED
+PASS future --apply 2026.9.6 --approve-bundled-doctor -> SUCCESS
+PASS normal --apply openclaw@2026.9.5 -> SUCCESS
+PASS health --apply openclaw@2026.9.5 -> PRECHECK_FAILED
+PASS owner --apply openclaw@2026.9.5 -> MANUAL_REVIEW_REQUIRED
+PASS inactive --apply openclaw@2026.9.5 -> PRECHECK_FAILED
+PASS active-update --apply openclaw@2026.9.5 -> PRECHECK_FAILED
+PASS offline-status --apply openclaw@2026.9.5 -> PRECHECK_FAILED
+PASS disk --apply openclaw@2026.9.5 -> PRECHECK_FAILED
+PASS invalid-config --apply openclaw@2026.9.5 -> PRECHECK_FAILED
+PASS dry-refused --apply openclaw@2026.9.5 -> MANUAL_REVIEW_REQUIRED
+PASS backup-hash --apply openclaw@2026.9.5 -> PRECHECK_FAILED
+PASS backup-object --apply openclaw@2026.9.5 -> PRECHECK_FAILED
+PASS backup-exit --apply openclaw@2026.9.5 -> PRECHECK_FAILED
+PASS native-failure --apply openclaw@2026.9.5 -> RECOVERY_REQUIRED
+PASS native-json-error --apply openclaw@2026.9.5 -> RECOVERY_REQUIRED
+PASS config-change --apply openclaw@2026.9.5 -> MANUAL_REVIEW_REQUIRED
+PASS gateway-version --apply openclaw@2026.9.5 -> RECOVERY_REQUIRED
+PASS lint-error --apply openclaw@2026.9.5 -> RECOVERY_REQUIRED
+PASS channel --apply openclaw@2026.9.5 -> RECOVERY_REQUIRED
+PASS missing-channel --apply openclaw@2026.9.5 -> RECOVERY_REQUIRED
+PASS unexpected --apply openclaw@2026.9.5 -> FAILED
+PASS locked --apply openclaw@2026.9.5 -> argument/lock rejection
+PASS normal --apply latest -> argument/lock rejection
+PASS normal --apply invalid -> argument/lock rejection
+PASS all 28 isolated flow tests; no production command executed

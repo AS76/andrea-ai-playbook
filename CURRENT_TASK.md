@@ -1,11 +1,12 @@
 # CURRENT TASK
 
-Request: OpenClaw 48h context and latency forensic audit, retrospective only.
+Request: complete OpenClaw 2026.9.5 update and resolve defects blocking subsequent updates.
 Overall status: REVIEW_REQUIRED / PENDING_REVIEW
-Objective: determine Cleo's token/context and latency drivers from persisted records, with explicit unknowns and memory-preserving optimisation candidates.
-Scope completed: installed runtime and config; Cleo SQLite transcripts, trajectory and last-run context report; Gateway rolling logs; memory/tool/skill surfaces; 2026-09-17 10:03 Europe/Rome interaction.
-Window: 2026-09-15 16:14:20 UTC through 2026-09-17 16:14:20 UTC, frozen at audit start.
-Result: one long Telegram session accounted for 202.9M of 210.4M derived prompt tokens (96.45%). Historical reset boundary correlated with an 85% median prompt reduction while transcript persisted. Wall-clock provider-versus-assembly share remains UNKNOWN without complete historical spans.
-Artifacts: `evidence/2026-09-17-openclaw-context-latency/` and `handoffs/2026-09-17_openclaw-context-latency-forensic-audit.md`.
-Verification: 1,034 CSV rows across 120 sessions; JSON parsed; report sections and target values checked; `tools/codex-handoff verify` and `secret-scan` pass; no raw conversation or secrets exported.
-Remaining work: independent ChatGPT ledger review only. No OpenClaw changes or remediation in this audit.
+Objective: verify production runtime and harden repeatable guarded updates.
+Scope: updater, migration recovery, Gateway/Telegram acceptance, warnings, sanitized review evidence.
+Baseline: 2026.9.4; previous wrapper refused all apply operations.
+Findings: old launcher capped candidate validation at 300 seconds and integrity scans at 30 seconds. Minimal backports preserved all checks. Third attempt promoted 2026.9.5, then Doctor stopped on deferred plugins.
+Recovery: streamed encrypted S3 backups verified. Standalone Doctor converged 17 plugins. Native locked post-session inspection completed Codex without changes or warnings; config unchanged and pending plugin list empty.
+Current result: 2026.9.5 verified over Gateway RPC; eight Telegram probes and actual delivery passed; Doctor lint zero findings; no degraded plugins; 28 isolated updater tests passed. Known non-blocking warnings and restore limitations are documented rather than suppressed.
+Handoff: handoffs/2026-09-19_openclaw-2026.9.5-update.md
+Remaining work: independent review of the published current PR head. No claim of complete/offsite restore acceptance.
