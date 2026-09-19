@@ -1,16 +1,16 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-17
-Current task: OpenClaw 48h context and latency forensic audit
+Last update: 2026-09-19
+Current task: OpenClaw 2026.9.5 upgrade and repeatable guarded updates
 Overall status: REVIEW_REQUIRED
 ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: PASS — retrospective dataset, report, evidence manifest and privacy checks completed
-Runtime: OpenClaw 2026.9.4 Gateway identified; no production change applied
-Reviewed Commit: codex/handoff-ledger
+Engineering acceptance: PASS — live RPC/version, eight Telegram probes, delivery, lint and 28 isolated updater tests
+Runtime: 2026.9.5 Gateway verified over RPC; Telegram connected; no degraded plugins
+Reviewed Commit: codex/openclaw-update-20260919
 Closure Commit: none for current task
-Current Commit: codex/handoff-ledger
-Branch: codex/handoff-ledger
+Current Commit: codex/openclaw-update-20260919
+Branch: codex/openclaw-update-20260919
 
-Current objective: independent review of sanitized 48-hour findings and their evidence limits. No remediation authorized or applied.
+Current objective: finish production update, verify runtime, and harden guarded future updates.
 
-Safety state: OpenClaw read only throughout. Primary ledger checkout retained its unrelated uncommitted context-remediation files; this audit was isolated in a linked Git worktree. No polling, telemetry, process, session, memory or configuration changes.
+Safety state: encrypted S3 rollback copies verified. Primary ledger checkout retains unrelated uncommitted work; this task uses a linked worktree. No rollback to old binaries after schema migration.

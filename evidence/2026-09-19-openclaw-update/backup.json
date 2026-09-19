@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "bytes": 311203418,
+  "sha256": "30c2f6df5e0e6858975c78e00ba057d1f35ed8e7a02ec9bf91fc3525aec755d4",
+  "object": "openclaw/recovery/final-2026.9.5-20260919T070100Z.tar.gz.gpg",
+  "verification": "producer exit, encryption exit, full remote SHA-256 readback",
+  "local_archive_created": false
+}

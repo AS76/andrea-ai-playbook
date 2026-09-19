@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "operation": "native locked post-session inspection",
+  "completedPluginIds": [
+    "active-memory",
+    "canvas",
+    "codex",
+    "crabbox",
+    "device-pair",
+    "memory-core",
+    "memory-wiki",
+    "reef",
+    "telegram",
+    "workboard"
+  ],
+  "changes": [],
+  "warnings": [],
+  "configUnchanged": true
+}

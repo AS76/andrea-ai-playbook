@@ -1,0 +1,11 @@
+{
+  "mode": "npm",
+  "currentVersion": "2026.9.5",
+  "targetVersion": "2026.9.5",
+  "actions": [
+    "Refresh package install with spec openclaw@2026.9.5; current version already matches 2026.9.5",
+    "Run plugin update sync after core update",
+    "Refresh shell completion cache (if needed)",
+    "Restart gateway service and run doctor checks"
+  ]
+}

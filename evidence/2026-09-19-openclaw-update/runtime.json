@@ -1,0 +1,23 @@
+{
+  "runtimeVersion": "2026.9.5",
+  "statusSource": "gateway",
+  "gatewayReachable": true,
+  "pid": 1279445,
+  "restarts": 0,
+  "degradedPlugins": [],
+  "degradedSecretOwners": [],
+  "eventLoopDegraded": false,
+  "healthOk": true,
+  "telegramAccounts": 8,
+  "allTelegramConnected": true,
+  "allTelegramProbesOk": true,
+  "channelStatusIssues": [],
+  "doctorLint": {
+    "schemaVersion": 1,
+    "ok": true,
+    "checksRun": 35,
+    "checksSkipped": 31,
+    "findings": []
+  },
+  "telegramDeliveryOk": true
+}
