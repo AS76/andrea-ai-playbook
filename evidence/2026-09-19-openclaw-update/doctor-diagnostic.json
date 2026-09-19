@@ -1,0 +1,1 @@
+{"command":"openclaw doctor --json","exitCode":0,"result":{"schemaVersion":1,"ok":true,"checksRun":35,"checksSkipped":31,"findings":[]}}
