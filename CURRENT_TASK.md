@@ -16,3 +16,5 @@ Evidence: evidence/2026-09-24-update-recovery/verification.json
 Current Commit: codex/recovery-20260924
 
 Follow-up: user asks whether forcing repair or reinstalling from zero is necessary. Investigate sustained CPU and remaining native migration conflict; preserve current working Gateway and all data. No reset or deletion authorized.
+
+Upstream reporting: prepare and publish sanitized observed-state reproduction on canonical OpenClaw issue #154679, verify published text, preserve local evidence. No runtime changes.
