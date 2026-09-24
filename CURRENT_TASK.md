@@ -14,3 +14,5 @@ Doctor still rewrites the retained legacy index then refuses its changed source 
 Handoff: handoffs/2026-09-24_failed-update-recovery.md
 Evidence: evidence/2026-09-24-update-recovery/verification.json
 Current Commit: codex/recovery-20260924
+
+Follow-up: user asks whether forcing repair or reinstalling from zero is necessary. Investigate sustained CPU and remaining native migration conflict; preserve current working Gateway and all data. No reset or deletion authorized.
