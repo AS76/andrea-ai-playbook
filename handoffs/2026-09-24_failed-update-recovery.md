@@ -83,3 +83,15 @@ Installed Doctor source explicitly excludes inactive non-bundled plugins from st
 ## Upstream report published
 
 User authorized reporting to OpenClaw. Existing canonical issue #154679 covers the retained-index conflict; #156016 was already closed as its duplicate. Published the sanitized 2026.9.6 observed-state reproduction at https://github.com/openclaw/openclaw/issues/154679#issuecomment-5809162098. Verified the fetched comment body matches the reviewed local report. Included source hashes, native repair results, database/runtime checks, uncertainty about the exact write function, and a proposed regression fixture. CPU remains explicitly separate and causally unproven. No private payloads or raw artifacts published; no runtime changes for this reporting task.
+
+## Consolidated daily report and latest availability check
+
+This handoff consolidates the recovery, CPU follow-up, upstream publication, and subsequent usability check performed in this session on 2026-09-24. It does not claim coverage of unrelated operations by other agents today. User explicitly requested the complete report in ClawMem and the Codex ledger.
+
+Latest `openclaw health --json` completed successfully in 1572 ms. All eight Telegram accounts were running and connected with lastError null; modelRuntime.degraded=false and pendingAgents empty. Event-loop degradation persisted: reasons event_loop_delay, event_loop_utilization and cpu; delay p99 1451.2 ms, utilization 1, CPU core ratio 1.103, main-thread ratio 0.213, host utilization 1 on two CPUs. These are a snapshot, not sustained service-level guarantees.
+
+The paired `openclaw gateway status --deep` again confirmed serving version 2026.9.6, PID 4030781 and connectivity probe ok. It also warned that service PATH lacks /root/.local/share/pnpm, Codex settings cannot be fully checked before pending migration completion, and Brave has no matching 2026.9.6 registry release. No automatic PATH rewrite or service reinstall was performed. Sanitized evidence: evidence/2026-09-24-update-recovery/latest-availability.json.
+
+Operational answer: OpenClaw is available for use, with possible latency/timeouts under the observed CPU pressure. Availability is verified; full reliability and an end-to-end model response/message delivery were not verified. Retained-source repair remains incomplete. Do not infer successful maintenance from top-level health ok, connected channels, or database quick_check alone.
+
+Remaining work: obtain a data-preserving upstream fix for retained-source normalization/settlement; resolve disabled Codex migration through supported lifecycle semantics; investigate worker CPU without assigning an unproven root cause; assess failed-delivery backlog without automatic resends; review service PATH warning and intentional plugin hook permissions separately. No wipe/reset, forced receipt update, capability expansion or blind repeated Doctor passes are justified by current evidence. Engineering outcome remains PARTIAL / DEGRADED; independent review PENDING_REVIEW.

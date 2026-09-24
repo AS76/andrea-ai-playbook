@@ -18,3 +18,5 @@ Current Commit: codex/recovery-20260924
 Follow-up: user asks whether forcing repair or reinstalling from zero is necessary. Investigate sustained CPU and remaining native migration conflict; preserve current working Gateway and all data. No reset or deletion authorized.
 
 Upstream reporting: prepare and publish sanitized observed-state reproduction on canonical OpenClaw issue #154679, verify published text, preserve local evidence. No runtime changes.
+
+Daily consolidation complete: full sanitized handoff saved to ClawMem doc #17181 (diary/2026-09-24-065334146-technical.md), read back and checked for latest availability and backup evidence. Latest snapshot stored in evidence/2026-09-24-update-recovery/latest-availability.json. Outcome remains PARTIAL / DEGRADED; review pending.
