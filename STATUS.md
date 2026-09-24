@@ -1,16 +1,14 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-17
-Current task: OpenClaw 48h context and latency forensic audit
+Last update: 2026-09-24
+Current task: failed OpenClaw update recovery
 Overall status: REVIEW_REQUIRED
 ChatGPT Review: PENDING_REVIEW
-Engineering acceptance: PASS — retrospective dataset, report, evidence manifest and privacy checks completed
-Runtime: OpenClaw 2026.9.4 Gateway identified; no production change applied
-Reviewed Commit: codex/handoff-ledger
+Engineering acceptance: PARTIAL / DEGRADED — Gateway restored; native Doctor migration remains blocked
+Runtime: 2026.9.6, RPC ok, readyz HTTP 200, eight Telegram accounts connected, CPU degraded
+Reviewed Commit: codex/recovery-20260924
 Closure Commit: none for current task
-Current Commit: codex/handoff-ledger
-Branch: codex/handoff-ledger
+Current Commit: codex/recovery-20260924
+Branch: codex/recovery-20260924
 
-Current objective: independent review of sanitized 48-hour findings and their evidence limits. No remediation authorized or applied.
-
-Safety state: OpenClaw read only throughout. Primary ledger checkout retained its unrelated uncommitted context-remediation files; this audit was isolated in a linked Git worktree. No polling, telemetry, process, session, memory or configuration changes.
+No full recovery or completion claimed. See handoffs/2026-09-24_failed-update-recovery.md and sanitized evidence. Prior audit preserved in Git history; unrelated primary-checkout work excluded.
