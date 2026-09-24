@@ -1,0 +1,305 @@
+{
+  "capturedAtUtc": "2026-09-24T06:27:20.307614+00:00",
+  "outcome": "PARTIAL_DEGRADED",
+  "installedAndServingVersion": "2026.9.6",
+  "suppliedExpectedVersion": "2026.9.5",
+  "upstreamTagCommit": "eb377ac59e6c9fd6c7705028034812becf00271b",
+  "gateway": {
+    "pid": 4030781,
+    "systemdActive": true,
+    "systemdAutomaticRestarts": 0,
+    "deepStatusConnectivity": "ok",
+    "recvQ": 0,
+    "readyzHttp": 200,
+    "readyz": {
+      "ready": true,
+      "failing": [],
+      "uptimeMs": 230783,
+      "eventLoop": {
+        "degraded": true,
+        "degradedSinceMs": 22744,
+        "reasons": [
+          "event_loop_delay",
+          "cpu"
+        ],
+        "intervalMs": 1430.4014559999923,
+        "delayP99Ms": 1276.1,
+        "delayMaxMs": 1276.1,
+        "utilization": 0.947,
+        "cpuCoreRatio": 0.908,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.239,
+          "hostUtilization": 1,
+          "hostCpuCount": 2,
+          "workerCoreRatio": 0.523,
+          "otherThreadsCoreRatio": 0.146
+        }
+      }
+    }
+  },
+  "health": {
+    "ok": true,
+    "durationMs": 498,
+    "plugins": {
+      "loaded": [
+        "anthropic",
+        "brave",
+        "clawmem",
+        "composio",
+        "context-lifecycle-guard",
+        "context-vault",
+        "device-pair",
+        "elevenlabs",
+        "lobster",
+        "openai",
+        "orchestration-observer",
+        "secrets-vault",
+        "skill-hub",
+        "slack",
+        "telegram",
+        "time-inject"
+      ],
+      "errors": [],
+      "unavailable": []
+    },
+    "deliveryQueues": {
+      "failed": [
+        {
+          "queueName": "outbound",
+          "count": 82,
+          "oldestFailedAt": 1779325410877
+        }
+      ]
+    },
+    "configReload": {
+      "hotReloadStatus": "active"
+    },
+    "eventLoop": {
+      "degraded": true,
+      "degradedSinceMs": 26347,
+      "reasons": [
+        "cpu"
+      ],
+      "intervalMs": 1577.5207850000006,
+      "delayP99Ms": 731.9,
+      "delayMaxMs": 731.9,
+      "utilization": 0.623,
+      "cpuCoreRatio": 1.011,
+      "cpuBreakdown": {
+        "mainThreadCoreRatio": 0.327,
+        "hostUtilization": 0.996,
+        "hostCpuCount": 2
+      }
+    },
+    "modelRuntime": {
+      "degraded": false,
+      "pendingAgents": []
+    }
+  },
+  "channels": {
+    "slack": {
+      "default": {
+        "configured": false,
+        "running": false,
+        "connected": null,
+        "lastError": null
+      }
+    },
+    "telegram": {
+      "default": {
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "lastError": null
+      },
+      "atlas": {
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "lastError": null
+      },
+      "lex": {
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "lastError": null
+      },
+      "max": {
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "lastError": null
+      },
+      "pixel": {
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "lastError": null
+      },
+      "scout": {
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "lastError": null
+      },
+      "scribe": {
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "lastError": null
+      },
+      "visa": {
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "lastError": null
+      }
+    }
+  },
+  "databaseQuickCheck": {
+    "count": 17,
+    "passed": 17
+  },
+  "config": {
+    "valid": true,
+    "path": "/root/.openclaw/openclaw.json",
+    "warnings": [
+      {
+        "path": "plugins.entries.codex",
+        "message": "Plugin \"codex\" settings cannot be checked until its data/settings upgrade finishes. Your existing settings have been kept. Run \"openclaw update status\" for repair details."
+      }
+    ]
+  },
+  "configSha256": "ec0a66a5e4417fe43b9a24ecb0b13fb50d0228611aac24f9fc584602f6878cf4",
+  "pluginDiagnostics": {
+    "ok": false,
+    "pluginErrors": [],
+    "diagnostics": [
+      {
+        "level": "warn",
+        "pluginId": "context-vault",
+        "message": "typed hook \"before_prompt_build\" blocked because non-bundled plugins must set plugins.entries.context-vault.hooks.allowConversationAccess=true",
+        "source": "~/.openclaw/workspace/main/plugins/context-vault/dist/index.js"
+      },
+      {
+        "level": "warn",
+        "pluginId": "composio",
+        "message": "typed hook \"before_prompt_build\" blocked because non-bundled plugins must set plugins.entries.composio.hooks.allowConversationAccess=true",
+        "source": "~/.openclaw/extensions/composio/dist/index.js"
+      }
+    ],
+    "sourceShadowing": [],
+    "compatibility": [
+      {
+        "pluginId": "context-vault",
+        "code": "hook-only",
+        "compatCode": "hook-only-plugin-shape",
+        "severity": "info",
+        "message": "is hook-only. This remains a supported compatibility path, but it has not migrated to explicit capability registration yet."
+      },
+      {
+        "pluginId": "time-inject",
+        "code": "hook-only",
+        "compatCode": "hook-only-plugin-shape",
+        "severity": "info",
+        "message": "is hook-only. This remains a supported compatibility path, but it has not migrated to explicit capability registration yet."
+      }
+    ],
+    "configurationWarnings": [
+      "- plugins.entries.codex: Plugin \"codex\" settings cannot be checked until its data/settings upgrade finishes. Your existing settings have been kept. Run \"openclaw update status\" for repair details."
+    ]
+  },
+  "nativeRestart": {
+    "exitCode": 1,
+    "reason": "health readiness timeout after 242 seconds; same process subsequently passed RPC and readiness; no repeat restart"
+  },
+  "deliveryTestSent": false,
+  "sourceIndexRestoredToReceiptHash": true,
+  "channelProbes": {
+    "slack": [
+      {
+        "accountId": "default",
+        "configured": false,
+        "running": false,
+        "connected": null,
+        "probeOk": null,
+        "probeElapsedMs": null,
+        "lastError": null
+      }
+    ],
+    "telegram": [
+      {
+        "accountId": "atlas",
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "probeElapsedMs": 512,
+        "lastError": null
+      },
+      {
+        "accountId": "default",
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "probeElapsedMs": 532,
+        "lastError": null
+      },
+      {
+        "accountId": "lex",
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "probeElapsedMs": 386,
+        "lastError": null
+      },
+      {
+        "accountId": "max",
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "probeElapsedMs": 871,
+        "lastError": null
+      },
+      {
+        "accountId": "pixel",
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "probeElapsedMs": 174,
+        "lastError": null
+      },
+      {
+        "accountId": "scout",
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "probeElapsedMs": 435,
+        "lastError": null
+      },
+      {
+        "accountId": "scribe",
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "probeElapsedMs": 441,
+        "lastError": null
+      },
+      {
+        "accountId": "visa",
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "probeElapsedMs": 385,
+        "lastError": null
+      }
+    ]
+  }
+}

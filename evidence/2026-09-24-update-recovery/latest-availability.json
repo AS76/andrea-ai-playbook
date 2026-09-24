@@ -1,0 +1,82 @@
+{
+  "source": "Latest availability check performed before daily report consolidation; not a new probe",
+  "sourceFileMtimeUtc": "2026-09-24T06:50:23.034209+00:00",
+  "ok": true,
+  "durationMs": 1572,
+  "eventLoop": {
+    "degraded": true,
+    "degradedSinceMs": 1956,
+    "reasons": [
+      "event_loop_delay",
+      "event_loop_utilization",
+      "cpu"
+    ],
+    "intervalMs": 1956.0862530001905,
+    "delayP99Ms": 1451.2,
+    "delayMaxMs": 1451.2,
+    "utilization": 1,
+    "cpuCoreRatio": 1.103,
+    "cpuBreakdown": {
+      "mainThreadCoreRatio": 0.213,
+      "hostUtilization": 1,
+      "hostCpuCount": 2
+    }
+  },
+  "modelRuntime": {
+    "degraded": false,
+    "pendingAgents": []
+  },
+  "telegram": {
+    "default": {
+      "running": true,
+      "connected": true,
+      "lastError": null
+    },
+    "atlas": {
+      "running": true,
+      "connected": true,
+      "lastError": null
+    },
+    "lex": {
+      "running": true,
+      "connected": true,
+      "lastError": null
+    },
+    "max": {
+      "running": true,
+      "connected": true,
+      "lastError": null
+    },
+    "pixel": {
+      "running": true,
+      "connected": true,
+      "lastError": null
+    },
+    "scout": {
+      "running": true,
+      "connected": true,
+      "lastError": null
+    },
+    "scribe": {
+      "running": true,
+      "connected": true,
+      "lastError": null
+    },
+    "visa": {
+      "running": true,
+      "connected": true,
+      "lastError": null
+    }
+  },
+  "deepStatus": {
+    "version": "2026.9.6",
+    "pid": 4030781,
+    "connectivity": "ok",
+    "warnings": [
+      "Service PATH missing /root/.local/share/pnpm",
+      "Codex migration pending",
+      "Brave available release 2026.9.5"
+    ]
+  },
+  "endToEndMessageTest": false
+}
