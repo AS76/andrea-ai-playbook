@@ -1,16 +1,16 @@
 # SYSTEM STATUS
 
-Last update: 2026-09-16
-Current task: Cleo bounded native sub-agent orchestration refactor
+Last update: 2026-09-28
+Current task: FindMy scraper guard: autonomous slow probe inside `halted`
 Overall status: REVIEW_REQUIRED
 ChatGPT Review: NOT_STARTED
-Engineering acceptance: PASS — A, B, C, D, E, F1, F2, G and H passed
-Runtime: OpenClaw 2026.9.4 Gateway WebSocket/RPC healthy, event loop non-degraded, Telegram connected
+Engineering acceptance: PASS — implementation, sandbox suite and runtime verification complete; the upstream Apple blocker remains open
+Runtime: Hermes cron entry `*/5` active with the wrapper in `MODE=halted`; the portal answers HTTP 200 on the tailnet bind; stored positions were fresh up to 2026-09-28T05:01:28Z
 Reviewed Commit: none for current task
 Closure Commit: none for current task
-Current Commit: pending local implementation commit
-Branch: codex/handoff-ledger
+Current Commit: pending implementation commit
+Branch: codex/findmy-guard-slow-probe-20260928
 
-Current objective: independent evidence review of the completed bounded-orchestration acceptance record.
+Current objective: independent evidence review of the changed wrapper state machine and of the discrimination between an account-wide Apple lock and a client-scoped authentication flag.
 
-Safety state: encrypted pre-change and pre-remediation rollback bundles were streamed directly to S3 and verified by full remote SHA-256 readback. No Doctor fix, persisted provider/model change, channel change, or memory architecture mutation was performed. See `handoffs/2026-09-16_0330_cleo-bounded-orchestration-final.md`.
+Safety state: the wrapper backup and the state backup were taken before mutation. No credential was read into a log, no password was changed, no session store was destroyed, no interactive re-authentication was attempted, and no Apple security control was circumvented. The scraper is deliberately left halted, so no further authentication attempts reach Apple beyond one probe every six hours. See `handoffs/2026-09-28_0730_findmy-guard-halted-slow-probe.md`.
